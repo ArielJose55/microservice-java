@@ -1,0 +1,21 @@
+allprojects {
+  group = 'co.com.ajac'
+  version = '1.0.0-SNAPSHOT'
+}
+
+subprojects {
+	apply plugin: 'java'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies{
+		testImplementation 'org.assertj:assertj-core:3.11.1'
+		testImplementation 'commons-lang:commons-lang:2.6'
+    	testImplementation 'junit:junit:4.12'
+	}
+}

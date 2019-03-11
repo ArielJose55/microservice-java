@@ -1,0 +1,14 @@
+version: "3"
+services:  
+  node:
+    image: "openjdk:8-jre-alpine"
+    container_name: "discovery-server"
+    working_dir: /home/app
+    depends_on:
+      - postgres
+    volumes:
+      - ../artefacts/discorevry/:/home/app
+    ports:
+      - 8050:8050
+    command: >
+        sh -c "ls"
