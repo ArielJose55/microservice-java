@@ -6,8 +6,8 @@ server:
   
 eureka:
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
     registerWithEureka: true
     fetchRegistry: true
   instance:
@@ -19,8 +19,6 @@ management:
       exposure:
         include: =*
         
-
-      
 zuul:
   routes:
     ignored-services: =*

@@ -1,14 +1,37 @@
 version: "3"
 services:  
-  node:
+  discovery:
     image: "openjdk:8-jre-alpine"
     container_name: "discovery-server"
     working_dir: /home/app
-    depends_on:
-      - postgres
     volumes:
-      - ../artefacts/discorevry/:/home/app
+      - ../artefacts/discovery/:/home/app
     ports:
-      - 8050:8050
+      - 8761:8761
+    expose:
+      - "8761"
     command: >
-        sh -c "ls"
+        sh -c "java -jar discovery-server-0.0.1-SNAPSHOT.jar"
+    networks:
+      - interna
+        
+  gateway:
+    image: "openjdk:8-jre-alpine"
+    container_name: "gateway-service"
+    working_dir: /home/app
+    volumes:
+      - ../artefacts/gateway/:/home/app
+    depends_on:
+      - discovery
+    ports:
+      - 8000:8000
+    expose:
+      - "8000"
+    command: >
+        sh -c "java -jar gateway-service-0.0.1-SNAPSHOT.jar"
+    networks:
+      - interna
+        
+networks: 
+  interna:
+    driver: bridge
