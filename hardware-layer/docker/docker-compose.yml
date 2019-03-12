@@ -7,9 +7,9 @@ services:
     volumes:
       - ../artefacts/discovery/:/home/app
     ports:
-      - 8761:8761
+      - "8000:8761"
     expose:
-      - "8761"
+      - "8000"
     command: >
         sh -c "java -jar discovery-server-0.0.1-SNAPSHOT.jar"
     networks:
@@ -24,11 +24,24 @@ services:
     depends_on:
       - discovery
     ports:
-      - 8000:8000
+      - "8001:8000"
     expose:
-      - "8000"
+      - "8001"
     command: >
         sh -c "java -jar gateway-service-0.0.1-SNAPSHOT.jar"
+    networks:
+      - interna
+
+  device:
+    image: "openjdk:8-jre-alpine"
+    container_name: "device-service"
+    working_dir: /home/app
+    volumes:
+      - ../artefacts/device/:/home/app
+    depends_on:
+      - discovery
+    command: >
+        sh -c "java -jar device-service-1.0.0-SNAPSHOT.jar"
     networks:
       - interna
         

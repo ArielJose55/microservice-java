@@ -37,9 +37,3 @@ dependencyManagement {
 	}
 }
 
-task copyJar(type: Copy) {
-    from jar 
-    into '../../hardware-layer/artefacts/discovery'
-}
-
-build.dependsOn copyJar

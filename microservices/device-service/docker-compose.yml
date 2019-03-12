@@ -1,0 +1,17 @@
+version: "3.5"
+services:  
+  device:
+    image: "java:8"
+    container_name: "device-service"
+    working_dir: /home/app
+    volumes:
+      - ./:/home/app
+    command: >
+        sh -c "./gradlew build && java -jar infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
+    networks:
+      - phnet
+
+networks:
+  phnet:
+    external: true
+    name: phnet
