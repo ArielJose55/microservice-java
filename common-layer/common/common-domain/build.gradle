@@ -1,0 +1,8 @@
+
+jar{
+	archiveBaseName = 'common-infrastructure' 
+}
+
+dependencies {
+	
+}

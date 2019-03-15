@@ -1,10 +1,24 @@
-allprojects {
-  group = 'co.com.ajac'
-  version = '1.0.0-SNAPSHOT'
+
+buildscript {
+  repositories {
+        jcenter()
+   }
 }
 
-subprojects {
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
+}
+
+allprojects {
+
+  	group = 'co.com.ajac'
+  	version = '1.0.0'
+  
+  	apply plugin: 'eclipse'
+	apply plugin: 'jacoco'
+	apply plugin: 'idea'
 	apply plugin: 'java'
+	
 
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
@@ -12,10 +26,53 @@ subprojects {
 	repositories {
 		mavenCentral()
 	}
-	
+}
+
+subprojects {
 	dependencies{
+		compileOnly 'org.projectlombok:lombok:1.18.6'
+		annotationProcessor 'org.projectlombok:lombok:1.18.6'
+		implementation 'org.apache.logging.log4j:log4j-core:2.11.2'
+		implementation 'com.google.guava:guava:27.0.1-jre'
+		implementation 'javax.validation:validation-api:2.0.1.Final'
 		testImplementation 'org.assertj:assertj-core:3.11.1'
 		testImplementation 'commons-lang:commons-lang:2.6'
     	testImplementation 'junit:junit:4.12'
 	}
+	
+	task sourcesJar(type: Jar, dependsOn: classes) {
+	    classifier = 'sources'
+	    from sourceSets.main.output
+	}
+	
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+     publications {
+          domainMaven(MavenPublication) {
+            def domain = project(':common-domain')
+            from domain.components.java
+            artifact domain.sourcesJar
+            afterEvaluate {
+                artifactId = domain.name
+                groupId = domain.group
+            	version = domain.version
+            }
+        }
+    }
+}
+    
+bintray {
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    publications = ['domainMaven']
+    publish = true
+    pkg {
+       	repo = 'ajac'
+        name = 'ajac'
+        userOrg = 'arieljose55'
+    }
 }
