@@ -61,6 +61,28 @@ publishing {
             	version = domain.version
             }
         }
+        
+        applicationMaven(MavenPublication) {
+            def application = project(':common-application')
+            from application.components.java
+            artifact application.sourcesJar
+            afterEvaluate {
+                artifactId = application.name
+                groupId = application.group
+            	version = application.version
+            }
+        }
+        
+        infrastructureMaven(MavenPublication) {
+            def infraestructure = project(':common-infrastructure')
+            from infraestructure.components.java
+            artifact infraestructure.sourcesJar
+            afterEvaluate {
+                artifactId = infraestructure.name
+                groupId = infraestructure.group
+            	version = infraestructure.version
+            }
+        }
     }
 }
     
@@ -68,11 +90,12 @@ bintray {
 	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
 
-    publications = ['domainMaven']
+    publications = ['domainMaven', 'applicationMaven', 'infrastructureMaven']
     publish = true
+    override = true
     pkg {
        	repo = 'ajac'
-        name = 'ajac'
+        name = 'ph-man'
         userOrg = 'arieljose55'
     }
 }
