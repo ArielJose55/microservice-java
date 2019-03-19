@@ -24,12 +24,19 @@ jar{
     archivesBaseName = 'device-service'
 }
 
+repositories{
+	maven{
+		url 'https://dl.bintray.com/arieljose55/ajac/'
+	}
+}
 
 dependencies {
-    compile project(":domain")
-	compile project(":application")
+	compile project(":device-domain")
+	compile project(":device-application")
+    implementation 'co.com.ajac:common-infrastructure:1.0.0'	
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
 }
 
 dependencyManagement {

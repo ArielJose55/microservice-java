@@ -1,17 +1,41 @@
 version: "3.5"
 services:  
-  device:
-    image: "java:8"
-    container_name: "device-service"
-    working_dir: /home/app
+#  device:
+#    image: "java:8"
+#    container_name: "device-service"
+#    working_dir: /home/app
+#    volumes:
+#      - ./:/home/app
+#    command: >
+#        sh -c "./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
+#    networks:
+#      - phnet
+#      - pgnet-device
+
+  device-database:
+    image: "postgres"
+    restart: always
+    container_name: "device-database"
+    environment:
+      POSTGRES_DB: "device-database"
+      POSTGRES_USER: "device_user"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "5432:5432"
     volumes:
-      - ./:/home/app
-    command: >
-        sh -c "./gradlew build && java -jar infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
+      - ../../hardware-layer/database/device:/docker-entrypoint-initdb.d
+      - pgdata-device
     networks:
-      - phnet
+      - pgnet-device
+
+
+volumes:
+  pgdata-device:
+    name: pgnet-device
 
 networks:
+  pgnet-device:
+    driver: bridge
   phnet:
     external: true
     name: phnet

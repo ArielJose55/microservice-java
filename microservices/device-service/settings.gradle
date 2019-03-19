@@ -1,6 +1,6 @@
 
 rootProject.name = 'device-service'
 
-include ':domain'
-include ':application'
-include ':infrastructure'
+include ':device-domain'
+include ':device-application'
+include ':device-infrastructure'
