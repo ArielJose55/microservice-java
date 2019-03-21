@@ -6,4 +6,6 @@ repositories{
 
 dependencies {
 	implementation 'co.com.ajac:common-domain:1.0.0'
+	implementation 'org.springframework:spring-tx:5.1.5.RELEASE'
+	implementation 'org.springframework:spring-context:5.1.5.RELEASE'
 }

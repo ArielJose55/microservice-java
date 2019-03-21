@@ -4,7 +4,6 @@ repositories{
 	}
 }
 
-
 dependencies {
 	compile project(":device-domain")
 	implementation project(":device-domain")

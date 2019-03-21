@@ -27,14 +27,11 @@ public class DeviceRepositoryAdapter implements DeviceRepository{
 
 	@Override
 	public Optional<Device> getDevice(String serial) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getDevice(serial);
 	}
 
 	@Override
 	public Optional<List<Device>> listDevicesByProperty(Integer property) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

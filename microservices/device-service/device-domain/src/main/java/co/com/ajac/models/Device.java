@@ -25,5 +25,8 @@ public class Device implements Model{
 	private String securityCode;
 	
 	@NotBlank(message = "")
+	private String state;
+	
+	@NotBlank(message = "")
 	private Integer bienComun;
 }

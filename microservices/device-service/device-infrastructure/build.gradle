@@ -33,11 +33,15 @@ repositories{
 dependencies {
 	compile project(":device-domain")
 	compile project(":device-application")
+	implementation project(":device-domain")
+	implementation project(":device-application")
     implementation 'co.com.ajac:common-infrastructure:1.0.0'	
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 }
+	
 
 dependencyManagement {
 	imports {

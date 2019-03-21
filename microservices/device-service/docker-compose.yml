@@ -1,16 +1,16 @@
 version: "3.5"
 services:  
-#  device:
-#    image: "java:8"
-#    container_name: "device-service"
-#    working_dir: /home/app
-#    volumes:
-#      - ./:/home/app
-#    command: >
-#        sh -c "./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
-#    networks:
-#      - phnet
-#      - pgnet-device
+  device:
+    image: "java:8"
+    container_name: "device-service"
+    working_dir: /home/app
+    volumes:
+      - ./:/home/app
+    command: >
+        sh -c "./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
+    networks:
+      - phnet
+      - pgnet-device
 
   device-database:
     image: "postgres"

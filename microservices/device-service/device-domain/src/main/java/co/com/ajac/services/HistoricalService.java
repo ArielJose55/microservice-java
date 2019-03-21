@@ -14,8 +14,8 @@ public class HistoricalService {
 		this.historialRepository = historialRepository;
 	}
 	
-	public boolean registerAccess(Integer device, String identification) {
-		return historialRepository.registerAccess(device, identification);
+	public boolean registerAccess(String serial, String identification) {
+		return historialRepository.registerAccess(serial, identification);
 	}
 	
 	public Optional<List<HistorialAccess>> historicalByDevices(String serial) {

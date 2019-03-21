@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+  admin:
+    image: "dpage/pgadmin4"
+    restart: always
+    container_name: "admin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@ajac.com.co"
+      PGADMIN_DEFAULT_PASSWORD: "man_admin"
+      PGADMIN_LISTEN_PORT: "5050"
+    volumes:
+      - admin4data:/var/lib/pgadmin
+    ports:
+      - "5050:5050"
+    expose:
+      - "5050"
+    networks:
+      - device-service_pgnet-device
+volumes:
+  admin4data:
+  
+networks:
+  device-service_pgnet-device:
+    external: true
+    name: device-service_pgnet-device

@@ -7,7 +7,7 @@ import co.com.ajac.models.HistorialAccess;
 
 public interface HistorialRepository {
 
-	public boolean registerAccess(Integer device, String identification);
+	public boolean registerAccess(String serial, String identification);
 	
 	public Optional<List<HistorialAccess>> listHistoricalByDevice(String serial);
 	

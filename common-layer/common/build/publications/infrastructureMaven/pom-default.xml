@@ -26,12 +26,6 @@
     </dependency>
     <dependency>
       <groupId>co.com.ajac</groupId>
-      <artifactId>common-domain</artifactId>
-      <version>1.0.0</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>co.com.ajac</groupId>
       <artifactId>common-application</artifactId>
       <version>1.0.0</version>
       <scope>runtime</scope>

@@ -1,4 +1,4 @@
-package co.com.ajac.http;
+package co.com.ajac;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
