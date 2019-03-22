@@ -13,8 +13,8 @@ import co.com.ajac.models.Device;
 public class DeviceJdbiRepository {
 
 	
-	private static final String INSERT_DEVICE = "INSERT INTO \"DISPOSITIVO\"( nombre, security_code, bien_comun_id, estado) VALUES ( :nombre, :serial, :biencomun, :estado)";
-	private static final String SELECT_DEVICE_BY_SERIAL = "SELECT nombre, security_code, bien_comun_id, estado FROM \"DISPOSITIVO\" d WHERE d.security_code = :serial";
+	private static final String INSERT_DEVICE = "INSERT INTO \"DISPOSITIVO\"( nombre, serial, bien_comun) VALUES ( :nombre, :serial, :biencomun)";
+	private static final String SELECT_DEVICE_BY_SERIAL = "SELECT nombre, serial, bien_comun, estado FROM \"DISPOSITIVO\" d WHERE d.serial = :serial";
 	
 	private final Jdbi jdbi;
 
@@ -26,10 +26,9 @@ public class DeviceJdbiRepository {
 	public boolean save(Device device) {
 		try(Handle handle = jdbi.open()){
 			int updatedRows = handle.createUpdate(INSERT_DEVICE)
-					.bind( "name", device.getName() )
-					.bind( "serial", device.getSecurityCode() )
-					.bind( "biencomun", device.getBienComun() )
-					.bind( "estado", device.getState() )
+					.bind( "nombre", device.getName() )
+					.bind( "serial", device.getSerial() )
+					.bind( "biencomun", device.getBienComun())
 					.execute();
 			
 			return updatedRows > 0;

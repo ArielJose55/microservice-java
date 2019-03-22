@@ -17,6 +17,6 @@ public class DatabaseConfig {
 
 	@Bean
 	public Jdbi createConnectionJdbi() {
-		return jdbiConfigurer.dataSourcePostgres("jdbc:postgresql://localhost:5432/device-database", "device_user", "root");
+		return jdbiConfigurer.dataSourcePostgres("jdbc:postgresql://device-database:5432/device-database", "device_user", "root");
 	}
 }

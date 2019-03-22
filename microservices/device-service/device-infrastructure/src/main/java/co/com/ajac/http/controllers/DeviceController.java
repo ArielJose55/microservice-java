@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.checkerframework.common.reflection.qual.GetClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +39,8 @@ public class DeviceController {
 	}
 	
 	@GetMapping("/{serial}")
-	public Optional<Device> findDeviceBySerial(@PathVariable("serial") String serial) {
-		return findDevice.execute(serial);
+	public Device findDeviceBySerial(@PathVariable("serial") String serial) {
+		return findDevice.execute(serial).orElseThrow(RuntimeException::new);
 	}
 	
 	@GetMapping("/bien/{bien}")
