@@ -14,6 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Device implements Model{
 	
+	private Integer id;
+	
 	@NotBlank(message = "")
 	private String serial;
 	
@@ -28,6 +30,13 @@ public class Device implements Model{
 	public Device(String serial, String name, Integer bienComun) {
 		this.serial = serial;
 		this.name = name;
+		this.bienComun = bienComun;
+	}
+
+	public Device( String serial, String name, String state, Integer bienComun) {
+		this.serial = serial;
+		this.name = name;
+		this.state = state;
 		this.bienComun = bienComun;
 	}
 }

@@ -13,7 +13,6 @@ public class FindAllDevice implements Query<List<Device>, Integer>{
 
 	@Override
 	public Optional<List<Device>> execute(Integer arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -7,7 +7,7 @@ services:
     volumes:
       - ./:/home/app
     command: >
-        sh -c "./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
+        sh -c "chmod 777 ./gradlew && ./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
     networks:
       - phnet
       - pgnet-device

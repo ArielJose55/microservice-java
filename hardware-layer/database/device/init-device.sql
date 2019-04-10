@@ -23,13 +23,13 @@ ALTER TYPE public."historial access type"
 CREATE TABLE public."DISPOSITIVO"
 (
     id bigint NOT NULL DEFAULT nextval('"DISPOSITIVO_id_seq"'::regclass),
-    nombre character varying(21) COLLATE pg_catalog."default",
-    security_code character varying(45) COLLATE pg_catalog."default",
-    bien_comun_id integer,
-    estado "device type" DEFAULT 'ACTIVO'::"device type",
+    name character varying(150) COLLATE pg_catalog."default",
+    serial character varying(45) COLLATE pg_catalog."default",
+    bien_comun integer,
+    state "device type" DEFAULT 'ACTIVO'::"device type",
     CONSTRAINT "DISPOSITIVO_pkey" PRIMARY KEY (id),
-    CONSTRAINT "DISPOSITIVO_bien_comun_id_key" UNIQUE (bien_comun_id),
-    CONSTRAINT "DISPOSITIVO_hash_key" UNIQUE (security_code)
+    CONSTRAINT "DISPOSITIVO_bien_comun_id_key" UNIQUE (bien_comun),
+    CONSTRAINT "DISPOSITIVO_hash_key" UNIQUE (serial)
 )
 WITH (
     OIDS = FALSE

@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "starting upload of the module core-base architecture"
+./gradlew build bintrayUpload --info -PbintrayUser=ArielJose55 -PbintrayApiKey=24fb98461d80b3ca91a0dad77ac05be918fbe56c
+echo "!Done"

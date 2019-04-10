@@ -20,7 +20,7 @@ public class FindDevice implements Query<Device, String>{
 	}
 
 	@Override
-	public Optional<Device> execute(String serial) {
+	public Device execute(String serial) {
 		return deviceService.findDevice(serial);
 	}
 

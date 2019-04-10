@@ -13,8 +13,8 @@ import co.com.ajac.models.Device;
 public class DeviceJdbiRepository {
 
 	
-	private static final String INSERT_DEVICE = "INSERT INTO \"DISPOSITIVO\"( nombre, serial, bien_comun) VALUES ( :nombre, :serial, :biencomun)";
-	private static final String SELECT_DEVICE_BY_SERIAL = "SELECT nombre, serial, bien_comun, estado FROM \"DISPOSITIVO\" d WHERE d.serial = :serial";
+	private static final String INSERT_DEVICE = "INSERT INTO \"DISPOSITIVO\"( name, serial, bien_comun ) VALUES ( :nombre, :serial, :biencomun)";
+	private static final String SELECT_DEVICE_BY_SERIAL = "SELECT id, name, serial, bien_comun, state FROM \"DISPOSITIVO\" d WHERE d.serial = :serial";
 	
 	private final Jdbi jdbi;
 
@@ -25,7 +25,7 @@ public class DeviceJdbiRepository {
 	
 	public boolean save(Device device) {
 		try(Handle handle = jdbi.open()){
-			int updatedRows = handle.createUpdate(INSERT_DEVICE)
+			Integer updatedRows = handle.createUpdate(INSERT_DEVICE)
 					.bind( "nombre", device.getName() )
 					.bind( "serial", device.getSerial() )
 					.bind( "biencomun", device.getBienComun())
@@ -36,16 +36,11 @@ public class DeviceJdbiRepository {
 	}
 	
 	public Optional<Device> getDevice(String serial){
-		try(Handle handle = jdbi.open()){
-			Device devide = handle.createQuery(SELECT_DEVICE_BY_SERIAL)
-					.bind("serial", serial)
-					.mapToBean(Device.class)
-					.findOnly();
-			
-			return Optional.ofNullable(devide);
-		}
-		
+		return jdbi.withHandle( handle  -> 
+			handle.createQuery(SELECT_DEVICE_BY_SERIAL)
+			.bind("serial", serial)
+			.mapToBean(Device.class)
+			.findFirst());
 	}
-	
 	
 }
