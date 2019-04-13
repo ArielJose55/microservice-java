@@ -1,0 +1,6 @@
+
+rootProject.name = 'person-service'
+
+include ':person-domain'
+include ':person-application'
+include ':person-infrastructure'

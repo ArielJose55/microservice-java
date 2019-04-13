@@ -1,0 +1,23 @@
+version: "3.5"
+services: 
+  person-database:
+    image: "postgres"
+    restart: always
+    container_name: "person-database"
+    environment:
+      POSTGRES_DB: "person-database"
+      POSTGRES_USER: "person_user"
+      POSTGRES_PASSWORD: "root"
+    volumes:
+     # - ../../hardware-layer/database/person:/docker-entrypoint-initdb.d
+      - pgdata-person
+    networks:
+      - pgnet-person
+
+volumes:
+  pgdata-user:
+    name: pgdata-person
+
+networks:
+   pgnet-user:
+    driver: bridge

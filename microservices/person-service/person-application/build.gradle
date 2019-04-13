@@ -1,0 +1,5 @@
+
+dependencies {
+	compile project(':person-domain')
+	implementation project(':person-domain')
+}
