@@ -1,5 +1,0 @@
-
-dependencies {
-	compile project(':user-domain')
-	implementation project(':user-domain')
-}

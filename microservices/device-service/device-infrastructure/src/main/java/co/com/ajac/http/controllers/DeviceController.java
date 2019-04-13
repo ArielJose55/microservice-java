@@ -40,11 +40,11 @@ public class DeviceController {
 	
 	@GetMapping("/{serial}")
 	public Device findDeviceBySerial(@PathVariable("serial") String serial) {
-		return findDevice.execute(serial).orElseThrow(RuntimeException::new);
+		return findDevice.execute(serial);
 	}
 	
 	@GetMapping("/bien/{bien}")
-	public Optional<List<Device>> findAllDevice(@PathVariable("bien") Integer bienComun) {
+	public List<Device> findAllDevice(@PathVariable("bien") Integer bienComun) {
 		return findAllDevice.execute(bienComun);
 	}
 }

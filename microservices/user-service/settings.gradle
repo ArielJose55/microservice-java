@@ -1,6 +1,0 @@
-
-rootProject.name = 'user-service'
-
-include ':user-domain'
-include ':user-application'
-include ':user-infrastructure'

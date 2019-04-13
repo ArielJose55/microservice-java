@@ -2,14 +2,21 @@ package co.com.ajac.coremodel;
 
 import javax.validation.constraints.NotEmpty;
 
-public abstract class NaturalPerson extends Person{
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
+public abstract class NaturalPerson extends Person {
+
+	private static final String FIELD_NOT_EMPTY = "Este campo no puede estar vacio";
 	
-private static final String FIELD_NOT_EMPLY = "Este campo no puede estar vacío";
-	
-	@NotEmpty(message = FIELD_NOT_EMPLY)
+	@NotEmpty(message = FIELD_NOT_EMPTY)
 	private String name;
 	
-	@NotEmpty(message = FIELD_NOT_EMPLY)
+	@NotEmpty(message = FIELD_NOT_EMPTY)
 	private String lastName;
 	
 	public NaturalPerson(String identification, String typeIdentification) {
@@ -22,7 +29,7 @@ private static final String FIELD_NOT_EMPLY = "Este campo no puede estar vacío"
 	 * @param name
 	 * @param lastName
 	 */
-	public NaturalPerson(String identification, String typeIdentification, String name,String lastName) {
+	public NaturalPerson(String identification, String typeIdentification, String name, String lastName) {
 		super(identification, typeIdentification);
 		this.name = name;
 		this.lastName = lastName;

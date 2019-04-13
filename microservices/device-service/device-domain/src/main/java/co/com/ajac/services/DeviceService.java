@@ -23,8 +23,8 @@ public class DeviceService {
 		return deviceRepository.listDevicesByProperty(property);
 	}
 	
-	public Device findDevice(String securityCode) {
-		return deviceRepository.getDevice(securityCode)
-				.orElseThrow(() -> new NotFountModelException("No nay ningun registro de algun dispositivo con este serial"));
+	public Optional<Device> findDevice(String securityCode) {
+		return deviceRepository.getDevice(securityCode);
+				//.orElseThrow(() -> new NotFountModelException("No nay ningun registro de algun dispositivo con este serial"));
 	}
 }

@@ -23,3 +23,5 @@ zuul:
   routes:
     ignored-services: =*
     device-service: "/device/**"
+    person-service: "/person/**"
+    auth-service: "/auth/**"

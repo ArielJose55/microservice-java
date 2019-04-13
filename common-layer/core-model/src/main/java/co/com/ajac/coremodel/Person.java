@@ -12,14 +12,18 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Person  {
+public abstract class Person implements Model {
 
-	private static final String OUUPS_LO_SIENTO_PERO_LA_IDENTIFICACION = "¡Ouups! Lo siento, pero la identificación no puede estar vacía";
+	private static final String IDENTIFICATION_NOT_ACCEPTED = "La identificacion debe tener entre {min} y {max} caracteres";
+
+	private static final String IDENTIFICATION_REQUIRED = "¡Ouups! Lo siento, pero la identificacion no puede estar vacia";
 	
-	@NotNull(message=OUUPS_LO_SIENTO_PERO_LA_IDENTIFICACION)
-	@Size(min=5, max=20, message = "")
+	private static final String FIELD_NOT_EMPTY = "Este campo no puede estar vacio";
+	
+	@NotNull(message = IDENTIFICATION_REQUIRED)
+	@Size(min = 5, max = 20, message = IDENTIFICATION_NOT_ACCEPTED)
 	protected String identification;
 	
-	@NotNull
+	@NotNull(message = FIELD_NOT_EMPTY)
 	protected String typeIdentification;
 }
