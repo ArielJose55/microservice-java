@@ -17,7 +17,7 @@ services:
       - "5050"
     networks:
       - device-service_pgnet-device
-      - user-service_pgnet-user
+#      - user-service_pgnet-user
 volumes:
   admin4data:
   
@@ -26,6 +26,6 @@ networks:
     external: true
     name: device-service_pgnet-device
   
-  user-service_pgnet-user:
-    external: true
-    name: user-service_pgnet-user
+# user-service_pgnet-user:
+#   external: true
+#   name: user-service_pgnet-user

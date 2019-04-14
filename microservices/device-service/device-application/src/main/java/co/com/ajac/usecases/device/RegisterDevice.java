@@ -3,12 +3,13 @@ package co.com.ajac.usecases.device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import co.com.ajac.exceptions.NotSaveModelException;
 import co.com.ajac.models.Device;
 import co.com.ajac.services.DeviceService;
-import common.usecases.Command;
+import common.usecases.Query;
 
 @Component
-public class RegisterDevice implements Command<Device>{
+public class RegisterDevice implements Query<Device, Device>{
 
 	private final DeviceService deviceService;
 	
@@ -18,7 +19,8 @@ public class RegisterDevice implements Command<Device>{
 	}
 
 	@Override
-	public boolean execute(Device device) {
-		return deviceService.addDevice(device);
+	public Device execute(Device device) {
+		return deviceService.addDevice(device)
+				.orElseThrow(() -> new NotSaveModelException("¡Oups! No fue posible almacenar el dispositivo. Intentelo nuevamente"));
 	}
 }

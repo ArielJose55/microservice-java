@@ -21,7 +21,7 @@ public class DeviceRepositoryAdapter implements DeviceRepository{
 	}
 
 	@Override
-	public boolean addDevice(Device device) {
+	public Optional<Device> addDevice(Device device) {
 		return repository.save(device);
 	}
 

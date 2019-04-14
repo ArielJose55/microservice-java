@@ -7,7 +7,7 @@ import co.com.ajac.models.Device;
 
 public interface DeviceRepository {
 	
-	public boolean addDevice(Device device);
+	public Optional<Device> addDevice(Device device);
 	
 	public Optional<Device> getDevice(String serial);
 	

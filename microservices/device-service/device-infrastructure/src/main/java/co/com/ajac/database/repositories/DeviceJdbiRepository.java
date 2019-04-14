@@ -1,5 +1,6 @@
 package co.com.ajac.database.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.jdbi.v3.core.Handle;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.com.ajac.models.Device;
+import lombok.Cleanup;
 
 @Repository
 public class DeviceJdbiRepository {
@@ -23,24 +25,37 @@ public class DeviceJdbiRepository {
 		this.jdbi = jdbi;
 	}
 	
-	public boolean save(Device device) {
-		try(Handle handle = jdbi.open()){
-			Integer updatedRows = handle.createUpdate(INSERT_DEVICE)
-					.bind( "nombre", device.getName() )
-					.bind( "serial", device.getSerial() )
-					.bind( "biencomun", device.getBienComun())
-					.execute();
-			
-			return updatedRows > 0;
-		}
+	public Optional<Device> save(Device device) {
+		
+		@Cleanup
+		Handle handle = jdbi.open();
+		return handle.createUpdate(INSERT_DEVICE)
+				.bind("nombre", device.getName())
+				.bind("serial", device.getSerial())
+				.bind("biencomun", device.getBienComun())
+				.executeAndReturnGeneratedKeys()
+				.mapToBean(Device.class)
+				.findFirst();
 	}
 	
 	public Optional<Device> getDevice(String serial){
-		return jdbi.withHandle( handle  -> 
-			handle.createQuery(SELECT_DEVICE_BY_SERIAL)
+		
+		@Cleanup
+		Handle handle = jdbi.open();
+		return handle.createQuery(SELECT_DEVICE_BY_SERIAL)
 			.bind("serial", serial)
 			.mapToBean(Device.class)
-			.findFirst());
+			.findFirst();
 	}
 	
+	public Optional<List<Device>> getAllDeviceByBienComun(String bienComun){
+		
+		@Cleanup
+		Handle handle = jdbi.open();
+		return Optional.ofNullable(
+				handle.createQuery("")
+				.bind("biencommun", bienComun)
+				.mapToBean(Device.class)
+				.list());
+	}
 }

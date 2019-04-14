@@ -1,7 +1,6 @@
 package co.com.ajac.http.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -34,7 +33,7 @@ public class DeviceController {
 	}
 
 	@PostMapping
-	public boolean addDevice(@Valid @RequestBody Device device) {
+	public Device addDevice(@Valid @RequestBody Device device) {
 		return registerDevice.execute(device);
 	}
 	

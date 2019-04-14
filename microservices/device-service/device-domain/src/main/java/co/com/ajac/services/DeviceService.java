@@ -3,7 +3,6 @@ package co.com.ajac.services;
 import java.util.List;
 import java.util.Optional;
 
-import co.com.ajac.exceptions.NotFountModelException;
 import co.com.ajac.models.Device;
 import co.com.ajac.ports.DeviceRepository;
 
@@ -15,7 +14,7 @@ public class DeviceService {
 		this.deviceRepository = deviceRepository;
 	}
 	
-	public boolean addDevice(Device device) {
+	public Optional<Device> addDevice(Device device) {
 		return deviceRepository.addDevice(device);
 	}
 	
@@ -25,6 +24,5 @@ public class DeviceService {
 	
 	public Optional<Device> findDevice(String securityCode) {
 		return deviceRepository.getDevice(securityCode);
-				//.orElseThrow(() -> new NotFountModelException("No nay ningun registro de algun dispositivo con este serial"));
 	}
 }

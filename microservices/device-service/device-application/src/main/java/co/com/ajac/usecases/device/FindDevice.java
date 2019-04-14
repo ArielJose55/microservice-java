@@ -3,7 +3,7 @@ package co.com.ajac.usecases.device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.exceptions.NotFountModelException;
+import co.com.ajac.exceptions.ModelNotFoundException;
 import co.com.ajac.models.Device;
 import co.com.ajac.services.DeviceService;
 import common.usecases.Query;
@@ -21,6 +21,6 @@ public class FindDevice implements Query<Device, String>{
 	@Override
 	public Device execute(String serial) {
 		return deviceService.findDevice(serial)
-				.orElseThrow(() -> new NotFountModelException("Dispositivo no registrado"));
+				.orElseThrow(() -> new ModelNotFoundException("Dispositivo no registrado"));
 	}
 }
