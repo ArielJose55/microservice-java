@@ -1,5 +1,11 @@
+repositories{
+	maven{
+		url 'https://dl.bintray.com/arieljose55/ajac/'
+	}
+}
 
 dependencies {
 	compile project(':person-domain')
 	implementation project(':person-domain')
+	implementation 'co.com.ajac:common-application:1.0.0'
 }

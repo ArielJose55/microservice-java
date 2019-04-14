@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Training-SpringBoot
+server:
+  port: 8081
