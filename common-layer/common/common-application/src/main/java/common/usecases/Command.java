@@ -1,6 +1,6 @@
 package common.usecases;
 
-public interface Command <C>{
+public interface Command <R>{
 
-	public boolean execute(C command );
+	public R execute();
 }
