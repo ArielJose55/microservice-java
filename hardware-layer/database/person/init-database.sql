@@ -13,6 +13,17 @@ CREATE SEQUENCE public."PET_id_seq";
 ALTER SEQUENCE public."PET_id_seq"
     OWNER TO person_user;
 
+CREATE SEQUENCE public."USER_id_seq";
+
+ALTER SEQUENCE public."USER_id_seq"
+    OWNER TO person_user;
+
+CREATE TYPE public."User State" AS ENUM
+    ('ACTIVE', 'INACTIVE');
+
+ALTER TYPE public."User State"
+    OWNER TO person_user;
+
 CREATE TABLE public."PERSON"
 (
     identification character varying(25) COLLATE pg_catalog."default" NOT NULL,
@@ -57,6 +68,8 @@ CREATE TABLE public."RESIDENT"
     type character varying(25) COLLATE pg_catalog."default",
     person_natural_fk character varying(25) COLLATE pg_catalog."default",
     CONSTRAINT "RESIDENT_pkey" PRIMARY KEY (id),
+    CONSTRAINT "RESIDENT_person_natural_fk_key" UNIQUE (person_natural_fk)
+,
     CONSTRAINT "RESIDENT_person_natural_fk_fkey" FOREIGN KEY (person_natural_fk)
         REFERENCES public."NATURAL_PERSON" (person_fk) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -69,6 +82,31 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."RESIDENT"
     OWNER to person_user;
+
+CREATE TABLE public."USER"
+(
+    id bigint NOT NULL DEFAULT nextval('"USER_id_seq"'::regclass),
+    username character varying(35) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    register_date timestamp without time zone NOT NULL DEFAULT now(),
+    state "User State" NOT NULL DEFAULT 'ACTIVE'::"User State",
+    person_fk character varying(25) COLLATE pg_catalog."default",
+    CONSTRAINT "USER_pkey" PRIMARY KEY (id),
+    CONSTRAINT "USER_username_key" UNIQUE (username)
+,
+    CONSTRAINT "USER_person_fk_fkey" FOREIGN KEY (person_fk)
+        REFERENCES public."PERSON" (identification) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."USER"
+    OWNER to person_user;
+
 
 CREATE TABLE public."PET"
 (
@@ -89,3 +127,4 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."PET"
     OWNER to person_user;
+

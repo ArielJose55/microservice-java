@@ -15,7 +15,20 @@ services:
     networks:
       - phnet
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: brokermq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - rabbitmq-broker
+
 networks:
   phnet:
     external: true
     name: phnet
+  rabbitmq-broker:
+    name: rabbitmq
+    driver: bridge

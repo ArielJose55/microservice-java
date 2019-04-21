@@ -1,7 +1,15 @@
 spring:
   application:
     name: device-service
-server:  port: 8010
+  
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+    
+server:
+  port: 8010
   
 eureka:
   client:

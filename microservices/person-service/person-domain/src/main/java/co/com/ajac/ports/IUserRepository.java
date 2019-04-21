@@ -14,4 +14,6 @@ public interface IUserRepository {
 	public Optional<User> get(String identification);
 	
 	public Optional<List<User>> getAll();
+	
+	
 }

@@ -9,15 +9,23 @@ services:
       POSTGRES_USER: "person_user"
       POSTGRES_PASSWORD: "root"
     volumes:
-     # - ../../hardware-layer/database/person:/docker-entrypoint-initdb.d
+      - ../../hardware-layer/database/person:/docker-entrypoint-initdb.d
       - pgdata-person
     networks:
       - pgnet-person
+      - phnet
 
 volumes:
-  pgdata-user:
+  pgdata-person: # Volumen para el almacenamiento interno de la base de datos
     name: pgdata-person
 
 networks:
-   pgnet-user:
+   pgnet-person:
     driver: bridge
+   phnet:
+    external: true
+    name: phnet
+   rabbitmq:
+    external: true
+    name: rabbitmq
+   

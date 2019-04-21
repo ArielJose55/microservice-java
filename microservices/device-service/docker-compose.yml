@@ -10,6 +10,7 @@ services:
         sh -c "chmod 777 ./gradlew && ./gradlew clean build && java -jar device-infrastructure/build/libs/device-service-1.0.0-SNAPSHOT.jar"   
     networks:
       - phnet
+      - rabbitmq
       - pgnet-device
 
   device-database:
@@ -39,3 +40,6 @@ networks:
   phnet:
     external: true
     name: phnet
+  rabbitmq:
+    external: true
+    name: rabbitmq
