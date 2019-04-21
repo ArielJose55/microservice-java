@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: property-service
+    
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+    
+      
+server:
+  port: 8011
+  
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+#      defaultZone: http://localhost:8000/eureka/
