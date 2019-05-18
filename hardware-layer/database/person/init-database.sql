@@ -24,6 +24,14 @@ CREATE TYPE public."User State" AS ENUM
 ALTER TYPE public."User State"
     OWNER TO person_user;
 
+CREATE SEQUENCE public."LEGAL_PERSON_id_seq";
+
+ALTER SEQUENCE public."LEGAL_PERSON_id_seq"
+    OWNER TO person_user;
+
+-- --------------------------------------------------------------------------
+----------------- TABLE PERSON ----------------------------------------------
+-----------------------------------------------------------------------------
 CREATE TABLE public."PERSON"
 (
     identification character varying(25) COLLATE pg_catalog."default" NOT NULL,
@@ -39,6 +47,9 @@ ALTER TABLE public."PERSON"
     OWNER to person_user;
 
 
+------------------------------------------------------------------------------
+----------------- TABLE NATUAL PERSON ----------------------------------------
+------------------------------------------------------------------------------
 CREATE TABLE public."NATURAL_PERSON"
 (
     id bigint NOT NULL DEFAULT nextval('"NATURAL_PERSON_id_seq"'::regclass),
@@ -61,7 +72,9 @@ TABLESPACE pg_default;
 ALTER TABLE public."NATURAL_PERSON"
     OWNER to person_user;
 
-
+-----------------------------------------------------------------------------
+---------------- TABLE RESIDENT ---------------------------------------------
+-----------------------------------------------------------------------------
 CREATE TABLE public."RESIDENT"
 (
     id bigint NOT NULL DEFAULT nextval('"RESIDENT_id_seq"'::regclass),
@@ -83,6 +96,9 @@ TABLESPACE pg_default;
 ALTER TABLE public."RESIDENT"
     OWNER to person_user;
 
+-----------------------------------------------------------------------------
+---------------- TABLE USER ------------------------------------------------
+-----------------------------------------------------------------------------
 CREATE TABLE public."USER"
 (
     id bigint NOT NULL DEFAULT nextval('"USER_id_seq"'::regclass),
@@ -107,7 +123,9 @@ TABLESPACE pg_default;
 ALTER TABLE public."USER"
     OWNER to person_user;
 
-
+------------------------------------------------------------------------------
+------------------------ TABLE PET -------------------------------------------
+------------------------------------------------------------------------------
 CREATE TABLE public."PET"
 (
     id bigint NOT NULL DEFAULT nextval('"PET_id_seq"'::regclass),
@@ -128,3 +146,27 @@ TABLESPACE pg_default;
 ALTER TABLE public."PET"
     OWNER to person_user;
 
+---------------------------------------------------------------------------------
+------------------ TABLE LEGAL PErSON ------------------------------------------
+--------------------------------------------------------------------------------
+CREATE TABLE public."LEGAL_PERSON"
+(
+    id bigint NOT NULL DEFAULT nextval('"LEGAL_PERSON_id_seq"'::regclass),
+    business_name character varying COLLATE pg_catalog."default",
+    social_objetive character varying COLLATE pg_catalog."default",
+    person_pk character varying COLLATE pg_catalog."default",
+    CONSTRAINT "LEGAL_PERSON_pkey" PRIMARY KEY (id),
+    CONSTRAINT "LEGAL_PERSON_person_pk_key" UNIQUE (person_pk)
+,
+    CONSTRAINT "LEGAL_PERSON_person_pk_fkey" FOREIGN KEY (person_pk)
+        REFERENCES public."PERSON" (identification) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."LEGAL_PERSON"
+    OWNER to person_user;

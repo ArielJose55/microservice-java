@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
-import co.com.ajac.coremodel.Person;
+import coremodel.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

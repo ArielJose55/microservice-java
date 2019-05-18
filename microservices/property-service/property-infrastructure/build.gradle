@@ -1,29 +1,19 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.3.RELEASE'
-	id 'java'
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+		set('springCloudVersion', 'Greenwich.SR1')
+	}
+	repositories {
+		mavenCentral()
+		
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
+apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
-group = 'co.com.ajac'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
-repositories{
-	maven{
-		url 'https://dl.bintray.com/arieljose55/ajac/'
-	}
-}
-
-ext {
-	set('springCloudVersion', 'Greenwich.SR1')
-}
 
 jar{
 	manifest {
@@ -34,17 +24,20 @@ jar{
 }
 
 dependencies {
-	compile project(":property-domain")
-	compile project(":property-application")
 	implementation project(":property-domain")
 	implementation project(":property-application")
-    implementation 'co.com.ajac:common-infrastructure:1.0.0'	
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+    implementation 'co.com.ajac:common-application:2.1.0.Final'	
+    implementation 'co.com.ajac:common-infrastructure:2.1.0.Final'	
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+	
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 dependencyManagement {

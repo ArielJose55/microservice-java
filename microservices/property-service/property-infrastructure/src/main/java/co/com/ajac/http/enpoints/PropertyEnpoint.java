@@ -13,6 +13,6 @@ import co.com.ajac.domain.HorizontalProperty;
 public class PropertyEnpoint {
 
 	public HorizontalProperty registerHorizontalProperty(@Valid @RequestBody HorizontalProperty property) {
-		
+		return null;
 	}
 }

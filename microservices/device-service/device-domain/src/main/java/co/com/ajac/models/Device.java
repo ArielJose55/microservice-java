@@ -3,6 +3,7 @@ package co.com.ajac.models;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import coremodel.Model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

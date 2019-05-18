@@ -18,6 +18,7 @@ services:
     networks:
       - device-service_pgnet-device
       - person-service_pgnet-person
+      - property-service_pgnet-property
 volumes:
   admin4data:
   
@@ -29,3 +30,7 @@ networks:
   person-service_pgnet-person:
    external: true
    name: person-service_pgnet-person
+
+  property-service_pgnet-property:
+   external: true
+   name: property-service_pgnet-property   

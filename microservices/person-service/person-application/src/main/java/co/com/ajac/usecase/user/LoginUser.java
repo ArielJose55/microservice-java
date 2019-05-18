@@ -5,11 +5,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.exceptions.ModelNotFoundException;
-import co.com.ajac.exceptions.ViolatedValidationException;
+import domain.exceptions.ModelNotFoundException;
+import domain.exceptions.ViolatedValidationException;
 import co.com.ajac.models.User;
 import co.com.ajac.services.user.UserService;
-import common.usecases.Query;
+import common.Query;
 
 @Component
 public class LoginUser implements Query < User, Map<String, String> >{

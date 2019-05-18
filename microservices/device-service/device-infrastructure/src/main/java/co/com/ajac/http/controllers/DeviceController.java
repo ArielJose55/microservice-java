@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import domain.exceptions.NotSaveModelException;
 import co.com.ajac.models.Device;
 import co.com.ajac.rabbitmq.adapters.NotifierRabbitmq;
 import co.com.ajac.usecases.device.FindAllDevice;
 import co.com.ajac.usecases.device.FindDevice;
 import co.com.ajac.usecases.device.RegisterDevice;
+import io.vavr.control.Option;
 
 @RestController
 @RequestMapping
@@ -36,8 +38,9 @@ public class DeviceController {
 	}
 
 	@PostMapping
-	public Device addDevice(@Valid @RequestBody Device device) {
-		return registerDevice.execute(device);
+	public Integer addDevice(@Valid @RequestBody Device device) {
+		Option<Integer> result = registerDevice.execute(device);	
+		return result.getOrElseThrow(() -> new NotSaveModelException("Ooops! El dispositivo no fue registrado. Intetenlo nuevamente"));
 	}
 	
 	@GetMapping("/{serial}")

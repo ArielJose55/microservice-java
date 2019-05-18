@@ -3,10 +3,10 @@ package co.com.ajac.usecase.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.exceptions.ModelNotFoundException;
+import domain.exceptions.ModelNotFoundException;
 import co.com.ajac.models.User;
 import co.com.ajac.services.user.UserService;
-import common.usecases.Query;
+import common.Query;
 
 @Component
 public class GetUser implements Query <User, String>{

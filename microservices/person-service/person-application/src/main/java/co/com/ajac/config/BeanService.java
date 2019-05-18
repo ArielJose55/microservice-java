@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import co.com.ajac.ports.IResidentRepository;
 import co.com.ajac.ports.IUserRepository;
+import co.com.ajac.ports.LegalPersonRepository;
+import co.com.ajac.services.legalperson.LegalPersonService;
 import co.com.ajac.services.resident.ResidentService;
 import co.com.ajac.services.user.UserService;
 
@@ -12,12 +14,17 @@ import co.com.ajac.services.user.UserService;
 public class BeanService {
 
 	@Bean
-	public UserService serviceUser(IUserRepository userRepository) {
+	public UserService beanUserService(IUserRepository userRepository) {
 		return new UserService(userRepository);
 	}
 	
 	@Bean
-	public ResidentService serviceResident(IResidentRepository residentRepository) {
+	public ResidentService deanResidentService(IResidentRepository residentRepository) {
 		return new ResidentService(residentRepository);
+	}
+	
+	@Bean
+	public LegalPersonService serviceLegalPerson(LegalPersonRepository legalPersonRepository) {
+		return new LegalPersonService(legalPersonRepository);
 	}
 }

@@ -3,10 +3,10 @@ package co.com.ajac.usecases.device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.exceptions.ModelNotFoundException;
+import domain.exceptions.ModelNotFoundException;
 import co.com.ajac.models.Device;
 import co.com.ajac.services.DeviceService;
-import common.usecases.Query;
+import common.Query;
 
 @Component
 public class FindDevice implements Query<Device, String>{

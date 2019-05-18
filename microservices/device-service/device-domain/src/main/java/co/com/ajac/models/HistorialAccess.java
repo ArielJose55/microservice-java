@@ -18,11 +18,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class HistorialAccess {
 
-	private static final String FECHA_DE_REGISTRO_NO_FUTURA = "La fecha de registro no tiene que ser posterior al día de hoy";
+	private static final String FECHA_DE_REGISTRO_NO_FUTURA = "La fecha de registro no tiene que ser posterior al dia de hoy";
 
-	private static final String FIELD_NOT_EMPLY = "Este campo no puede estar vacío";
+	private static final String FIELD_NOT_EMPLY = "Este campo no puede estar vacio";
 	
-	private static final String ID_MESSAGE_VALIDATE = "El numero de identificación debe tener una longitud de entre {min} y {max}  caracteres";
+	private static final String ID_MESSAGE_VALIDATE = "El numero de identificacion debe tener una longitud de entre {min} y {max}  caracteres";
 	
 	@NotNull(message = FIELD_NOT_EMPLY)
 	@PastOrPresent(message = FECHA_DE_REGISTRO_NO_FUTURA)

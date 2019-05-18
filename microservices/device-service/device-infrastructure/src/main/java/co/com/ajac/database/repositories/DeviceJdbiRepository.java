@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.com.ajac.models.Device;
+import io.vavr.Function0;
+import io.vavr.control.Option;
 import lombok.Cleanup;
 
 @Repository
@@ -25,17 +27,20 @@ public class DeviceJdbiRepository {
 		this.jdbi = jdbi;
 	}
 	
-	public Optional<Device> save(Device device) {
-		
+	public Option<Integer> save(Device device) {
+
 		@Cleanup
-		Handle handle = jdbi.open();
-		return handle.createUpdate(INSERT_DEVICE)
+		final Handle handle = jdbi.open();
+
+		final Function0<Integer> functionSave = () -> handle.createUpdate(INSERT_DEVICE)
 				.bind("nombre", device.getName())
 				.bind("serial", device.getSerial())
 				.bind("biencomun", device.getBienComun())
 				.executeAndReturnGeneratedKeys()
-				.mapToBean(Device.class)
-				.findFirst();
+				.mapToBean(Integer.class)
+				.findOnly();
+
+		return Function0.lift(functionSave).apply();
 	}
 	
 	public Optional<Device> getDevice(String serial){

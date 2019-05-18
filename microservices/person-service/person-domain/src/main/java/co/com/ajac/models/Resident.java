@@ -2,7 +2,7 @@ package co.com.ajac.models;
 
 
 
-import co.com.ajac.coremodel.NaturalPerson;
+import coremodel.NaturalPerson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,14 +1,12 @@
 package co.com.ajac.ports;
 
-import java.util.Optional;
-
 import co.com.ajac.domain.HorizontalProperty;
+import io.vavr.control.Option;
 
 public interface PropertyRespository {
 
-	public Optional<HorizontalProperty> register(HorizontalProperty horizontalProperty);
+	Option<Integer> registerHorizontalProperty(HorizontalProperty horizontalProperty);
 	
-	public Optional<HorizontalProperty> findOne(Integer id);
-	
-	public Optional<HorizontalProperty> fidnOneWithAttributes(Integer id);
+	Option<HorizontalProperty> findOneHorizonalProperty(Integer id);
+
 }

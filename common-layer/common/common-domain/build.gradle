@@ -1,7 +1,3 @@
 jar{
 	archiveBaseName = 'common-domain' 
 }
-
-dependencies {
-
-}

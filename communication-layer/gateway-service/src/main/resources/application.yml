@@ -24,4 +24,4 @@ zuul:
     ignored-services: =*
     device-service: "/device/**"
     person-service: "/person/**"
-    auth-service: "/auth/**"
+    property-service: "/property/**"

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import co.com.ajac.database.repositories.DeviceJdbiRepository;
 import co.com.ajac.models.Device;
 import co.com.ajac.ports.DeviceRepository;
+import io.vavr.control.Option;
 
 @Component
 public class DeviceRepositoryAdapter implements DeviceRepository{
@@ -21,9 +22,11 @@ public class DeviceRepositoryAdapter implements DeviceRepository{
 	}
 
 	@Override
-	public Optional<Device> addDevice(Device device) {
+	public Option<Integer> regsterDevice(Device device) {
 		return repository.save(device);
 	}
+
+
 
 	@Override
 	public Optional<Device> getDevice(String serial) {

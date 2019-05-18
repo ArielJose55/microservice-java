@@ -2,14 +2,7 @@ jar{
 	archiveBaseName = 'common-application' 
 }
 
-repositories{
-	maven{
-		url 'https://dl.bintray.com/arieljose55/ajac/'
-	}
-}
-
 dependencies {
-	implementation 'co.com.ajac:common-domain:1.0.0'
-    implementation 'org.springframework:spring-tx:5.1.5.RELEASE'
+ 	implementation 'org.springframework:spring-tx:5.1.5.RELEASE'
 	implementation 'org.springframework:spring-context:5.1.5.RELEASE'
 }

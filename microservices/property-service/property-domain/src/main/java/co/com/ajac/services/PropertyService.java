@@ -1,9 +1,8 @@
 package co.com.ajac.services;
 
-import java.util.Optional;
-
 import co.com.ajac.domain.HorizontalProperty;
 import co.com.ajac.ports.PropertyRespository;
+import io.vavr.control.Option;
 
 public class PropertyService {
 
@@ -13,7 +12,7 @@ public class PropertyService {
 		this.propertyRespository = propertyRespository;
 	}
 	
-	public Optional<HorizontalProperty> register(HorizontalProperty property) {
-		return propertyRespository.register(property);
+	public Option<Integer> registerHorizontalProperty(HorizontalProperty property) {
+		return propertyRespository.registerHorizontalProperty(property);
 	}
 }

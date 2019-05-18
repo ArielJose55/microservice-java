@@ -3,10 +3,10 @@ package co.com.ajac.usecase.resident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.exceptions.ModelNotFoundException;
+import domain.exceptions.ModelNotFoundException;
 import co.com.ajac.models.Resident;
 import co.com.ajac.services.resident.ResidentService;
-import common.usecases.Query;
+import common.Query;
 
 @Component
 public class GetResident implements Query<Resident, String> {
