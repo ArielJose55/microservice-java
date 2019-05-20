@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.database.repositories.JdbiPropertyRepository;
+import co.com.ajac.database.repositories.PropertyJdbiRepository;
 import co.com.ajac.domain.HorizontalProperty;
 import co.com.ajac.ports.PropertyRespository;
 import io.vavr.control.Option;
@@ -14,10 +14,10 @@ import io.vavr.control.Option;
 public class PropertyRepositoryAdapter implements PropertyRespository{
 
 	@Autowired
-	private JdbiPropertyRepository repository;
+	private PropertyJdbiRepository repository;
 
 	@Override
-	public Option<Integer> registerHorizontalProperty(HorizontalProperty horizontalProperty) {
+	public Option<String> registerHorizontalProperty(HorizontalProperty horizontalProperty) {
 		return repository.register(horizontalProperty);
 	}
 

@@ -11,20 +11,20 @@ import io.vavr.control.Option;
 import lombok.Cleanup;
 
 @Repository
-public class JdbiPropertyRepository {
+public class PropertyJdbiRepository {
 
 	@Autowired
 	private Jdbi jdbi;
 	
-	public Option<Integer> register(HorizontalProperty horizontalProperty){
+	public Option<String> register(HorizontalProperty horizontalProperty){
 		
 		@Cleanup
 		Handle handle = jdbi.open();
 		
-		final Function0<Integer> registerOne = () -> handle.createUpdate("")
+		final Function0<String> registerOne = () -> handle.createUpdate("")
 				.bindBean(horizontalProperty)
 				.executeAndReturnGeneratedKeys("")
-				.mapTo(Integer.class)
+				.mapTo(String.class)
 				.findOnly();
 		return Function0.lift(registerOne).apply();
 	}

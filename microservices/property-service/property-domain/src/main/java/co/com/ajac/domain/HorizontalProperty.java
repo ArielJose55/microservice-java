@@ -19,19 +19,8 @@ public class HorizontalProperty extends LegalPerson{
 		super(identification, typeIdentification);
 	}
 	
-	public HorizontalProperty(String identification, String typeIdentification, String distinctiveName) {
-		super(identification, typeIdentification);
-		this.distinctiveName = distinctiveName;
-	}
-
-	public HorizontalProperty(String identification, String typeIdentification, Integer id, String distinctiveName) {
-		super(identification, typeIdentification);
-		this.id = id;
-		this.distinctiveName = distinctiveName;
-	}
-
-	public HorizontalProperty(String identification, String typeIdentification, Integer id, String distinctiveName, Integer idLegalPerson, String businessName, String socialObjective) {
-		super(identification, typeIdentification, idLegalPerson, businessName, socialObjective);
+	public HorizontalProperty(String identification, String typeIdentification, Integer id, String distinctiveName, String businessName, String socialObjective) {
+		super(identification, typeIdentification, businessName, socialObjective);
 		this.id = id;
 		this.distinctiveName = distinctiveName;
 	}

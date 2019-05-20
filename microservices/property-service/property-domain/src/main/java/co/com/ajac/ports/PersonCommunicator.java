@@ -7,5 +7,5 @@ public interface PersonCommunicator {
 
 	Option<Integer> registerLegalPerson(LegalPerson property);
 	
-	Option<Integer> getIdProperty(Integer id, String type);
+	Option<Integer> getIdProperty(String identification, String type);
 }
