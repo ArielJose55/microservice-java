@@ -1,24 +1,27 @@
 package co.com.ajac.http.communicator;
 
-import java.util.Arrays;
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static io.vavr.Patterns.$Failure;
+import static io.vavr.Patterns.$Success;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.ajac.ports.PersonCommunicator;
 import coremodel.LegalPerson;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Component
 public class PersonHttpCommunicator implements PersonCommunicator{
 
@@ -31,30 +34,57 @@ public class PersonHttpCommunicator implements PersonCommunicator{
 	private ObjectMapper mapper;
 
 	@Override
-	public Option<Integer> registerLegalPerson(LegalPerson property) {
-		// TODO Auto-generated method stub
-		return null;
+	public Option<String> registerLegalPerson(LegalPerson property) {
+		log.info("Peticion a microservicio de Person para registrar esta LegalPerson: {}", property);
+		
+		Option<String> body = getBodyOfRequestPost(URI_PERSON, property);
+		
+		log.debug("Resultado de la peticion: {}", body);
+		
+		if(body.isDefined()) {
+			Try<String> identificationResult = Try.ofCallable(() -> mapper.readTree(body.get()).path("identification").asText());
+			return Match(identificationResult).of(
+					Case($Success($()),  Option::of),
+					Case($Failure($()),  Option::none)
+					);
+		}
+		return Option.none();
 	}
 
 	@Override
-	public Option<Integer> getIdProperty(String identification, String type) {
+	public Option<String> getIdProperty(String identification, String type) {
 		
-		HttpHeaders headers = new HttpHeaders();
-		 
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		Option<String> body = getBodyOfRequestGet(URI_PERSON, identification);
 
-        headers.setContentType(MediaType.APPLICATION_JSON);
- 
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-		
-		ResponseEntity<String> response = restTemplate.exchange(URI_PERSON + identification, HttpMethod.GET, entity, String.class);
-		System.out.println(response.getStatusCode());
-		
-		//Option<String> propertyJson = Option.when(response.getStatusCode().equals(HttpStatus.OK), response.getBody());
-		
-	//System.out.println(propertyJson);
-		return Option.some(1);	
+		if(body.isDefined()) {
+			Try<String> identificationResult = Try.ofCallable(() -> mapper.readTree(body.get()).path("identification").asText());
+			return Match(identificationResult).of(
+					Case($Success($()),  Option::of),
+					Case($Failure($()),  Option::none)
+					);
+		}
+		return Option.none();
 	}
 	
+	private Option<String> getBodyOfRequestGet(String uri, String key){
+		Try<ResponseEntity<String>> tryResponse = Try.ofCallable(() -> restTemplate.getForEntity(uri + key, String.class));
+		
+		return  Match(tryResponse).of(
+				Case($Success($()), response -> Option.when(response.getStatusCode().is2xxSuccessful(), () -> response.getBody())),
+				Case($Failure($()), Option.none())
+				);
+	}
 	
+	private Option<String> getBodyOfRequestPost(String url, LegalPerson  entity){
+		HttpEntity<LegalPerson> request = new HttpEntity<>(entity);
+		
+		Try<ResponseEntity<String>> tryResponse = Try.ofCallable(() -> restTemplate.exchange(url, HttpMethod.POST, request, String.class));
+		if(tryResponse.isFailure()) {
+			System.out.println(tryResponse.getCause());
+		}
+		return  Match(tryResponse).of(
+				Case($Success($()), response -> Option.when(response.getStatusCode().is2xxSuccessful(), () -> response.getBody())),
+				Case($Failure($()), Option.none())
+				);
+	}
 }

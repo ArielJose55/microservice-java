@@ -13,6 +13,7 @@ import lombok.Cleanup;
 @Repository
 public class PropertyJdbiRepository {
 
+	private static final String INSERT_HORIZONTAL_PROPERTY = "INSERT INTO \"HORIZONTAL_PROPERTY\" (distinctive_name, legal_person_fk) VALUES (:distinctiveName, :identification)";
 	@Autowired
 	private Jdbi jdbi;
 	
@@ -21,9 +22,9 @@ public class PropertyJdbiRepository {
 		@Cleanup
 		Handle handle = jdbi.open();
 		
-		final Function0<String> registerOne = () -> handle.createUpdate("")
+		final Function0<String> registerOne = () -> handle.createUpdate(INSERT_HORIZONTAL_PROPERTY)
 				.bindBean(horizontalProperty)
-				.executeAndReturnGeneratedKeys("")
+				.executeAndReturnGeneratedKeys("legal_person_fk")
 				.mapTo(String.class)
 				.findOnly();
 		return Function0.lift(registerOne).apply();

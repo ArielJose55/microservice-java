@@ -5,7 +5,7 @@ import io.vavr.control.Option;
 
 public interface PersonCommunicator {
 
-	Option<Integer> registerLegalPerson(LegalPerson property);
+	Option<String> registerLegalPerson(LegalPerson property);
 	
-	Option<Integer> getIdProperty(String identification, String type);
+	Option<String> getIdProperty(String identification, String type);
 }

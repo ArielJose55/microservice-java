@@ -23,14 +23,14 @@ public class HorizontalService {
 	}
 	
 	public Either<String, Option<String>> registerHorizontalProperty(HorizontalProperty property) {
-		Option<Integer> optionProperty = personCommunicator.getIdProperty(property.getIdentification(), "HORIZONTAL_PROPERTY");
+		Option<String> optionProperty = personCommunicator.getIdProperty(property.getIdentification(), "HORIZONTAL_PROPERTY");
 		
 		return optionProperty.fold(() ->  {
-			Option<Integer> optionIdLegalPerson = personCommunicator.registerLegalPerson(property);
+			Option<String> optionIdLegalPerson = personCommunicator.registerLegalPerson(property);
 			return Match(optionIdLegalPerson).of(
 					Case($Some($()), idLegalPerson -> Either.right(propertyRespository.registerHorizontalProperty(property))),
 					Case($None(), Either.left("Lo sentimos, no fue posible registrar esta propiedad horizontal"))
 					);
-		}, nit -> Either.left("Este Nit: " + nit + "ya se encuentra registrado en nuestro sistema"));
+		}, nit -> Either.left("Este Nit: " + nit + " ya se encuentra registrado en nuestro sistema"));
 	}
 }
