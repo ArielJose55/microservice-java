@@ -1,6 +1,5 @@
 package co.com.ajac.database.adapters;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +21,7 @@ public class PropertyRepositoryAdapter implements PropertyRespository{
 	}
 
 	@Override
-	public Option<HorizontalProperty> findOneHorizonalProperty(Integer id) {
+	public Option<String> findOneHorizonalProperty(String id) {
 		return repository.findOne(id);
 	}
 	

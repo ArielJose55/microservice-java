@@ -1,12 +1,6 @@
 spring:
   application:
     name: person-service
-  
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    username: guest
-    password: guest
     
 server:
   port: 8012

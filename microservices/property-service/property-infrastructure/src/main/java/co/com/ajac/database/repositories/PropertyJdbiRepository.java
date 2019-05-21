@@ -14,6 +14,8 @@ import lombok.Cleanup;
 public class PropertyJdbiRepository {
 
 	private static final String INSERT_HORIZONTAL_PROPERTY = "INSERT INTO \"HORIZONTAL_PROPERTY\" (distinctive_name, legal_person_fk) VALUES (:distinctiveName, :identification)";
+	private static final String SELECT_ONE_HORIZONTAL_PROPERTY = "SELECT legal_person_fk FROM \"HORIZONTAL_PROPERTY\" ho WHERE ho.legal_person_fk =:id";
+	
 	@Autowired
 	private Jdbi jdbi;
 	
@@ -27,16 +29,17 @@ public class PropertyJdbiRepository {
 				.executeAndReturnGeneratedKeys("legal_person_fk")
 				.mapTo(String.class)
 				.findOnly();
+	
 		return Function0.lift(registerOne).apply();
 	}
 	
-	public Option<HorizontalProperty> findOne(Integer id){
+	public Option<String> findOne(String id){
 		@Cleanup
 		final Handle handle = jdbi.open();
 		
-		final Function0<HorizontalProperty> findOne = () -> handle.createQuery("")
+		final Function0<String> findOne = () -> handle.createQuery(SELECT_ONE_HORIZONTAL_PROPERTY)
 			.bind("id",id)
-			.mapTo(HorizontalProperty.class)
+			.mapTo(String.class)
 			.findOnly();
 		
 		return Function0.lift(findOne).apply();

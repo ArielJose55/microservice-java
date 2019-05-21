@@ -1,10 +1,14 @@
-package co.com.ajac.http.config;
+package co.com.ajac.http.configurations;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class WebConfigurer implements WebMvcConfigurer{
-
+public class WebConfigurer {
+	
+	@Bean
+	public RestTemplate restTemplateCreater() {
+		return new RestTemplate();
+	}
 }

@@ -10,7 +10,7 @@ services:
         sh -c "chmod 777 ./gradlew && ./gradlew clean build && chmod -R 777 person-infrastructure/build/ && java -jar person-infrastructure/build/libs/person-service-1.0.0-SNAPSHOT.jar"   
     networks:
       - phnet
-      - rabbitmq
+      - internal
       - pgnet-person
       
   person-database:
@@ -38,7 +38,7 @@ networks:
    phnet:
     external: true
     name: phnet
-   rabbitmq:
+   internal:
     external: true
-    name: rabbitmq
+    name: internal
    

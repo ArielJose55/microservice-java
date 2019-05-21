@@ -8,8 +8,6 @@ import static io.vavr.Patterns.$Some;
 
 import co.com.ajac.models.LegalDataPerson;
 import co.com.ajac.ports.LegalPersonRepository;
-import io.vavr.collection.List;
-import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 

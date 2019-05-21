@@ -7,6 +7,6 @@ public interface PropertyRespository {
 
 	Option<String> registerHorizontalProperty(HorizontalProperty horizontalProperty);
 	
-	Option<HorizontalProperty> findOneHorizonalProperty(Integer id);
+	Option<String> findOneHorizonalProperty(String id);
 
 }

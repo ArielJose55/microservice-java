@@ -5,13 +5,13 @@ import coremodel.LegalPerson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class HorizontalProperty extends LegalPerson{
-
-	private Integer id;
 	
 	private String distinctiveName;
 
@@ -19,9 +19,8 @@ public class HorizontalProperty extends LegalPerson{
 		super(identification, typeIdentification);
 	}
 	
-	public HorizontalProperty(String identification, String typeIdentification, Integer id, String distinctiveName, String businessName, String socialObjective) {
+	public HorizontalProperty(String identification, String typeIdentification, String distinctiveName, String businessName, String socialObjective) {
 		super(identification, typeIdentification, businessName, socialObjective);
-		this.id = id;
 		this.distinctiveName = distinctiveName;
-	}
+	}	
 }

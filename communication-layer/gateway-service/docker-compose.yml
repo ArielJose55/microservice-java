@@ -14,21 +14,11 @@ services:
         sh -c "chmod 777 ./gradlew && ./gradlew build && java -jar build/libs/gateway-service-0.0.1-SNAPSHOT.jar"   
     networks:
       - phnet
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: brokermq
-    hostname: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - rabbitmq-broker
-
+      - communication
 networks:
   phnet:
     external: true
     name: phnet
-  rabbitmq-broker:
-    name: rabbitmq
+  communication:
+    name: internal
     driver: bridge

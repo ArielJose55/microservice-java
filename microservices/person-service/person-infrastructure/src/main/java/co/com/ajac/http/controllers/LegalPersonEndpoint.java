@@ -2,7 +2,6 @@ package co.com.ajac.http.controllers;
 
 import javax.validation.Valid;
 
-import org.checkerframework.common.reflection.qual.GetConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.netflix.infix.lang.infix.antlr.EventFilterParser.filter_return;
 
 import co.com.ajac.models.LegalDataPerson;
 import co.com.ajac.usecase.legalperson.FindOneLegalPerson;

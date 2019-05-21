@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ajac.domain.HorizontalProperty;
-import co.com.ajac.usercases.hotizontal.RegisterHorizontal;
+import co.com.ajac.domain.CommonProperty;
+import co.com.ajac.usercases.common.RegisterCommon;
 
 @RestController
 @RequestMapping("/")
-public class PropertyEnpoint {
+public class CommonPropertyEndpoint {
 
 	@Autowired
-	private RegisterHorizontal registerHorizontal;
+	private RegisterCommon registerCommon;
 	
-	@PostMapping("/horizontals")
-	public String registerHorizontalProperty(@Valid @RequestBody HorizontalProperty property) {
-		return registerHorizontal.execute(property);
+	@PostMapping("/commons")
+	public Integer registerCommonPropety(@Valid @RequestBody CommonProperty property) {
+		System.out.println(property);
+		return registerCommon.execute(property);
 	}
 }

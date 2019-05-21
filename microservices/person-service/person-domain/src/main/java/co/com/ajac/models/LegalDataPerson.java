@@ -5,25 +5,18 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class LegalDataPerson extends LegalPerson{
-
-	public LegalDataPerson(String identification, String typeIdentification, Integer idLegalPerson, String businessName,
-			String socialObjective) {
-		super(identification, typeIdentification, idLegalPerson, businessName, socialObjective);
-	}
-
-	public LegalDataPerson(String identification, String typeIdentification, String businessName,
-			String socialObjective) {
-		super(identification, typeIdentification, businessName, socialObjective);
-	}
-
+	
 	public LegalDataPerson(String identification, String typeIdentification) {
 		super(identification, typeIdentification);
 	}
 
+	public LegalDataPerson(String identification, String typeIdentification, String businessName, String socialObjective) {
+		super(identification, typeIdentification, businessName, socialObjective);
+	}
+
 	@Override
 	public String toString() {
-		return "LegalDataPerson [idLegalPerson=" + idLegalPerson + ", businessName=" + businessName
-				+ ", socialObjective=" + socialObjective + ", identification=" + identification
-				+ ", typeIdentification=" + typeIdentification + "]";
+		return "LegalDataPerson [identification=" + identification + ", typeIdentification=" + typeIdentification  
+				+ ", businessName=" + businessName + ", socialObjective=" + socialObjective + "]";
 	}
 }

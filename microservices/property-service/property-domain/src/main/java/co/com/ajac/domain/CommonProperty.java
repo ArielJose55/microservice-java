@@ -17,5 +17,11 @@ public class CommonProperty {
 	
 	private boolean essential;
 	
-	private Integer idHorizantalProperty;
+	private String nitHorizantalProperty;
+
+	@Override
+	public String toString() {
+		return "CommonProperty [id=" + id + ", name=" + name + ", essential=" + essential + ", nitHorizantalProperty="
+				+ nitHorizantalProperty + "]";
+	}
 }
