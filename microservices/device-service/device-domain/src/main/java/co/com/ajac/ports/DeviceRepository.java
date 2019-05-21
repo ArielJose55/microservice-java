@@ -1,17 +1,16 @@
 package co.com.ajac.ports;
 
-import java.util.List;
-import java.util.Optional;
 
 import co.com.ajac.models.Device;
+import io.vavr.collection.List;
 import io.vavr.control.Option;
 
 public interface DeviceRepository {
 	
-	public Option<Integer> regsterDevice(Device device);
+	public Option<String> regsterDevice(Device device);
 	
-	public Optional<Device> getDevice(String serial);
+	public Option<Device> getDevice(String serial);
 	
-	public Optional<List<Device>> listDevicesByProperty(Integer property);
+	public List<Device> listDevicesByProperty(Integer bienComun);
 	
 }

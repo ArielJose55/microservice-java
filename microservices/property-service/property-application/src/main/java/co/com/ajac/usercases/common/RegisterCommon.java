@@ -25,7 +25,6 @@ public class RegisterCommon implements Query<Integer, CommonProperty>{
 	
 		Either<String, Option<Integer>> eitherResult = service.registerCommonProperty(property);
 		
-		System.out.println(eitherResult);
 		return  eitherResult.getOrElseThrow(
 				() -> new NotSaveModelException(eitherResult.getLeft()))
 				.getOrElseThrow(() -> new NotSaveModelException("Oups! No fue posible registrar este bien comun"));

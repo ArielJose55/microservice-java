@@ -4,14 +4,10 @@ import static io.vavr.API.*;
 import static io.vavr.Patterns.$None;
 import static io.vavr.Patterns.$Some;
 
-import java.util.Optional;
-
 import co.com.ajac.models.Device;
 import co.com.ajac.ports.DeviceRepository;
 import co.com.ajac.ports.PropertyCommunicator;
-import io.vavr.Function0;
 import io.vavr.collection.List;
-import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 
@@ -20,31 +16,57 @@ public class DeviceService {
 	private static final String ALIAS_COMMON_PROPERTY = "COMMON_PROPERTY";
 	
 	private final DeviceRepository deviceRepository;
-	private final PropertyCommunicator propertyRepository;
+	private final PropertyCommunicator propertyCommunicator;
 	
 	public DeviceService(DeviceRepository deviceRepository, PropertyCommunicator propertyRepository) {
 		this.deviceRepository = deviceRepository;
-		this.propertyRepository = propertyRepository;
+		this.propertyCommunicator = propertyRepository;
 	}
 
-	public Either<Seq<String>, Option<Integer>> registerDevice(final Device device) {
+	/**
+	 * 
+	 * @param device
+	 * @return
+	 */
+	public Either<String, Option<String>> registerDevice(final Device device) {
 		
-		final Function0<Integer> checkProperty = () -> 
-			propertyRepository.checkExistenceProperty(device.getBienComun(), ALIAS_COMMON_PROPERTY).get();
-		
-		final Option<Integer> isCommonProperty = Function0.lift(checkProperty).apply();
+		Option<Integer> isCommonProperty = propertyCommunicator.checkExistenceProperty(device.getBienComun(), ALIAS_COMMON_PROPERTY);
 
-		return Match(isCommonProperty).of(
-				Case($Some($()), idCommonProperty -> Either.right(deviceRepository.regsterDevice(device))),
-				Case($None(), Either.left(List.of("Este Bien Comun no se encuentra registrado en el sistema")))
-		);
+		Option<List<Device>> orElse = isCommonProperty.map(deviceRepository::listDevicesByProperty)
+				.orElse(Option.none());
+
+		return Match(orElse).of(
+				Case($Some($()), list -> {
+					
+					Option<Device> existenceOne = list.find(de -> de.getSerial().equals(device.getSerial()) || de.getName().equals(device.getName()));
+					list.peek(de -> System.out.println(de + "\t" + device));
+					list.peek(de -> System.out.println( de.getSerial().equals(device.getSerial()) + "\t" + de.getName().equals(device.getName())));
+					System.out.println(existenceOne);
+					
+					return Match(existenceOne).of(
+							Case($Some($()), one -> Either.left("Ouup! Ya existe un dispositivo para este bien comun con este serial mismo serial o nombre")),
+							Case($None(), none -> Either.right(deviceRepository.regsterDevice(device)))
+							);					                                                                                                
+				}),
+				Case($None(), Either.left("Oups! no tenemos registro de ningun bien comun registrado con este id: " +device.getBienComun()))
+				);
 	}
 
-	public Optional<java.util.List<Device>> listDevicesByProperty(Integer property) {
+	/**
+	 * 
+	 * @param property
+	 * @return
+	 */
+	public List<Device> listDevicesByProperty(Integer property) {
 		return deviceRepository.listDevicesByProperty(property);
 	}
 
-	public Optional<Device> findDevice(String securityCode) {
+	/**
+	 * 
+	 * @param securityCode
+	 * @return
+	 */
+	public Option<Device> findDevice(String securityCode) {
 		return deviceRepository.getDevice(securityCode);
 	}
 	

@@ -16,6 +16,9 @@ import lombok.Cleanup;
 @Repository
 public class CommonJdbiRepository {
 
+	private static final String SELECT_COMMON_PROPERTY_BY_ID = "SELECT co.id, co.name, co.essential, co.nit_horizantal_property FROM \"COMMON_PROPERTY\" co"
+			+ "\tWHERE co.id =:id";
+
 	private static final String SELECT_ALL_COMMON_BY_NIT = "SELECT co.id, co.name, co.essential, co.nit_horizantal_property FROM \"COMMON_PROPERTY\" co" + 
 			"\tJOIN \"HORIZONTAL_PROPERTY\" ho ON co.nit_horizantal_property = ho.legal_person_fk" + 
 			"\tWHERE co.nit_horizantal_property =:horinzontalProperty";
@@ -49,7 +52,20 @@ public class CommonJdbiRepository {
 				.executeAndReturnGeneratedKeys("id")
 				.mapTo(Integer.class)
 				.findOnly();
-		
+		System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGgggggggg");
 		return Function0.lift(register).apply();
+	}
+	
+	public Option<CommonProperty> findOneBy(Integer id){
+		
+		@Cleanup
+		final Handle handle = jdbi.open();
+		
+		final Function0<CommonProperty> findOne = () -> handle.createQuery(SELECT_COMMON_PROPERTY_BY_ID)
+				.bind("id", id)
+				.mapToBean(CommonProperty.class)
+				.findOnly();
+		
+		return Function0.lift(findOne).apply();
 	}
 }

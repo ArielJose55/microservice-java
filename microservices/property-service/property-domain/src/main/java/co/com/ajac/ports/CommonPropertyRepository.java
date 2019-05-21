@@ -9,4 +9,6 @@ public interface CommonPropertyRepository {
 	List<CommonProperty> findAllCommonPropertyBy(String nitHorizontalProperty);
 	
 	Option<Integer> registerCommonProperty(CommonProperty property);
+	
+	Option<CommonProperty> findOneCommonProperty(Integer id);
 }

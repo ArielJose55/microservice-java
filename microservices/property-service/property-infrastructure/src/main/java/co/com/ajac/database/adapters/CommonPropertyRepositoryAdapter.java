@@ -25,4 +25,8 @@ public class CommonPropertyRepositoryAdapter implements CommonPropertyRepository
 		return repository.registerCommonProperty(property);
 	}
 
+	@Override
+	public Option<CommonProperty> findOneCommonProperty(Integer id) {
+		return repository.findOneBy(id);
+	}
 }

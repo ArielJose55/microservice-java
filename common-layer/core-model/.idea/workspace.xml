@@ -2,26 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43dcf229-30eb-47ea-a468-d53748ff50de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/coremodel/LegalPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/coremodel/LegalPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../communication-layer/gateway-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../communication-layer/gateway-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/configurations/WebConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/configurations/WebConfigurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../common/upload.sh.save" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/FindAllDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/FindAllDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/FindDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/FindDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/RegisterDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-application/src/main/java/co/com/ajac/usecases/device/RegisterDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/models/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/models/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/ports/DeviceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/ports/DeviceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/services/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-domain/src/main/java/co/com/ajac/services/DeviceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/database/adapters/DeviceRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/database/adapters/DeviceRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/database/repositories/DeviceJdbiRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/database/repositories/DeviceJdbiRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/communicator/PropertyHttpCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/communicator/PropertyHttpCommunicator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/controllers/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/http/controllers/DeviceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/rabbitmq/adapters/NotifierRabbitmq.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/java/co/com/ajac/rabbitmq/configurations/RestClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/device-infrastructure/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/device-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/device-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/person-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/person-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/person-service/person-domain/src/main/java/co/com/ajac/models/LegalDataPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/person-service/person-domain/src/main/java/co/com/ajac/models/LegalDataPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/person-service/person-domain/src/main/java/co/com/ajac/services/legalperson/LegalPersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/person-service/person-domain/src/main/java/co/com/ajac/services/legalperson/LegalPersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/person-service/person-infrastructure/src/main/java/co/com/ajac/http/controllers/LegalPersonEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/person-service/person-infrastructure/src/main/java/co/com/ajac/http/controllers/LegalPersonEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/person-service/person-infrastructure/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/person-service/person-infrastructure/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-application/src/main/java/co/com/ajac/config/BeansService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-application/src/main/java/co/com/ajac/config/BeansService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/domain/CommonProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/domain/CommonProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/domain/HorizontalProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/domain/HorizontalProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/ports/PropertyRespository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/ports/PropertyRespository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/adapters/PropertyRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/adapters/PropertyRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/repositories/PropertyJdbiRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/repositories/PropertyJdbiRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/enpoints/PropertyEnpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/enpoints/PropertyEnpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-application/src/main/java/co/com/ajac/usercases/common/RegisterCommon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-application/src/main/java/co/com/ajac/usercases/common/RegisterCommon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/ports/CommonPropertyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/ports/CommonPropertyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/services/common/CommonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-domain/src/main/java/co/com/ajac/services/common/CommonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/adapters/CommonPropertyRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/adapters/CommonPropertyRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/repositories/CommonJdbiRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/database/repositories/CommonJdbiRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/communicator/PersonHttpCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/communicator/PersonHttpCommunicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/enpoints/CommonPropertyEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../microservices/property-service/property-infrastructure/src/main/java/co/com/ajac/http/enpoints/CommonPropertyEndpoint.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -42,18 +42,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/coremodel/LegalPerson.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -65,6 +60,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/coremodel/LegalPerson.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -88,9 +84,22 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="core-model" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core-model" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -127,7 +136,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="27" width="1321" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2611415" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -162,15 +170,19 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/coremodel/LegalPerson.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

@@ -21,6 +21,6 @@ public class FindDevice implements Query<Device, String>{
 	@Override
 	public Device execute(String serial) {
 		return deviceService.findDevice(serial)
-				.orElseThrow(() -> new ModelNotFoundException("Dispositivo no registrado"));
+				.getOrElseThrow(() -> new ModelNotFoundException("Dispositivo no registrado"));
 	}
 }

@@ -7,12 +7,11 @@ import domain.exceptions.NotSaveModelException;
 import co.com.ajac.models.Device;
 import co.com.ajac.services.DeviceService;
 import common.Query;
-import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 
 @Component
-public class RegisterDevice implements Query<Option<Integer>, Device>{
+public class RegisterDevice implements Query<String, Device>{
 
 	private final DeviceService deviceService;
 	
@@ -22,9 +21,12 @@ public class RegisterDevice implements Query<Option<Integer>, Device>{
 	}
 
 	@Override
-	public Option<Integer> execute(Device device) {
-		Either<Seq<String>, Option<Integer>> eitherResult = deviceService.registerDevice(device);
-		return eitherResult.getOrElseThrow(() -> new NotSaveModelException(eitherResult.getLeft().mkString(" ,")));
+	public String execute(Device device) {
+		Either<String, Option<String>> eitherResult = deviceService.registerDevice(device);
+		
+		return eitherResult.getOrElseThrow(
+				() -> new NotSaveModelException(eitherResult.getLeft()))
+				.getOrElseThrow(() -> new NotSaveModelException("Ooops! El dispositivo no fue registrado. Intetenlo nuevamente"));
 	}
 	
 }
