@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ajac.models.Pet;
-import co.com.ajac.models.Resident;
+import co.com.ajac.models.residents.Pet;
+import co.com.ajac.models.residents.Resident;
 import co.com.ajac.usecase.resident.CreateResident;
 import co.com.ajac.usecase.resident.GetAllPetsByResident;
 import co.com.ajac.usecase.resident.GetAllResident;

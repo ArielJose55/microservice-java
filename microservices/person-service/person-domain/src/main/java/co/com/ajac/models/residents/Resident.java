@@ -1,4 +1,4 @@
-package co.com.ajac.models;
+package co.com.ajac.models.residents;
 
 
 

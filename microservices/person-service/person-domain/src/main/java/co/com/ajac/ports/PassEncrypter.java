@@ -1,6 +1,6 @@
 package co.com.ajac.ports;
 
-public interface IPassEncrypter {
+public interface PassEncrypter {
 	
 	public String encrypt(String password);
 	

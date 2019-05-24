@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import domain.exceptions.NotSaveModelException;
-import co.com.ajac.models.Pet;
+import co.com.ajac.models.residents.Pet;
 import co.com.ajac.services.resident.ResidentService;
 import common.Query;
 

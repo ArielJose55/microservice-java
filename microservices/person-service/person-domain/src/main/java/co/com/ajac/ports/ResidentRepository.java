@@ -3,12 +3,13 @@ package co.com.ajac.ports;
 import java.util.List;
 import java.util.Optional;
 
-import co.com.ajac.models.Pet;
-import co.com.ajac.models.Resident;
+import co.com.ajac.models.residents.Pet;
+import co.com.ajac.models.residents.Resident;
+import io.vavr.control.Option;
 
-public interface IResidentRepository {
+public interface ResidentRepository {
 	
-	public Optional<Resident> save(Resident resident);
+	public Option<Resident> save(Resident resident);
 	
 	public Optional<Resident> get(String identification);
 	

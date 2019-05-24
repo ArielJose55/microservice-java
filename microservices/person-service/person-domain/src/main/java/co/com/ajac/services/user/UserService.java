@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import co.com.ajac.models.User;
-import co.com.ajac.ports.IUserRepository;
+import co.com.ajac.ports.UserRepository;
 
 
 public class UserService {
 
-	private IUserRepository userRepository;
+	private UserRepository userRepository;
 	
-	public UserService(IUserRepository userRepository) {
+	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 	

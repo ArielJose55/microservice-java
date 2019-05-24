@@ -32,7 +32,6 @@ public class User extends Person {
 	@PastOrPresent(message = REGISTER_DATE_NOT_ACCEPTED)
 	private LocalDateTime registerDate;
 
-	@NotEmpty(message = FIELD_NOT_EMPLY)
 	private String state;
 	
 	private LocalDateTime departureDate;

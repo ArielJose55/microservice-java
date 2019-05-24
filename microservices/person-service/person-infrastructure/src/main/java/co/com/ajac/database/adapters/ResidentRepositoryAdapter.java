@@ -6,19 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.database.repositories.ResidentRepository;
-import co.com.ajac.models.Pet;
-import co.com.ajac.models.Resident;
-import co.com.ajac.ports.IResidentRepository;
+import co.com.ajac.database.repositories.ResidentJdbiRepository;
+import co.com.ajac.models.residents.Pet;
+import co.com.ajac.models.residents.Resident;
+import co.com.ajac.ports.ResidentRepository;
+import io.vavr.control.Option;
 
 @Component
-public class ResidentRepositoryAdapter implements IResidentRepository{
+public class ResidentRepositoryAdapter implements ResidentRepository{
 
 	@Autowired
-	private ResidentRepository repository;
+	private ResidentJdbiRepository repository;
 
 	@Override
-	public Optional<Resident> save(Resident resident) {
+	public Option<Resident> save(Resident resident) {
 		return repository.create(resident);
 	}
 

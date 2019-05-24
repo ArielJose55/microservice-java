@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import domain.exceptions.ModelNotFoundException;
-import co.com.ajac.models.Resident;
+import co.com.ajac.models.residents.Resident;
 import co.com.ajac.services.resident.ResidentService;
 import common.Command;
 

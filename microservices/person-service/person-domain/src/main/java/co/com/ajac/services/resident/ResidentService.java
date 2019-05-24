@@ -3,22 +3,23 @@ package co.com.ajac.services.resident;
 import java.util.List;
 import java.util.Optional;
 
-import co.com.ajac.models.Pet;
-import co.com.ajac.models.Resident;
-import co.com.ajac.ports.IResidentRepository;
+import co.com.ajac.models.residents.Pet;
+import co.com.ajac.models.residents.Resident;
+import co.com.ajac.ports.ResidentRepository;
+import io.vavr.control.Option;
 
 public class ResidentService {
 
-	private final IResidentRepository repository;
+	private final ResidentRepository repository;
 	
 	/**
 	 * @param repository
 	 */
-	public ResidentService(IResidentRepository repository) {
+	public ResidentService(ResidentRepository repository) {
 		this.repository = repository;
 	}
 
-	public Optional<Resident> create(Resident resident){
+	public Option<Resident> create(Resident resident){
 		return repository.save(resident);
 	}
 	

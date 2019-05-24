@@ -8,22 +8,24 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.com.ajac.models.Pet;
-import co.com.ajac.models.Resident;
+import co.com.ajac.models.residents.Pet;
+import co.com.ajac.models.residents.Resident;
+import io.vavr.Function0;
+import io.vavr.control.Option;
 import lombok.Cleanup;
 
 @Repository
-public class ResidentRepository {
+public class ResidentJdbiRepository {
 
 	@Autowired
 	private Jdbi jdbi;
 
-
-	public Optional<Resident> create(Resident model) {
+	
+	public Option<Resident> create(Resident model) {
 
 		@Cleanup
-		Handle handle = jdbi.open();
-		return handle.inTransaction(h -> {
+		final Handle handle = jdbi.open();
+		final Function0<Resident> register = () -> handle.inTransaction(h -> {
 			h.createUpdate(
 					"INSERT INTO \"PERSON\"(identification, \"typeIdentification\") VALUES (:identification, :typeIdentification)")
 					.bind("identification", model.getIdentification())
@@ -42,8 +44,10 @@ public class ResidentRepository {
 					.bind("person_natural_fk", model.getIdentification())
 					.executeAndReturnGeneratedKeys()
 					.mapToBean(Resident.class)
-					.findFirst();
+					.findOnly();
 		});
+
+		return Function0.lift(register).apply();
 	}
 
 

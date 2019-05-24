@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import domain.exceptions.NotSaveModelException;
-import co.com.ajac.models.Resident;
+import co.com.ajac.models.residents.Resident;
 import co.com.ajac.services.resident.ResidentService;
 import common.Query;
 
@@ -23,7 +23,7 @@ public class CreateResident implements Query<Resident,Resident>{
 	@Override
 	public Resident execute(Resident resident) {
 		return residentService.create(resident)
-				.orElseThrow(() -> new NotSaveModelException(UNREGISTERED_RESIDENT));
+				.getOrElseThrow(() -> new NotSaveModelException(UNREGISTERED_RESIDENT));
 	}
 
 }

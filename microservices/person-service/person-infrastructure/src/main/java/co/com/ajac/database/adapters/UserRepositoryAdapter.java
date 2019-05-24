@@ -6,15 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.database.repositories.UserRepository;
+import co.com.ajac.database.repositories.UserJdbiRepository;
 import co.com.ajac.models.User;
-import co.com.ajac.ports.IUserRepository;
+import co.com.ajac.ports.UserRepository;
 
 @Component
-public class UserRepositoryAdapter implements IUserRepository{
+public class UserRepositoryAdapter implements UserRepository{
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserJdbiRepository userRepository;
 	
 	@Override
 	public Optional<User> save(User user) {

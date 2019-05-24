@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import co.com.ajac.models.User;
 
-public interface IUserRepository {
+public interface UserRepository {
 
 	public Optional<User> save(User user);
 	

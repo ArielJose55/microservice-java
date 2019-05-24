@@ -28,8 +28,8 @@ CREATE TABLE public."DISPOSITIVO"
     bien_comun integer,
     state "device type" DEFAULT 'ACTIVO'::"device type",
     CONSTRAINT "DISPOSITIVO_pkey" PRIMARY KEY (id),
-    CONSTRAINT "DISPOSITIVO_bien_comun_id_key" UNIQUE (bien_comun),
     CONSTRAINT "DISPOSITIVO_hash_key" UNIQUE (serial)
+
 )
 WITH (
     OIDS = FALSE

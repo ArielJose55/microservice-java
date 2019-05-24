@@ -13,7 +13,7 @@ import lombok.Cleanup;
 
 
 @Repository
-public class UserRepository {
+public class UserJdbiRepository {
 
 	@Autowired
 	private Jdbi jdbi;
