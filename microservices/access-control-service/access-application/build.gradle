@@ -1,0 +1,4 @@
+dependencies {
+	implementation project(':access-domain')
+	implementation 'co.com.ajac:common-application:2.1.0.Final'
+}

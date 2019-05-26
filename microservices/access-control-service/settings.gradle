@@ -1,0 +1,6 @@
+rootProject.name = 'access-control-service'
+
+include ':access-domain'
+include ':access-application'
+include ':access-infrastructure'
+

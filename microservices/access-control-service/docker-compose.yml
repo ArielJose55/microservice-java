@@ -1,0 +1,44 @@
+version: "3.5"
+services:  
+  access:
+    image: "java:8"
+    container_name: "access-service"
+    working_dir: /home/app
+    volumes:
+      - ./:/home/app
+    command: >
+        sh -c "chmod 777 ./gradlew && ./gradlew clean build && java -jar access-infrastructure/build/libs/access-service-1.0.0-SNAPSHOT.jar"   
+    networks:
+      - phnet
+      - internal
+      - pgnet-access
+
+  access-database:
+    image: "postgres"
+    restart: always
+    container_name: "access-database"
+    environment:
+      POSTGRES_DB: "access-database"
+      POSTGRES_USER: "access_user"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../../hardware-layer/database/access:/docker-entrypoint-initdb.d
+      - pgdata-access
+    networks:
+      - pgnet-access
+
+volumes:
+  pgdata-access:
+    name: pgnet-access
+
+networks:
+  pgnet-access:
+    driver: bridge
+  phnet:
+    external: true
+    name: phnet
+  internal:
+    external: true
+    name: internal
