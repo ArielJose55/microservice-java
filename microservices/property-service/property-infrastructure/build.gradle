@@ -19,7 +19,7 @@ jar{
 	manifest {
         attributes("Implementation-Title": project.name,
             "Implementation-Version": version,
-            "Main-Class": "co.com.ajac.PropertyServiceApplication")
+            "Main-Class": "co.com.ajac.AccessServiceApplication")
     }
 }
 
