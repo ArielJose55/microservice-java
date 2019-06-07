@@ -17,16 +17,15 @@ public class AccessPeatonalService {
 		this.propertyCommunicator = propertyCommunicator;
 	}
 
-	public Either<String, Option<Integer>> registerAccess(String serial, String code){
+	public Either<String, Option<Integer>> registerAccess(String serial, String identification){
 		
 		Option<Integer> optionCommon = propertyCommunicator.verifyCommonPropertyExistence(serial);
 		
-		if(!optionCommon.isDefined()) {
-			
-		}
+		if(!optionCommon.isDefined()) 
 			return Either.left("Ouup! No se encontro en el sistema algun dispositivo con este serial");
 		
-		Option<String> optionPersonal = personCommunicator.verifyExistenceBySecurityCode(code);
+			
+		Option<String> optionPersonal = personCommunicator.verifyExistenceBySecurityCode(identification);
 		
 		if(!optionPersonal.isDefined())
 			return Either.left("Ouup! Codigo incorrecto");

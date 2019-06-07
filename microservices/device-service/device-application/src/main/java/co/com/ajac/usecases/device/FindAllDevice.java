@@ -21,7 +21,7 @@ public class FindAllDevice implements Query<List<Device>, Integer>{
 	}
 
 	@Override
-	public List<Device> execute(Integer arg0) {
-		return service.listDevicesByProperty(arg0);
+	public List<Device> execute(Integer commonProperty) {
+		return service.listDevicesByProperty(commonProperty);
 	}
 }

@@ -22,7 +22,7 @@ public class ErrorHandleController extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(NotSaveModelException.class)
 	public <T extends NotSaveModelException> ResponseEntity<ErrorResponse> handleException(T ex,  WebRequest request){
-		ErrorResponse detalls = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+		final ErrorResponse detalls = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
 		return new ResponseEntity<>(detalls, HttpStatus.NOT_FOUND);		
 	}
 	

@@ -28,5 +28,4 @@ public class RegisterDevice implements Query<String, Device>{
 				() -> new NotSaveModelException(eitherResult.getLeft()))
 				.getOrElseThrow(() -> new NotSaveModelException("Ooops! El dispositivo no fue registrado. Intetenlo nuevamente"));
 	}
-	
 }
