@@ -29,7 +29,7 @@ public class DeviceHttpCommunicator implements DeviceCommunicator, Communicator{
 	private ObjectMapper mapper;
 
 	@Override
-	public Option<Integer> verifyCommonPropertyExistence(String serial) {
+	public Option<Integer> verifyDeviceExistence(String serial) {
 		
 		Option<String> bodyOption = getBodyOfRequestGet(restTemplate, API_URI_PROPERTY_SERVICE, serial);
 		
@@ -44,6 +44,6 @@ public class DeviceHttpCommunicator implements DeviceCommunicator, Communicator{
 							);
 				});
 	}
-	
+
 	
 }

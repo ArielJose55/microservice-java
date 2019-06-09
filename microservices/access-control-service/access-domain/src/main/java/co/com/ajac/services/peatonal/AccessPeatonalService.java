@@ -19,7 +19,7 @@ public class AccessPeatonalService {
 
 	public Either<String, Option<Integer>> registerAccess(String serial, String identification){
 		
-		Option<Integer> optionCommon = propertyCommunicator.verifyCommonPropertyExistence(serial);
+		Option<Integer> optionCommon = propertyCommunicator.verifyDeviceExistence(serial);
 		
 		if(!optionCommon.isDefined()) 
 			return Either.left("Ouup! No se encontro en el sistema algun dispositivo con este serial");

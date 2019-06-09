@@ -4,5 +4,5 @@ import io.vavr.control.Option;
 
 public interface DeviceCommunicator {
 
-	Option<Integer> verifyCommonPropertyExistence(String serial);
+	Option<Integer> verifyDeviceExistence(String serial);
 }
