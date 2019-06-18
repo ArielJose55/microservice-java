@@ -38,6 +38,7 @@ public class JacksonConfigurer {
 			@Override
 			public void serialize(LocalDateTime localDateTime, JsonGenerator generator, SerializerProvider provider)
 					throws IOException {
+;
 				generator.writeString(DateTimeFormatter.ofPattern(LOCAL_DATE_TIME_FORMAT).format(localDateTime));
 			}
 		});
@@ -45,6 +46,7 @@ public class JacksonConfigurer {
 		module.addDeserializer(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
 			@Override
 			public LocalDateTime deserialize(JsonParser parser, DeserializationContext provider) throws IOException {
+
 				return LocalDateTime.parse(parser.getText(), DateTimeFormatter.ofPattern(LOCAL_DATE_TIME_FORMAT));
 			}
 		});

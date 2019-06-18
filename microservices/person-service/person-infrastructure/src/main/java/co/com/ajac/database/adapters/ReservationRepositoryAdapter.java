@@ -33,5 +33,15 @@ public class ReservationRepositoryAdapter implements ReservationRepository{
 		return repository.listReservationByState(state, commonProperty);
 	}
 
+	@Override
+	public Option<Reservation> findOneReservationActiveNowBy(String identification) {
+		return repository.findOneReservationActiveNowBy(identification);
+	}
+
+	@Override
+	public Option<Reservation> findOneReservationActiveAtdate(LocalDateTime date) {
+		return repository.findOneReservationActiveAtDate(date);
+	}
+
 	
 }

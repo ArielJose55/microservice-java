@@ -13,4 +13,8 @@ public interface ReservationRepository {
 	List<Reservation> findAllReservationWithThisDates(LocalDateTime startDate, LocalDateTime finishDate, Integer commonProperty);
 	
 	List<Reservation> findAllReservationsByState(String state, Integer commonProperty);
+	
+	Option<Reservation> findOneReservationActiveNowBy(String identification);
+	
+	Option<Reservation> findOneReservationActiveAtdate(LocalDateTime date);
 }

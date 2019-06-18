@@ -29,6 +29,14 @@ public class ReservationJdbiRepository {
 	private static final String FIND_ALL_RESERVATIONS_BY_STATE_AND_COMMON_PROPERTY = "SELECT * FROM public.\"RESERVATION\" re" + 
 		"\tWHERE re.state =:state AND re.common_property=:commonProperty";
 	
+	private static final String FIND_ONE_RESERVATION_ACTIVE_NOW_BY_IDENTIFICATION = "SELECT * FROM \"RESERVATION\" re" + 
+		"\tWHERE (now() BETWEEN re.start_date AND re.finish_date)" + 
+			"\tAND re.identification_resident = :identification" + 
+			"\tAND re.state = 'ANSWERED'";
+	
+	private static final String FIND_ONE_RESERVATION_ACTIVE_AT_DATE= "SELECT * FROM \"RESERVATION\" re" + 
+			"\tWHERE (:date BETWEEN re.start_date AND re.finish_date)" + 
+				"\tAND re.state = 'ANSWERED'";
 	@Autowired
 	private Jdbi jdbi;
 	
@@ -89,7 +97,46 @@ public class ReservationJdbiRepository {
 				.bind("commonProperty", commonProperty)
 				.mapToBean(Reservation.class)
 				.list());
-		System.out.println(findAllByState.apply());
 		return Function0.lift(findAllByState).apply().getOrElse(List.empty());
+	}
+	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
+	public Option<Reservation> findOneReservationActiveNowBy(String identification){
+		
+		@Cleanup
+		final Handle handle = jdbi.open();
+		
+		final Function0<Reservation> findOne = () -> {
+			return handle.createQuery(FIND_ONE_RESERVATION_ACTIVE_NOW_BY_IDENTIFICATION)
+					.bind("identification", identification)
+					.mapToBean(Reservation.class)
+					.findOnly();
+		};
+		
+		return Function0.lift(findOne).apply();
+	}
+	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
+	public Option<Reservation> findOneReservationActiveAtDate(LocalDateTime date){
+		
+		@Cleanup
+		final Handle handle = jdbi.open();
+		
+		final Function0<Reservation> findOne = () -> {
+			return handle.createQuery(FIND_ONE_RESERVATION_ACTIVE_AT_DATE)
+					.bind("date", date)
+					.mapToBean(Reservation.class)
+					.findOnly();
+		};
+		
+		return Function0.lift(findOne).apply();
 	}
 }

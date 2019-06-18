@@ -1,6 +1,7 @@
 package co.com.ajac.services.reserve;
 
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
 
 import co.com.ajac.models.residents.Reservation;
 import co.com.ajac.ports.NaturalPersonRepository;
@@ -72,4 +73,39 @@ public class ReservationService {
 	
 	}
 	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
+	public Either<String, Reservation> findOneReservationActiveNowByResident(String identification){
+		
+		boolean existence = naturalPersonRepository.verifyExistence(identification);
+		
+		if(existence) {
+			Option<Reservation> optionReservation = reservationRepository.findOneReservationActiveNowBy(identification);
+			
+			return optionReservation.fold(() -> 
+				Either.left("Esta persona no tiene en este momento reserva activa"),
+				Either::right);
+		}
+		
+		log.info("No existe ninguna persona natural registrada en el sistema con identificacion {}", identification);
+		return Either.left("Ouups! no existe ninguna persona natural registrada en el sistema con esta identificacion");
+	}
+	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
+	public Either<String, Reservation> findOneReservationActiveAtDate(LocalDateTime date){
+		
+		Option<Reservation> optionReservation = reservationRepository.findOneReservationActiveAtdate(date);
+
+		return optionReservation.fold(() -> 
+			Either.left("En esta fecha " + date + "no hay ninguna reserva activa"),
+			Either::right);
+
+	}
 }
