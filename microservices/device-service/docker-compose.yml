@@ -1,7 +1,7 @@
 version: "3.5"
 services:  
   device:
-    image: "java:8"
+    image: "openjdk:8-jdk-alpine"
     container_name: "device-service"
     working_dir: /home/app
     volumes:
