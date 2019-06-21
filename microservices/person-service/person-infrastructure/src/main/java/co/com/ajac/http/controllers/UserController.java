@@ -1,27 +1,26 @@
 package co.com.ajac.http.controllers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.dtos.UserDTO;
 import co.com.ajac.models.User;
 import co.com.ajac.usecase.user.GetAllUser;
 import co.com.ajac.usecase.user.GetUser;
 import co.com.ajac.usecase.user.LoginUser;
 import co.com.ajac.usecase.user.RegisterUser;
 
-
+@CrossOrigin(origins = "http://localhost:3000")	
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -48,11 +47,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public User login(@RequestParam String username, @RequestParam String password) {
-		Map<String, String> params = new HashMap<>();
-		params.put("username", username);
-		params.put("password", password);
-		return loginUser.execute(params);
+	public User login(@RequestBody UserDTO credentials) {
+		return loginUser.execute(credentials);
 	}
 	
 	@GetMapping("/{id}")

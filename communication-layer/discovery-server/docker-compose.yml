@@ -1,7 +1,7 @@
 version: "3.5"
 services:  
   discovery:
-    image: "java:8"
+    image: "openjdk:8-jdk-alpine"
     container_name: "discovery-server"
     working_dir: /home/app
     volumes:
