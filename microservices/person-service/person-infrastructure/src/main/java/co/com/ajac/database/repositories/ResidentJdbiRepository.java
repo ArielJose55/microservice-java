@@ -13,7 +13,10 @@ import co.com.ajac.models.residents.Resident;
 import io.vavr.Function0;
 import io.vavr.control.Option;
 import lombok.Cleanup;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Repository
 public class ResidentJdbiRepository {
 
@@ -47,7 +50,7 @@ public class ResidentJdbiRepository {
 					.findOnly();
 		});
 
-		return Function0.lift(register).apply();
+		return Function0.lift(register).apply().peek(log::info);
 	}
 
 

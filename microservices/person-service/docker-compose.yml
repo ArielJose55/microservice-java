@@ -29,7 +29,7 @@ services:
       - phnet
 
 volumes:
-  pgdata-person: # Volumen para el almacenamiento interno de la base de datos
+  pgdata-person:
     name: pgdata-person
 
 networks:
