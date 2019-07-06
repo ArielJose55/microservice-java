@@ -1,9 +1,9 @@
 package co.com.ajac.ports;
 
-import co.com.ajac.models.LegalDataPerson;
+import coremodel.LegalPerson;
 import io.vavr.control.Option;
 
 public interface LegalPersonRepository {
-	Option<Integer> registerLegalPerson(LegalDataPerson legalPerson);
-	Option<LegalDataPerson> findLegalPersonBy(String identification);
+	Option<Integer> registerLegalPerson(LegalPerson legalPerson);
+	Option<LegalPerson> findLegalPersonBy(String identification);
 }

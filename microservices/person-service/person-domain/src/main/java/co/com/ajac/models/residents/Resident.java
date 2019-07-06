@@ -3,16 +3,23 @@ package co.com.ajac.models.residents;
 
 
 import coremodel.NaturalPerson;
+import io.vavr.collection.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Resident  extends NaturalPerson {
 
 	private String type;
+	
+	private List<Pet> pets;
+	
+	private List<Habitant> habitantes;
 	
 	/**
 	 * @param identification
@@ -43,4 +50,6 @@ public class Resident  extends NaturalPerson {
 		this(identification, typeIdentification, name, lastName);
 		this.type = type;
 	}
+	
+	
 }

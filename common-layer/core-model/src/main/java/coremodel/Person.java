@@ -20,10 +20,31 @@ public abstract class Person implements Model {
 	
 	private static final String FIELD_NOT_EMPTY = "Este campo no puede estar vacio";
 	
+	
+	
+	
 	@NotNull(message = IDENTIFICATION_REQUIRED)
 	@Size(min = 5, max = 20, message = IDENTIFICATION_NOT_ACCEPTED)
 	protected String identification;
 	
 	@NotNull(message = FIELD_NOT_EMPTY)
 	protected String typeIdentification;
+	
+	protected Address address;
+	
+	protected EmailAddress emailAddress;
+	
+	protected Telephone telephone;
+	
+	
+	
+	
+	public Person(String identification) {
+		this.identification = identification;
+	}
+
+	public Person( String identification,String typeIdentification) {
+		this.identification = identification;
+		this.typeIdentification = typeIdentification;
+	}
 }

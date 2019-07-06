@@ -3,6 +3,8 @@ package co.com.ajac.database.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +15,12 @@ import co.com.ajac.models.residents.Resident;
 import io.vavr.Function0;
 import io.vavr.control.Option;
 import lombok.Cleanup;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Repository
 public class ResidentJdbiRepository {
 
+    private static Logger logger = LogManager.getLogger(ResidentJdbiRepository.class);
+	
 	@Autowired
 	private Jdbi jdbi;
 
@@ -50,7 +51,7 @@ public class ResidentJdbiRepository {
 					.findOnly();
 		});
 
-		return Function0.lift(register).apply().peek(log::info);
+		return Function0.lift(register).apply().peek(logger::info);
 	}
 
 

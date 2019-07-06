@@ -12,36 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.commands.RegisterCommonProperty;
 import co.com.ajac.domain.CommonProperty;
-import co.com.ajac.usercases.common.FindAllCommonByHorizontal;
-import co.com.ajac.usercases.common.FindOneCommon;
-import co.com.ajac.usercases.common.RegisterCommon;
+import co.com.ajac.queries.PropertyQueryResource;
 
 @RestController
 @RequestMapping("/")
 public class CommonPropertyEndpoint {
 
-	@Autowired
-	private RegisterCommon registerCommon;
+	private final RegisterCommonProperty registerCommon;
+	
+	private final PropertyQueryResource propertyQueryResource;
+	
 	
 	@Autowired
-	private FindOneCommon findOneCommon;
-	
-	@Autowired
-	private FindAllCommonByHorizontal findAllCommon;
-	
+	public CommonPropertyEndpoint(RegisterCommonProperty registerCommon, PropertyQueryResource propertyQueryResource) {
+		this.registerCommon = registerCommon;
+		this.propertyQueryResource = propertyQueryResource;
+	}
+
 	@PostMapping("/commons")
-	public Integer registerCommonPropety(@Valid @RequestBody CommonProperty property) {
-		return registerCommon.execute(property);
+	public void registerCommonPropety(@Valid @RequestBody CommonProperty property) {
+		registerCommon.execute(property);
 	}
 	
 	@GetMapping("/commons/{id}")
 	public CommonProperty findOneCommonPropertyById(@PathVariable("id") Integer id) {
-		return findOneCommon.execute(id); 
+		return propertyQueryResource.getOneCommonProperty(id);
 	}
 	
 	@GetMapping("{nit}/commons")
 	public List<CommonProperty> findAllCommonPropertyByHorizontalProperty(@PathVariable("nit") String nit){
-		return findAllCommon.execute(nit).asJava();
+		return propertyQueryResource.listAllCommonByHorizontalProperty(nit);
 	}
 }

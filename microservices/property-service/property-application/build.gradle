@@ -1,6 +1,7 @@
 dependencies {
 	implementation project(':property-domain')
 	implementation 'co.com.ajac:common-application:2.1.0.Final'
+	implementation 'com.konghq:unirest-java:2.3.08'
 }
 
 

@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import co.com.ajac.commands.RegisterReservationCommand;
 import co.com.ajac.models.residents.Reservation;
 import co.com.ajac.usecase.reserve.FindAllReserveByState;
 import co.com.ajac.usecase.reserve.FindOneReserveActiveNow;
 import co.com.ajac.usecase.reserve.FindOneReserveAtDate;
-import co.com.ajac.usecase.reserve.RegisterReserve;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 
@@ -33,7 +33,7 @@ import io.vavr.Tuple2;
 public class ReservationEndpoint {
 
 	@Autowired
-	private RegisterReserve registerReserve;
+	private RegisterReservationCommand registerReserve;
 	
 	@Autowired
 	private FindAllReserveByState finalAllReserveByState;

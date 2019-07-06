@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.commands.RegisterUserCommand;
 import co.com.ajac.dtos.UserDTO;
 import co.com.ajac.models.User;
 import co.com.ajac.usecase.user.GetAllUser;
 import co.com.ajac.usecase.user.GetUser;
 import co.com.ajac.usecase.user.LoginUser;
-import co.com.ajac.usecase.user.RegisterUser;
 
 @CrossOrigin(origins = "http://localhost:3000")	
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	
-	private final RegisterUser registerUser;
+	private final RegisterUserCommand registerUser;
 	
 	private final LoginUser loginUser;
 	
@@ -34,7 +34,7 @@ public class UserController {
 	private final GetAllUser getAllUser;
 	
 	@Autowired
-	public UserController(RegisterUser registerUser, LoginUser loginUser, GetUser getUser, GetAllUser getAllUser) {
+	public UserController(RegisterUserCommand registerUser, LoginUser loginUser, GetUser getUser, GetAllUser getAllUser) {
 		this.registerUser = registerUser;
 		this.loginUser = loginUser;
 		this.getUser = getUser;
@@ -47,7 +47,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public User login(@RequestBody UserDTO credentials) {
+	public UserDTO login(@RequestBody User credentials) {
 		return loginUser.execute(credentials);
 	}
 	

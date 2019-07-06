@@ -5,9 +5,12 @@ import java.util.Optional;
 
 import co.com.ajac.models.User;
 import co.com.ajac.ports.UserRepository;
+import domain.exceptions.ModelNotFoundException;
 
 
 public class UserService {
+	
+	private static final String INCORRECT_CREDENTIALS = "Nombre de usuario o contraseña son incorrectas";
 
 	private UserRepository userRepository;
 	
@@ -16,11 +19,19 @@ public class UserService {
 	}
 	
 	public Optional<User> registerUser(User user){
+		
 		return userRepository.save(user);
 	}
 	
-	public Optional<User> login(String username, String password){
-		return userRepository.login(username, password);
+	public User login(String username, String password){
+		
+		User user = userRepository.login(username, password)
+				.orElseThrow(() -> new ModelNotFoundException(INCORRECT_CREDENTIALS));
+		
+		if(user.getState().equals("INACTIVE"))
+			throw new ModelNotFoundException("Usuario inactivo. Por favor, Consulte al administrador");
+			
+		return user;
 	}
 	
 	public Optional<User> findOneBy(String identification){

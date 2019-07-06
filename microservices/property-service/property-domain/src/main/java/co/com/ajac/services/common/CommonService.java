@@ -51,6 +51,8 @@ public class CommonService {
 				}),
 				Case($None(), Either.left("Oups! no tenemos registro de ninguna propiedad horizontal registrada con este nit: " + property.getNitHorizantalProperty()))
 				);
+		
+		
 	}
 	
 	/**

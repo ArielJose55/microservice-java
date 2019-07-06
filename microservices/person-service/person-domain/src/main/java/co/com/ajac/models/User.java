@@ -10,9 +10,11 @@ import coremodel.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 @NoArgsConstructor
 public class User extends Person {
 
@@ -32,6 +34,8 @@ public class User extends Person {
 	@PastOrPresent(message = REGISTER_DATE_NOT_ACCEPTED)
 	private LocalDateTime registerDate;
 
+	private String role;
+	
 	private String state;
 	
 	private LocalDateTime departureDate;

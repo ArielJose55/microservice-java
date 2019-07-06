@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.commands.RegisterLegalPersonCommand;
 import co.com.ajac.models.LegalDataPerson;
 import co.com.ajac.usecase.legalperson.FindOneLegalPerson;
-import co.com.ajac.usecase.legalperson.RegisterLegalPerson;
 
 @RestController
 @RequestMapping("/legalperson")
 public class LegalPersonEndpoint {
 	
-	private final RegisterLegalPerson reLegalPerson;
+	private final RegisterLegalPersonCommand reLegalPerson;
 	private final FindOneLegalPerson findOneLegalPerson;
 
 	@Autowired
-	public LegalPersonEndpoint(RegisterLegalPerson reLegalPerson, FindOneLegalPerson findOneLegalPerson) {
+	public LegalPersonEndpoint(RegisterLegalPersonCommand reLegalPerson, FindOneLegalPerson findOneLegalPerson) {
 		this.findOneLegalPerson = findOneLegalPerson;
 		this.reLegalPerson = reLegalPerson;
 	}

@@ -5,7 +5,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.com.ajac.models.LegalDataPerson;
+import coremodel.LegalPerson;
 import io.vavr.Function0;
 import io.vavr.control.Option;
 import lombok.Cleanup;
@@ -23,7 +23,7 @@ public class LegalPersonJdbiRepository {
 		this.jdbi = jdbi;
 	}
 	
-	public Option<Integer> saveLegalPerson(LegalDataPerson legalDataPerson){
+	public Option<Integer> saveLegalPerson(LegalPerson legalDataPerson){
 		
 		@Cleanup
 		final Handle handle = jdbi.open();
@@ -47,14 +47,14 @@ public class LegalPersonJdbiRepository {
 		return Function0.lift(save).apply();
 	}
 	
-	public Option<LegalDataPerson> findByIdentification(String identification){
+	public Option<LegalPerson> findByIdentification(String identification){
 		
 		@Cleanup
 		final Handle handle = jdbi.open();
 		
-		final Function0<LegalDataPerson> find = () -> handle.createQuery(FIND_ONE_LEGAL_PERSON)
+		final Function0<LegalPerson> find = () -> handle.createQuery(FIND_ONE_LEGAL_PERSON)
 				.bind("identification", identification)
-				.mapToBean(LegalDataPerson.class)
+				.mapToBean(LegalPerson.class)
 				.findOnly();
 		
 		return Function0.lift(find).apply();

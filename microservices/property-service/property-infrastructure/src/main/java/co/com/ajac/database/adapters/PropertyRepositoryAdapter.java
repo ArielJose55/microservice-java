@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import co.com.ajac.database.repositories.PropertyJdbiRepository;
 import co.com.ajac.domain.HorizontalProperty;
 import co.com.ajac.ports.PropertyRespository;
+import io.vavr.collection.List;
 import io.vavr.control.Option;
 
 @Component
@@ -23,6 +24,12 @@ public class PropertyRepositoryAdapter implements PropertyRespository{
 	@Override
 	public Option<String> findOneHorizonalProperty(String id) {
 		return repository.findOne(id);
+	}
+
+	@Override
+	public List<HorizontalProperty> listAllHorizontalProperty(String identification) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

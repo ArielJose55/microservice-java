@@ -9,6 +9,7 @@ import static io.vavr.Patterns.$Some;
 import co.com.ajac.domain.HorizontalProperty;
 import co.com.ajac.ports.PersonCommunicator;
 import co.com.ajac.ports.PropertyRespository;
+import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 
@@ -32,5 +33,9 @@ public class HorizontalService {
 					Case($None(), Either.left("Lo sentimos, no fue posible registrar esta propiedad horizontal"))
 					);
 		}, nit -> Either.left("Este Nit: " + nit + " ya se encuentra registrado en nuestro sistema"));
+	}
+	
+	public List<HorizontalProperty> listAllHorizontalPropertyByAdministrator(String identification){
+		return propertyRespository.listAllHorizontalProperty(identification);
 	}
 }

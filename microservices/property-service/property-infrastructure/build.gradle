@@ -27,7 +27,7 @@ dependencies {
 	implementation project(":property-domain")
 	implementation project(":property-application")
     implementation 'co.com.ajac:common-application:2.1.0.Final'	
-    implementation 'co.com.ajac:common-infrastructure:2.1.0.Final'	
+    implementation 'co.com.ajac:common-infrastructure:2.1.0.Final'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

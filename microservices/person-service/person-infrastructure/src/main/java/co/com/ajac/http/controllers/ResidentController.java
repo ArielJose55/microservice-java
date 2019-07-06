@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.commands.RegisterResidentCommand;
+import co.com.ajac.commands.RegisterPetCommand;
 import co.com.ajac.models.residents.Pet;
 import co.com.ajac.models.residents.Resident;
-import co.com.ajac.usecase.resident.CreateResident;
 import co.com.ajac.usecase.resident.GetAllPetsByResident;
 import co.com.ajac.usecase.resident.GetAllResident;
 import co.com.ajac.usecase.resident.GetResident;
-import co.com.ajac.usecase.resident.RegisterPet;
 
 @RestController
 @RequestMapping("/residents")
 public class ResidentController {
 	
-	private final CreateResident createResident;
+	private final RegisterResidentCommand createResident;
 	
 	private final GetResident getResident;
 	
 	private final GetAllResident getAllResident;
 	
-	private final RegisterPet registerPet;
+	private final RegisterPetCommand registerPet;
 	
 	private final GetAllPetsByResident petsByResident;
 	
 	@Autowired
-	public ResidentController(CreateResident createResident, GetResident getResident, GetAllResident getAllResident
-			,RegisterPet registerPet, GetAllPetsByResident petsByResident) {
+	public ResidentController(RegisterResidentCommand createResident, GetResident getResident, GetAllResident getAllResident
+			,RegisterPetCommand registerPet, GetAllPetsByResident petsByResident) {
 		this.createResident = createResident;
 		this.getResident = getResident;
 		this.getAllResident = getAllResident;

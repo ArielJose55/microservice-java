@@ -6,8 +6,8 @@ import static io.vavr.API.Match;
 import static io.vavr.Patterns.$None;
 import static io.vavr.Patterns.$Some;
 
-import co.com.ajac.models.LegalDataPerson;
 import co.com.ajac.ports.LegalPersonRepository;
+import coremodel.LegalPerson;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 
@@ -22,7 +22,7 @@ public class LegalPersonService {
 		this.repository = repository;
 	}
 	
-	public Either<String, Integer> registerLegarPerson(LegalDataPerson legalDataPerson){
+	public Either<String, Integer> registerLegarPerson(LegalPerson legalDataPerson){
 		Option<Integer> optionLegalPerson = repository.registerLegalPerson(legalDataPerson);
 		return Match(optionLegalPerson).of(
 				Case($Some($()), Either::right),
@@ -30,8 +30,8 @@ public class LegalPersonService {
 				);
 	}
 	
-	public Either<String, LegalDataPerson> findOneLegalPerson(String identification){
-		Option<LegalDataPerson> optionLegalPerson = repository.findLegalPersonBy(identification);
+	public Either<String, LegalPerson> findOneLegalPerson(String identification){
+		Option<LegalPerson> optionLegalPerson = repository.findLegalPersonBy(identification);
 		return Match(optionLegalPerson).of(
 				Case($Some($()), Either::right),
 				Case($None(), Either.left(PERSONA_JURIDICA_NO_ENCONTRADA))

@@ -4,23 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.database.repositories.LegalPersonJdbiRepository;
-import co.com.ajac.models.LegalDataPerson;
 import co.com.ajac.ports.LegalPersonRepository;
+import coremodel.LegalPerson;
 import io.vavr.control.Option;
 
 @Component
 public class LegalPersonRepositoryAdapter implements LegalPersonRepository {
 
+	
+	private final LegalPersonJdbiRepository repository;
+	
 	@Autowired
-	private LegalPersonJdbiRepository repository;
+	public LegalPersonRepositoryAdapter(LegalPersonJdbiRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
-	public Option<Integer> registerLegalPerson(LegalDataPerson legalPerson) {
+	public Option<Integer> registerLegalPerson(LegalPerson legalPerson) {
 		return repository.saveLegalPerson(legalPerson);
 	}
 
 	@Override
-	public Option<LegalDataPerson> findLegalPersonBy(String identification) {
+	public Option<LegalPerson> findLegalPersonBy(String identification) {
 		return repository.findByIdentification(identification);
 	}
 	

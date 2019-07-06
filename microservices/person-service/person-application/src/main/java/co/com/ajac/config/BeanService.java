@@ -10,6 +10,7 @@ import co.com.ajac.ports.NaturalPersonRepository;
 import co.com.ajac.ports.PropertyCommunicator;
 import co.com.ajac.ports.ReservationRepository;
 import co.com.ajac.services.legalperson.LegalPersonService;
+import co.com.ajac.services.naturalperson.NaturalPersonService;
 import co.com.ajac.services.reserve.ReservationService;
 import co.com.ajac.services.resident.ResidentService;
 import co.com.ajac.services.user.UserService;
@@ -35,5 +36,10 @@ public class BeanService {
 	@Bean
 	public ReservationService beanReservationService(NaturalPersonRepository naturalPersonRepository, PropertyCommunicator propertyCommunicator, ReservationRepository reservationRepository) {
 		return new ReservationService(naturalPersonRepository, propertyCommunicator, reservationRepository);
+	}
+	
+	@Bean
+	public NaturalPersonService beanNaturalPersonService(NaturalPersonRepository naturalPersonRepository) {
+		return new NaturalPersonService(naturalPersonRepository);
 	}
 }

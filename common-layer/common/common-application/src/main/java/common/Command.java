@@ -1,5 +1,5 @@
 package common;
 
-public interface Command <R>{
-	public R execute();
+public interface Command <M>{
+	public void execute(M model);
 }

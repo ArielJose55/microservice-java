@@ -1,28 +1,25 @@
 package co.com.ajac.dtos;
 
-import javax.validation.constraints.NotBlank;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class UserDTO {
 
-	@NotBlank
 	private String username;
-	
-	@NotBlank
 	private String password;
+	private String identification;
+	private String token;
+	private String names;
+	private String lastName;
+	private String completeName;
+	private String role;
 	
-	public UserDTO(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getUsername() {
-		return username;
-	}
 }

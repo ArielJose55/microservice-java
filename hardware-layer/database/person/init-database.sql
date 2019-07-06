@@ -24,6 +24,12 @@ CREATE TYPE public."User State" AS ENUM
 ALTER TYPE public."User State"
     OWNER TO person_user;
 
+CREATE TYPE public."Role" AS ENUM
+    ('AUXILIAR', 'RESIDENT', 'ADMINISTRATOR');
+
+ALTER TYPE public."Role"
+    OWNER TO person_user;
+
 CREATE SEQUENCE public."LEGAL_PERSON_id_seq";
 
 ALTER SEQUENCE public."LEGAL_PERSON_id_seq"
@@ -105,6 +111,8 @@ CREATE TABLE public."USER"
     username character varying(35) COLLATE pg_catalog."default" NOT NULL,
     password character varying(255) COLLATE pg_catalog."default" NOT NULL,
     register_date timestamp without time zone NOT NULL DEFAULT now(),
+    role "Role" NOT NULL, 
+    finish_date timestamp without time zone,
     state "User State" NOT NULL DEFAULT 'ACTIVE'::"User State",
     person_fk character varying(25) COLLATE pg_catalog."default",
     CONSTRAINT "USER_pkey" PRIMARY KEY (id),
