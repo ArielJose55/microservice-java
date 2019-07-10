@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.ajac.commands.RegisterUserCommand;
 import co.com.ajac.dtos.UserDTO;
 import co.com.ajac.models.User;
-import co.com.ajac.usecase.user.GetAllUser;
-import co.com.ajac.usecase.user.GetUser;
-import co.com.ajac.usecase.user.LoginUser;
+import co.com.ajac.queries.PersonQueryResource;
 
 @CrossOrigin(origins = "http://localhost:3000")	
 @RestController
@@ -27,37 +25,31 @@ public class UserController {
 	
 	private final RegisterUserCommand registerUser;
 	
-	private final LoginUser loginUser;
-	
-	private final GetUser getUser;
-	
-	private final GetAllUser getAllUser;
+	private final PersonQueryResource personQueryResource;
 	
 	@Autowired
-	public UserController(RegisterUserCommand registerUser, LoginUser loginUser, GetUser getUser, GetAllUser getAllUser) {
+	public UserController(RegisterUserCommand registerUser, PersonQueryResource personQueryResource) {
 		this.registerUser = registerUser;
-		this.loginUser = loginUser;
-		this.getUser = getUser;
-		this.getAllUser = getAllUser;
+		this.personQueryResource = personQueryResource;
 	}
 
 	@PostMapping
-	public User add(@Valid @RequestBody User user) {
-		return registerUser.execute(user);
+	public void add(@Valid @RequestBody User user) {
+		registerUser.execute(user);
 	}
 	
 	@PostMapping("/login")
-	public UserDTO login(@RequestBody User credentials) {
-		return loginUser.execute(credentials);
+	public UserDTO login(@RequestBody User userCredentials) {
+		return personQueryResource.login(userCredentials);
 	}
 	
 	@GetMapping("/{id}")
 	public User get(@PathVariable("id") String identification) {
-		return getUser.execute(identification);
+		return personQueryResource.findOneUserByIdentification(identification);
 	}
 	
-	@GetMapping
-	public List<User> getAll(){
-		return getAllUser.execute();
+	@GetMapping("/ph/{id}")
+	public List<User> getAll(@PathVariable("id") Integer idPh){
+		return null;
 	}
 }

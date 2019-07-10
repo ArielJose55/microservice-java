@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.commands.RegisterResidentCommand;
-import co.com.ajac.commands.RegisterPetCommand;
-import co.com.ajac.models.residents.Pet;
 import co.com.ajac.models.residents.Resident;
-import co.com.ajac.usecase.resident.GetAllPetsByResident;
-import co.com.ajac.usecase.resident.GetAllResident;
-import co.com.ajac.usecase.resident.GetResident;
+import co.com.ajac.queries.PersonQueryResource;
 
 @RestController
 @RequestMapping("/residents")
@@ -26,46 +22,27 @@ public class ResidentController {
 	
 	private final RegisterResidentCommand createResident;
 	
-	private final GetResident getResident;
-	
-	private final GetAllResident getAllResident;
-	
-	private final RegisterPetCommand registerPet;
-	
-	private final GetAllPetsByResident petsByResident;
-	
+	private final PersonQueryResource personQueryResource;
+		
 	@Autowired
-	public ResidentController(RegisterResidentCommand createResident, GetResident getResident, GetAllResident getAllResident
-			,RegisterPetCommand registerPet, GetAllPetsByResident petsByResident) {
+	public ResidentController(RegisterResidentCommand createResident, PersonQueryResource personQueryResource) {
 		this.createResident = createResident;
-		this.getResident = getResident;
-		this.getAllResident = getAllResident;
-		this.registerPet = registerPet;
-		this.petsByResident = petsByResident;
+		this.personQueryResource = personQueryResource;
 	}
 
 	@PostMapping
-	public Resident add(@Valid @RequestBody Resident resident) {
-		return createResident.execute(resident);
+	public void add(@Valid @RequestBody Resident resident) {
+		createResident.execute(resident);
 	}
 	
 	@GetMapping("/{id}")
 	public Resident get(@PathVariable("id") String identification) {
-		return getResident.execute(identification);
+		return personQueryResource.findOneResidentByIdentification(identification);
 	}
 	
-	@GetMapping
-	public List<Resident> getAll(){
-		return getAllResident.execute();
+	@GetMapping("/hp/{id}")
+	public List<Resident> getAll(@PathVariable("id") Integer idHp){
+		return personQueryResource.findAllResidentByHorizontalProperty(idHp);
 	}
 	
-	@PostMapping("/pets")
-	public Pet addPet(@Valid @RequestBody Pet pet) {
-		return registerPet.execute(pet);
-	}
-	
-	@GetMapping("/{id}/pets")
-	public List<Pet> getAllPetByResident(@PathVariable("id") String identification){
-		return petsByResident.execute(identification);
-	}
 }

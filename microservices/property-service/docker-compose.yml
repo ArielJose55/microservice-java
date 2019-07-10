@@ -6,8 +6,10 @@ services:
     working_dir: /home/app
     volumes:
       - ./:/home/app
+    ports:
+      - "8011:8011"
     command: >
-        sh -c "chmod 777 ./gradlew && ./gradlew clean build && chmod -R 777 property-infrastructure/build/ && java -jar property-infrastructure/build/libs/property-infrastructure-1.0.0-SNAPSHOT.jar"   
+        sh -c "chmod 777 ./gradlew && ./gradlew clean build && chmod -R 777 property-infrastructure/build/ && java -jar property-infrastructure/build/libs/property-infrastructure-1.0.0-SNAPSHOT.jar --trace"   
     networks:
       - phnet
       - internal

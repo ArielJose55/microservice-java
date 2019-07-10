@@ -1,4 +1,4 @@
-package co.com.ajac.ports;
+package co.com.ajac.ports.acls;
 
 import coremodel.LegalPerson;
 import io.vavr.control.Option;

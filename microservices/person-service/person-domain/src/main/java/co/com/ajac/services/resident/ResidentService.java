@@ -1,6 +1,5 @@
 package co.com.ajac.services.resident;
 
-import co.com.ajac.models.residents.Pet;
 import co.com.ajac.models.residents.Resident;
 import co.com.ajac.ports.ResidentRepository;
 import io.vavr.collection.List;
@@ -27,14 +26,6 @@ public class ResidentService {
 	}
 	
 	public List<Resident> getAll(){
-		return repository.listAllResident();
-	}
-	
-	public List<Pet> listPets(String identificacion){
-		return repository.listPetsByResident(identificacion);
-	}
-	
-	public Option<Pet> registerPet(Pet pet){
-		return repository.addHimPet(pet, pet.getIdentification());
+		return repository.listAllResident(1);
 	}
 }

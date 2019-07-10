@@ -7,20 +7,18 @@ import static io.vavr.Patterns.$None;
 import static io.vavr.Patterns.$Some;
 
 import co.com.ajac.domain.CommonProperty;
-import co.com.ajac.ports.CommonPropertyRepository;
-import co.com.ajac.ports.PropertyRespository;
+import co.com.ajac.ports.repositories.CommonPropertyRepository;
+import co.com.ajac.ports.repositories.HorizontalPropertyRespository;
 import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 public class CommonService {
 
 	private final CommonPropertyRepository commonPropertyRepository;
-	private final PropertyRespository propertyRespository;
+	private final HorizontalPropertyRespository propertyRespository;
 
-	public CommonService(CommonPropertyRepository commonPropertyRepository, PropertyRespository propertyRespository) {
+	public CommonService(CommonPropertyRepository commonPropertyRepository, HorizontalPropertyRespository propertyRespository) {
 		this.commonPropertyRepository = commonPropertyRepository;
 		this.propertyRespository = propertyRespository;
 	}
@@ -32,7 +30,7 @@ public class CommonService {
 	 */
 	public Either<String, Option<Integer>> registerCommonProperty(CommonProperty property){
 		
-		log.info("verificando la existencia de una propiedad horizontal con nit {} en el sistema", property.getNitHorizantalProperty());
+		//log.debug("verificando la existencia de una propiedad horizontal con nit {} en el sistema", property.getNitHorizantalProperty());
 		
 		Option<String> verifyExistence = propertyRespository.findOneHorizonalProperty(property.getNitHorizantalProperty());
 		

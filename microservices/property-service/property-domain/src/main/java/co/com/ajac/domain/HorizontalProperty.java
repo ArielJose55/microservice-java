@@ -18,6 +18,8 @@ import lombok.ToString;
 @ToString
 public class HorizontalProperty extends LegalPerson{
 	
+	private Integer id;
+	
 	private String distinctiveName;
 	
 	private List<CommonProperty> bienesCommunes;

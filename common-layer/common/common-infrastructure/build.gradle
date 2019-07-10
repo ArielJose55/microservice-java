@@ -2,11 +2,20 @@ jar{
 	archiveBaseName = 'common-infrastructure' 
 }
 
+def jdbi3Version = '3.8.2'
+
 dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8'
 	implementation 'net.openhft:zero-allocation-hashing:0.9'
 	implementation 'org.modelmapper:modelmapper:2.3.0'
-	implementation 'org.jdbi:jdbi3-core:3.6.0'
-	implementation 'org.jdbi:jdbi3-postgres:3.6.0'
-	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.5.RELEASE'
+	implementation 'org.postgresql:postgresql:42.2.6'
+	implementation 'org.jdbi:jdbi3-core:' + jdbi3Version
+	implementation 'org.jdbi:jdbi3-postgres:' + jdbi3Version
+	implementation 'org.jdbi:jdbi3-sqlobject:' + jdbi3Version
+	implementation 'org.jdbi:jdbi3-vavr:' + jdbi3Version
+	implementation 'org.jdbi:jdbi3-jackson2:' + jdbi3Version
+	implementation ('org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'){
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.1.6.RELEASE'
 }

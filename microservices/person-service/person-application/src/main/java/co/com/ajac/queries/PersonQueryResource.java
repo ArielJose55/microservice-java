@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.dtos.UserDTO;
 import co.com.ajac.models.User;
-import co.com.ajac.models.residents.Pet;
 import co.com.ajac.models.residents.Reservation;
 import co.com.ajac.models.residents.Resident;
 import co.com.ajac.services.legalperson.LegalPersonService;
@@ -65,19 +64,15 @@ public class PersonQueryResource {
 		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));
 	}
 
-	public List<Pet> listPets(String identificacion) {
-		return residentService.listPets(identificacion).toJavaList();
-	}
-
 	public List<Resident> findAllResidentByHorizontalProperty(Integer idHorizontalProperty) {
-		return residentService.getAll().toJavaList();
+		return residentService.getAll().toJavaList(); //Falta Implementacion
 	}
 
 	public Resident findOneResidentByIdentification(String identification) {
-		return residentService.get(identification).orElseThrow(() -> new ModelNotFoundException(RESIDENT_NOT_FOUND));
+		return residentService.get(identification).getOrElseThrow(() -> new ModelNotFoundException(RESIDENT_NOT_FOUND));
 	}
 
-	public User findOneResidenteByIdentification(String identification) {
+	public User findOneUserByIdentification(String identification) {
 		return userService.findOneBy(identification).orElseThrow(() -> new ModelNotFoundException(USER_NOT_FOUND));
 	}
 

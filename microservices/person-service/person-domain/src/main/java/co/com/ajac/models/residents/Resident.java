@@ -17,8 +17,6 @@ public class Resident  extends NaturalPerson {
 
 	private String type;
 	
-	private List<Pet> pets;
-	
 	private List<Habitant> habitantes;
 	
 	/**

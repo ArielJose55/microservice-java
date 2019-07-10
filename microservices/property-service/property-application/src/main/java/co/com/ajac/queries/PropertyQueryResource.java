@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.domain.CommonProperty;
 import co.com.ajac.domain.HorizontalProperty;
+import co.com.ajac.dtos.HorizontalPropertyDTO;
 import co.com.ajac.services.common.CommonService;
 import co.com.ajac.services.horizontal.HorizontalService;
 import domain.exceptions.ModelNotFoundException;
@@ -24,9 +25,15 @@ public class PropertyQueryResource {
 		this.commonService = commonService;
 	}
 	
-	public List<HorizontalProperty> listAllPropetyByAdministrator(String identification){
-		return horizontalService.listAllHorizontalPropertyByAdministrator(identification)
-				.toJavaList();
+	public List<HorizontalPropertyDTO> listAllPropetyByAdministrator(String identification){
+		 io.vavr.collection.List<HorizontalProperty> listHorizontalProperties = horizontalService.listAllHorizontalPropertyByAdministrator(identification);
+		 
+		 return listHorizontalProperties.map(ph -> HorizontalPropertyDTO.builder()
+				 .id(ph.getId())
+				 .nameDistintive(ph.getDistinctiveName())
+				 .numId(ph.getIdentification())
+				 .build())
+			.toJavaList();
 	}
 	
 	public List<CommonProperty> listAllCommonByHorizontalProperty(String nit) {
@@ -37,5 +44,4 @@ public class PropertyQueryResource {
 		Either<String, CommonProperty> eitherResult = commonService.findOneCommonProperty(id);
 		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));
 	}
-	
 }

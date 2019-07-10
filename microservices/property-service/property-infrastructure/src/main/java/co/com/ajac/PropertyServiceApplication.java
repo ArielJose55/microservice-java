@@ -1,16 +1,17 @@
 package co.com.ajac;
 
+import java.io.File;
+
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PropertyServiceApplication {
 
-	static {
-		System.setProperty("log4j.configurationFile", "../log4j2.xml");
-	}
-
 	public static void main(String[] args) {
+		//File log4jfile = new File("log4j.properties");
+		//PropertyConfigurator.configure(log4jfile.getAbsolutePath());
 		SpringApplication.run(PropertyServiceApplication.class, args);
 
 	}

@@ -2,6 +2,10 @@ spring:
   application:
     name: property-service
     
+  devtools:
+    remote:
+      secret: property-service
+    
   rabbitmq:
     host: rabbitmq
     port: 5672
@@ -11,7 +15,6 @@ spring:
       
 server:
   port: 8011
-  
   
 eureka:
   client:

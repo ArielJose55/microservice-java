@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.commands.RegisterLegalPersonCommand;
-import co.com.ajac.models.LegalDataPerson;
-import co.com.ajac.usecase.legalperson.FindOneLegalPerson;
+import co.com.ajac.queries.PersonQueryResource;
+import coremodel.LegalPerson;
 
 @RestController
 @RequestMapping("/legalperson")
 public class LegalPersonEndpoint {
 	
 	private final RegisterLegalPersonCommand reLegalPerson;
-	private final FindOneLegalPerson findOneLegalPerson;
+	private final PersonQueryResource personQueryResource;
 
 	@Autowired
-	public LegalPersonEndpoint(RegisterLegalPersonCommand reLegalPerson, FindOneLegalPerson findOneLegalPerson) {
-		this.findOneLegalPerson = findOneLegalPerson;
+	public LegalPersonEndpoint(RegisterLegalPersonCommand reLegalPerson, PersonQueryResource personQueryResource) {
 		this.reLegalPerson = reLegalPerson;
+		this.personQueryResource = personQueryResource;
 	}
 	
 	@PostMapping
-	public Integer registerLegalPerson(@Valid @RequestBody LegalDataPerson legalDataPerson) {
-		return reLegalPerson.excute(legalDataPerson);
+	public void registerLegalPerson(@Valid @RequestBody LegalPerson legalDataPerson) {
+		 reLegalPerson.execute(legalDataPerson);
 	}
 	
 	@GetMapping("/{identification}")
-	public LegalDataPerson findOneBy(@PathVariable("identification") String identification) {
-		return findOneLegalPerson.execute(identification);
+	public LegalPerson findOneBy(@PathVariable("identification") String identification) {
+		return personQueryResource.findOneLegalPerson(identification);
 	}
 }

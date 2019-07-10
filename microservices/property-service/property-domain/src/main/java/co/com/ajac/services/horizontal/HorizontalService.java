@@ -7,18 +7,18 @@ import static io.vavr.Patterns.$None;
 import static io.vavr.Patterns.$Some;
 
 import co.com.ajac.domain.HorizontalProperty;
-import co.com.ajac.ports.PersonCommunicator;
-import co.com.ajac.ports.PropertyRespository;
+import co.com.ajac.ports.acls.PersonCommunicator;
+import co.com.ajac.ports.repositories.HorizontalPropertyRespository;
 import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 
 public class HorizontalService {
 
-	private final PropertyRespository propertyRespository;
+	private final HorizontalPropertyRespository propertyRespository;
 	private final PersonCommunicator personCommunicator;
 
-	public HorizontalService(PropertyRespository propertyRespository, PersonCommunicator personCommunicator) {
+	public HorizontalService(HorizontalPropertyRespository propertyRespository, PersonCommunicator personCommunicator) {
 		this.propertyRespository = propertyRespository;
 		this.personCommunicator = personCommunicator;
 	}

@@ -23,6 +23,6 @@ subprojects {
 		compileOnly 'org.projectlombok:lombok:1.18.8'
 		annotationProcessor 'org.projectlombok:lombok:1.18.8'
 		implementation 'co.com.ajac.coremodel:core-model:2.1.0.Final'
-		implementation 'co.com.ajac:common-domain:2.1.0.Final'
+		implementation 'co.com.ajac:common-domain:2.2.0'
 	}
 }
