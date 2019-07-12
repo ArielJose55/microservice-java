@@ -26,7 +26,7 @@ CREATE DATABASE phman
 
 Crear e Usuario de la base de datos
 ```sh
-CREATE USER property WITH PASSWORD property#' NOSUPERUSER NOCREATEDB NOCREATEROLE;
+CREATE USER property WITH PASSWORD 'property#' NOSUPERUSER NOCREATEDB NOCREATEROLE;
 ```
 Agregar permisos de super user
 ```sh
@@ -36,4 +36,18 @@ ALTER ROLE property SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
 Creacion del esquema
 ```sh
 CREATE SCHEMA IF NOT EXISTS property AUTHORIZATION property;
+```
+
+Asignar Permisos:
+```sh
+ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT SELECT ON TABLES TO gestion_informacion_financiera;
+
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT UPDATE ON TABLES TO gestion_informacion_financiera;
+
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT INSERT ON TABLES TO gestion_informacion_financiera;
+
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT DELETE ON TABLES TO gestion_informacion_financiera;
 ```
