@@ -40,14 +40,14 @@ CREATE SCHEMA IF NOT EXISTS property AUTHORIZATION property;
 
 Asignar Permisos:
 ```sh
-ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT SELECT ON TABLES TO gestion_informacion_financiera;
+ALTER DEFAULT PRIVILEGES IN SCHEMA property GRANT SELECT ON TABLES TO property;
 
 
-ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT UPDATE ON TABLES TO gestion_informacion_financiera;
+ALTER DEFAULT PRIVILEGES IN SCHEMA property GRANT UPDATE ON TABLES TO property;
 
 
-ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT INSERT ON TABLES TO gestion_informacion_financiera;
+ALTER DEFAULT PRIVILEGES IN SCHEMA property GRANT INSERT ON TABLES TO property;
 
 
-ALTER DEFAULT PRIVILEGES IN SCHEMA gestion_informacion_financiera GRANT DELETE ON TABLES TO gestion_informacion_financiera;
+ALTER DEFAULT PRIVILEGES IN SCHEMA property GRANT DELETE ON TABLES TO property;
 ```
