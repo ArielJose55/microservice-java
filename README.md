@@ -17,11 +17,23 @@ Correr la imagen de Postgres
 docker run --name phman_database -e POSTGRES_PASSWORD=admin -d -p 5432:5432 -v $HOME/docker/volumes/phman:/var/lib/postgresql/data postgres
 ```
 
+Crear la tabla 
+```sh
+CREATE DATABASE phman
+```
+
+## MS Property-Service
+
 Crear e Usuario de la base de datos
 ```sh
-CREATE USER phman_admin WITH PASSWORD admin#' NOSUPERUSER NOCREATEDB NOCREATEROLE;
+CREATE USER property WITH PASSWORD property#' NOSUPERUSER NOCREATEDB NOCREATEROLE;
 ```
 Agregar permisos de super user
 ```sh
-ALTER ROLE phman_admin SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+ALTER ROLE property SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+```
+
+Creacion del esquema
+```sh
+CREATE SCHEMA IF NOT EXISTS property AUTHORIZATION property;
 ```
