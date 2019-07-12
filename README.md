@@ -21,3 +21,7 @@ Crear e Usuario de la base de datos
 ```sh
 CREATE USER phman_admin WITH PASSWORD admin#' NOSUPERUSER NOCREATEDB NOCREATEROLE;
 ```
+Agregar permisos de super user
+```sh
+ALTER ROLE phman_admin SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+```
