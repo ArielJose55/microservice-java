@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.ajac.commands.RegisterDevice;
 import co.com.ajac.models.Device;
-import co.com.ajac.usecases.device.FindAllDevice;
-import co.com.ajac.usecases.device.FindDevice;
-import co.com.ajac.usecases.device.RegisterDevice;
+import co.com.ajac.queries.DeviceQueryResource;
 
 
 @RestController
@@ -23,28 +22,26 @@ import co.com.ajac.usecases.device.RegisterDevice;
 public class DeviceController {
 
 	private final RegisterDevice registerDevice;
-	private final FindDevice findDevice;
-	private final FindAllDevice findAllDevice;
+	private final DeviceQueryResource deviceQueryResource;
 	
 	@Autowired
-	public DeviceController(RegisterDevice registerDevice, FindDevice findDevice, FindAllDevice findAllDevice) {
+	public DeviceController(RegisterDevice registerDevice, DeviceQueryResource deviceQueryResource) {
 		this.registerDevice = registerDevice;
-		this.findDevice = findDevice;
-		this.findAllDevice = findAllDevice;
+		this.deviceQueryResource = deviceQueryResource;
 	}
 
 	@PostMapping
-	public String addDevice(@Valid @RequestBody Device device) {
-		return registerDevice.execute(device);	
+	public void addDevice(@Valid @RequestBody Device device) {
+		registerDevice.execute(device);	
 	}
 	
 	@GetMapping("/{serial}")
 	public Device findDeviceBySerial(@PathVariable("serial") String serial) {
-		return findDevice.execute(serial);
+		return deviceQueryResource.findOneDevice(serial);
 	}
 	
 	@GetMapping("/commons/{bien}")
 	public List<Device> findAllDevice(@PathVariable("bien") Integer bienComun) {
-		return findAllDevice.execute(bienComun).asJava();
+		return deviceQueryResource.listDevicesByProperty(bienComun).asJava();
 	}
 }

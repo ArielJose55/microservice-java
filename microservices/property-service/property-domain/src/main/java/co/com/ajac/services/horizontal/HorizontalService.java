@@ -12,6 +12,8 @@ import co.com.ajac.ports.repositories.HorizontalPropertyRespository;
 import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
+import lombok.extern.log4j.Log4j2;
+
 
 public class HorizontalService {
 

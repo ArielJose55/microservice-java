@@ -6,7 +6,8 @@ import static io.vavr.API.Match;
 import static io.vavr.Patterns.$Failure;
 import static io.vavr.Patterns.$Success;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -21,9 +22,9 @@ import io.vavr.control.Try;
 import lombok.extern.log4j.Log4j2;
 
 
-@Log4j2
 @Component
 public class PersonHttpCommunicator implements PersonCommunicator, Communicator{
+	
 	
 	private static final String URI_PERSON = "http://gateway-service:8000/person/legalperson/";
 	
@@ -35,11 +36,11 @@ public class PersonHttpCommunicator implements PersonCommunicator, Communicator{
 
 	@Override
 	public Option<String> registerLegalPerson(LegalPerson property) {
-		log.info("Peticion a microservicio de Person para registrar esta LegalPerson: " + property);
+		//log.info("Peticion a microservicio de Person para registrar esta LegalPerson: " + property);
 		
 		Option<String> body = getBodyOfRequestPost(restTemplate ,URI_PERSON, property);
 		
-		log.info("Resultado de la peticion: " + body);
+		//log.info("Resultado de la peticion: " + body);
 		
 		if(body.isDefined()) {
 			Try<String> identificationResult = Try.ofCallable(() -> mapper.readTree(body.get()).path("identification").asText());

@@ -17,6 +17,9 @@ public class DatabaseConfig {
 	
 	@Bean
 	public Jdbi createConnectionJdbi(JdbiConfigurer jdbiConfigurer) {
-		return jdbiConfigurer.dataSourcePostgres("jdbc:postgresql://property-database:5432/property-database", "property_user", "root");
+		return jdbiConfigurer.dataSourcePostgres(
+				"jdbc:postgresql://localhost:5432/phman?currentSchema=property",
+				"property",
+				"property#");
 	}
 }

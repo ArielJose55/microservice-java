@@ -1,17 +1,12 @@
-CREATE SEQUENCE public."HORIZONTAL_PROPERTY_id_seq";
-
-ALTER SEQUENCE public."HORIZONTAL_PROPERTY_id_seq"
-    OWNER TO property_user;
-
-CREATE SEQUENCE public."COMMON_PROPERTY_id_seq";
-
-ALTER SEQUENCE public."COMMON_PROPERTY_id_seq"
-    OWNER TO property_user;
-
 --------------------------------------------------
 ----------- TABLE HORIZONTAL PROPERTY  -----------
 --------------------------------------------------
-CREATE TABLE public."HORIZONTAL_PROPERTY"
+CREATE SEQUENCE property."HORIZONTAL_PROPERTY_id_seq";
+
+ALTER SEQUENCE property."HORIZONTAL_PROPERTY_id_seq"
+    OWNER TO property;
+
+CREATE TABLE property."HORIZONTAL_PROPERTY"
 (
     id bigint NOT NULL DEFAULT nextval('"HORIZONTAL_PROPERTY_id_seq"'::regclass),
     distinctive_name character varying COLLATE pg_catalog."default",
@@ -25,13 +20,18 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."HORIZONTAL_PROPERTY"
-    OWNER to property_user;
+ALTER TABLE property."HORIZONTAL_PROPERTY"
+    OWNER to property;
 
 
 --------------------------------------------------
 --------------- TABLE COMMON PROPERTY  -----------
 --------------------------------------------------
+CREATE SEQUENCE property."COMMON_PROPERTY_id_seq";
+
+ALTER SEQUENCE property."COMMON_PROPERTY_id_seq"
+    OWNER TO property;
+
 CREATE TABLE public."COMMON_PROPERTY"
 (
     id bigint NOT NULL DEFAULT nextval('"COMMON_PROPERTY_id_seq"'::regclass),
@@ -40,7 +40,7 @@ CREATE TABLE public."COMMON_PROPERTY"
     nit_horizantal_property character varying COLLATE pg_catalog."default",
     CONSTRAINT "COMMON_PROPERTY_pkey" PRIMARY KEY (id),
     CONSTRAINT "COMMON_PROPERTY_nit_horizantal_property_fkey" FOREIGN KEY (nit_horizantal_property)
-        REFERENCES public."HORIZONTAL_PROPERTY" (legal_person_fk) MATCH SIMPLE
+        REFERENCES property."HORIZONTAL_PROPERTY" (legal_person_fk) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )
@@ -49,5 +49,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."COMMON_PROPERTY"
-    OWNER to property_user;
+ALTER TABLE property."COMMON_PROPERTY"
+    OWNER to property;
