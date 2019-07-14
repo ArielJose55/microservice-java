@@ -37,7 +37,7 @@ mkdir -p $HOME/docker/volumes/rabbit
 
 Correr la imagen de RabbitMQ
 ```sh
-docker run -d --hostname rabbitmq --name brokermq -e RABBITMQ_DEFAULT_USER=phman -e RABBITMQ_DEFAULT_PASS=phman# -v $HOME/docker/volumes/rabbit:/var/lib/rabbitmq rabbitmq:3-management 
+docker run -d --hostname rabbitmq --name brokermq -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=phman -e RABBITMQ_DEFAULT_PASS=phman# -v $HOME/docker/volumes/rabbit:/var/lib/rabbitmq rabbitmq:3-management 
 ```
 
 
