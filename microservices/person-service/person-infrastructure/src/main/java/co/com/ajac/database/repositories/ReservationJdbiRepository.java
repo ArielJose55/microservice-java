@@ -7,7 +7,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.com.ajac.models.residents.Reservation;
+import co.com.ajac.entities.residentes.Reservation;
 import io.vavr.Function0;
 import io.vavr.collection.List;
 import io.vavr.control.Option;

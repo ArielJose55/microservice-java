@@ -1,31 +1,25 @@
 package co.com.ajac.commands;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import co.com.ajac.domain.CommonProperty;
+import co.com.ajac.dtos.CommonPropertyDTO;
 import co.com.ajac.services.common.CommonService;
-import common.Command;
-import domain.exceptions.NotSaveModelException;
-import io.vavr.control.Either;
-import io.vavr.control.Option;
+import commands.Command;
 
-@Component
-public class RegisterCommonProperty implements Command<CommonProperty>{
+//@Component
+public class RegisterCommonProperty implements Command<CommonPropertyDTO>{
 
 	private final CommonService service;
 	
-	@Autowired
+	//@Autowired
 	public RegisterCommonProperty(CommonService service) {
 		this.service = service;
 	}
 
 	@Override
-	public void execute(CommonProperty property) {
+	public void execute(CommonPropertyDTO property) {
 	
-		Either<String, Option<Integer>> eitherResult = service.registerCommonProperty(property);		
-		eitherResult.getOrElseThrow(
-				() -> new NotSaveModelException(eitherResult.getLeft()))
-				.getOrElseThrow(() -> new NotSaveModelException("Oups! No fue posible registrar este bien comun"));
+//		Either<String, Option<Integer>> eitherResult = service.registerCommonProperty(property);		
+//		eitherResult.getOrElseThrow(
+//				() -> new NotSaveModelException(eitherResult.getLeft()))
+//				.getOrElseThrow(() -> new NotSaveModelException("Oups! No fue posible registrar este bien comun"));
 	}
 }

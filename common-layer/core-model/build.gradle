@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'co.com.ajac.coremodel'
-version = '2.1.0.Final'
+version = '2.2.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -24,7 +24,6 @@ repositories {
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
-	implementation 'javax.validation:validation-api:2.0.1.Final'
 }
 
 apply plugin: 'maven-publish'

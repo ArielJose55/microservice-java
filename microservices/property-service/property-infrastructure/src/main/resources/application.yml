@@ -2,22 +2,18 @@ spring:
   application:
     name: property-service
     
-  devtools:
-    remote:
-      secret: property-service
-    
   rabbitmq:
-    host: rabbitmq
+    host: localhost
     port: 5672
     username: guest
     password: guest
     
       
 server:
-  port: 8011
+  port: 8000
   
-eureka:
-  client:
-    serviceUrl:
+#eureka:
+#  client:
+#    serviceUrl:
 #      defaultZone: http://discovery:8761/eureka/
-      defaultZone: http://localhost:8000/eureka/
+#      defaultZone: http://localhost:8000/eureka/

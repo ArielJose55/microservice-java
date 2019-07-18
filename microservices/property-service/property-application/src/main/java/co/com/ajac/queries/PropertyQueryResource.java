@@ -1,41 +1,47 @@
 package co.com.ajac.queries;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.domain.CommonProperty;
-import co.com.ajac.domain.HorizontalProperty;
-import co.com.ajac.dtos.HorizontalPropertyDTO;
-import co.com.ajac.services.common.CommonService;
-import co.com.ajac.services.horizontal.HorizontalService;
-import domain.exceptions.ModelNotFoundException;
-import io.vavr.control.Either;
+import co.com.ajac.acl.PersonCommunicator;
+import co.com.ajac.acl.builders.PropiedadHorizontalBuilder;
+import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.dtos.PropiedadHorizontalDTO;
+import co.com.ajac.services.horizontal.PropiedadHorizontalService;
+import coremodel.excepciones.BusinessException;
+import io.vavr.collection.List;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Component
 public class PropertyQueryResource {
-
-	private final HorizontalService horizontalService;
-	private final CommonService commonService;
+	
+	private final PersonCommunicator personCommunicator;
+	private final PropiedadHorizontalService horizontalService;
+	
 
 	@Autowired
-	public PropertyQueryResource(HorizontalService horizontalService, CommonService commonService) {
+	public PropertyQueryResource(PropiedadHorizontalService horizontalService, PersonCommunicator personCommunicator) {
+		this.personCommunicator = personCommunicator;
 		this.horizontalService = horizontalService;
-		this.commonService = commonService;
 	}
 	
-	public List<HorizontalPropertyDTO> listAllPropetyByAdministrator(String identification){
-		 io.vavr.collection.List<HorizontalProperty> listHorizontalProperties = horizontalService.listAllHorizontalPropertyByAdministrator(identification);
-		 
-		 return listHorizontalProperties.map(ph -> HorizontalPropertyDTO.builder()
-				 .id(ph.getId())
-				 .nameDistintive(ph.getDistinctiveName())
-				 .numId(ph.getIdentification())
-				 .build())
-			.toJavaList();
+	
+	public List<PropiedadHorizontalDTO> listAllPropetyByAdministrator(Administrador administrador){
+		
+		log.info("verificando la existencia del administrador con datos: {}, {}", administrador.getTipoIdentificacion(),
+				administrador.getNumeroIdentificacion());
+
+		if (!personCommunicator.consultarExistenciaDePersonaJuridica(administrador)) {
+			log.error("No existe este administrador {} en el sistema", administrador);
+			throw new BusinessException("No existe ningun administrador registrado con identificacion");
+		}
+		
+		 return horizontalService.listarTodasLasPropiedadesHorizontalesPorAdministrador(administrador)
+				 .map(PropiedadHorizontalBuilder::crearPropiedadHorizontalDTODesdeEntidad);
 	}
 	
+	/*
 	public List<CommonProperty> listAllCommonByHorizontalProperty(String nit) {
 		return commonService.findAllCommonByHorizontalProperty(nit).toJavaList();
 	}
@@ -44,4 +50,5 @@ public class PropertyQueryResource {
 		Either<String, CommonProperty> eitherResult = commonService.findOneCommonProperty(id);
 		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));
 	}
+	*/
 }

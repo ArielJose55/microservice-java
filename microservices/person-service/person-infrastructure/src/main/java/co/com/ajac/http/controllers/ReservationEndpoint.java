@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.commands.RegisterReservationCommand;
-import co.com.ajac.models.residents.Reservation;
+import co.com.ajac.entities.residentes.Reservation;
 import co.com.ajac.queries.PersonQueryResource;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;

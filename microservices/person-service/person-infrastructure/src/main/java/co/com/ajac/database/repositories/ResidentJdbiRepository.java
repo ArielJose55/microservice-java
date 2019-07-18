@@ -5,7 +5,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.com.ajac.models.residents.Resident;
+import co.com.ajac.entities.residentes.Residente;
 import io.vavr.Function0;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
@@ -20,11 +20,11 @@ public class ResidentJdbiRepository {
 	private Jdbi jdbi;
 
 	
-	public Option<Resident> create(Resident model) {
+	public Option<Residente> create(Residente model) {
 
 		@Cleanup
 		final Handle handle = jdbi.open();
-		final Function0<Resident> register = () -> handle.inTransaction(h -> {
+		final Function0<Residente> register = () -> handle.inTransaction(h -> {
 			h.createUpdate(
 					"INSERT INTO \"PERSON\"(identification, \"typeIdentification\") VALUES (:identification, :typeIdentification)")
 					.bind("identification", model.getIdentification())
@@ -42,7 +42,7 @@ public class ResidentJdbiRepository {
 					.bind("type", model.getType())
 					.bind("person_natural_fk", model.getIdentification())
 					.executeAndReturnGeneratedKeys()
-					.mapToBean(Resident.class)
+					.mapToBean(Residente.class)
 					.first();
 		});
 
@@ -50,28 +50,28 @@ public class ResidentJdbiRepository {
 	}
 
 
-	public Option<Resident> get(String key) {
+	public Option<Residente> get(String key) {
 		
 		@Cleanup
 		final Handle handle = jdbi.open();
 		
-		final Function0<Resident> findOne = () -> handle.createQuery(
+		final Function0<Residente> findOne = () -> handle.createQuery(
 				"SELECT p.identification, p.\"typeIdentification\", np.\"name\", np.last_name, r.\"type\" FROM \"PERSON\" p JOIN \"NATURAL_PERSON\" np ON p.identification = np.person_fk JOIN \"RESIDENT\" r ON r.person_natural_fk = np.person_fk\r\n"
 						+ "WHERE r.person_natural_fk = :identification")
 				.bind("identification", key)
-				.mapToBean(Resident.class)
+				.mapToBean(Residente.class)
 				.first();
 		
 		return Function0.lift(findOne).apply().peek(log::info);
 	}
 	
-	public List<Resident> getAll(){
+	public List<Residente> getAll(){
 		
 		@Cleanup
 		Handle handle = jdbi.open();
 		
 		return List.ofAll(handle.createQuery("SELECT p.identification, p.\"typeIdentification\", n.\"name\", n.last_name, r.\"type\" FROM \"PERSON\" p JOIN \"NATURAL_PERSON\" n ON p.identification = n.person_fk JOIN \"RESIDENT\" r ON r.person_natural_fk = n.person_fk")
-				.mapToBean(Resident.class)
+				.mapToBean(Residente.class)
 				.list());
 	}
 	

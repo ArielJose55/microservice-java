@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.database.repositories.LegalPersonJdbiRepository;
-import co.com.ajac.ports.LegalPersonRepository;
+import co.com.ajac.ports.AdministradorRepository;
 import coremodel.LegalPerson;
 import io.vavr.control.Option;
 
 @Component
-public class LegalPersonRepositoryAdapter implements LegalPersonRepository {
+public class LegalPersonRepositoryAdapter implements AdministradorRepository {
 
 	
 	private final LegalPersonJdbiRepository repository;

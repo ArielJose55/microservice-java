@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.database.repositories.ReservationJdbiRepository;
-import co.com.ajac.models.residents.Reservation;
+import co.com.ajac.entities.residentes.Reservation;
 import co.com.ajac.ports.ReservationRepository;
 import io.vavr.collection.List;
 import io.vavr.control.Option;

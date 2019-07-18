@@ -15,5 +15,6 @@ dependencies {
 	implementation 'org.jdbi:jdbi3-vavr:' + jdbi3Version
 	implementation 'org.jdbi:jdbi3-jackson2:' + jdbi3Version
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-amqp:2.1.6.RELEASE'
 }
 

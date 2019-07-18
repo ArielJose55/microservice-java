@@ -4,29 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.database.repositories.ResidentJdbiRepository;
-import co.com.ajac.models.residents.Resident;
-import co.com.ajac.ports.ResidentRepository;
+import co.com.ajac.entities.residentes.Residente;
+import co.com.ajac.ports.ResidenteRepository;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 
 @Component
-public class ResidentRepositoryAdapter implements ResidentRepository{
+public class ResidentRepositoryAdapter implements ResidenteRepository{
 
 	@Autowired
 	private ResidentJdbiRepository repository;
 
 	@Override
-	public Option<Resident> save(Resident resident) {
+	public Option<Residente> save(Residente resident) {
 		return repository.create(resident);
 	}
 
 	@Override
-	public Option<Resident> get(String identification) {
+	public Option<Residente> get(String identification) {
 		return repository.get(identification);
 	}
 
 	@Override
-	public List<Resident> listAllResident(Integer idPh) {
+	public List<Residente> listAllResident(Integer idPh) {
 		return repository.getAll();
 	}
 

@@ -11,11 +11,10 @@ services:
     expose:
       - "8000"
     command: >
-        sh -c "chmod 777 ./gradlew && ./gradlew build && java -jar build/libs/discovery-server-0.0.1-SNAPSHOT.jar"
-        
+      sh -c "chmod 777 ./gradlew && ./gradlew build && java -jar build/libs/discovery-server-0.0.1-SNAPSHOT.jar"
     networks:
       - phnet
-       
-networks: 
+
+networks:
   phnet:
     name: phnet

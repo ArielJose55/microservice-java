@@ -2,10 +2,17 @@ spring:
   application:
     name: person-service
     
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+    
 server:
-  port: 8012
+  port: 8001
   
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://discovery:8761/eureka/
+#      defaultZone: http://localhost:8000/eureka/

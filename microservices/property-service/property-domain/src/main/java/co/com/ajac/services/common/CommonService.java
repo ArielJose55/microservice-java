@@ -1,20 +1,8 @@
 package co.com.ajac.services.common;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Case;
-import static io.vavr.API.Match;
-import static io.vavr.Patterns.$None;
-import static io.vavr.Patterns.$Some;
-
-import co.com.ajac.domain.CommonProperty;
-import co.com.ajac.ports.repositories.CommonPropertyRepository;
-import co.com.ajac.ports.repositories.HorizontalPropertyRespository;
-import io.vavr.collection.List;
-import io.vavr.control.Either;
-import io.vavr.control.Option;
-
 public class CommonService {
 
+	/*
 	private final CommonPropertyRepository commonPropertyRepository;
 	private final HorizontalPropertyRespository propertyRespository;
 
@@ -23,11 +11,7 @@ public class CommonService {
 		this.propertyRespository = propertyRespository;
 	}
 	
-	/**
-	 * 
-	 * @param property
-	 * @return
-	 */
+
 	public Either<String, Option<Integer>> registerCommonProperty(CommonProperty property){
 		
 		//log.debug("verificando la existencia de una propiedad horizontal con nit {} en el sistema", property.getNitHorizantalProperty());
@@ -53,11 +37,7 @@ public class CommonService {
 		
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
+	
 	public Either<String, CommonProperty> findOneCommonProperty(Integer id){
 		
 		Option<CommonProperty> oneOptionResult = commonPropertyRepository.findOneCommonProperty(id);
@@ -68,12 +48,9 @@ public class CommonService {
 				);
 	}
 	
-	/**
-	 * 
-	 * @param nit
-	 * @return
-	 */
+
 	public List<CommonProperty> findAllCommonByHorizontalProperty(String nit){
 		return commonPropertyRepository.findAllCommonPropertyBy(nit);
 	}
+	*/
 }
