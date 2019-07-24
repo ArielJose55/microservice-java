@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.builders.UsuarioBuilder;
 import co.com.ajac.dtos.UsuarioDTO;
-import co.com.ajac.services.usuario.UsuarioService;
-import commands.Command;
+import co.com.ajac.services.UsuarioService;
+import lombok.extern.log4j.Log4j2;
 
-
+@Log4j2
 @Component
 public class RegistrarUsuarioCommand implements Command<UsuarioDTO>{
 
@@ -21,6 +21,8 @@ public class RegistrarUsuarioCommand implements Command<UsuarioDTO>{
 
 	@Override
 	public void execute( UsuarioDTO usuarioDTO ) {
+		log.debug("Recibiendo el usuario DTO para registrar {}", usuarioDTO);
+		
 		
 		usuarioService.registrarUsuario(UsuarioBuilder.crearUsuarioDesdeDTO(usuarioDTO));
 	}

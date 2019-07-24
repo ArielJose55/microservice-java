@@ -1,18 +1,18 @@
 package co.com.ajac.event.personas;
 
-import coremodel.persona.personanatural.Identificacion;
-import events.EventoMensaje;
+import co.com.ajac.events.EventoMensaje;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
-public class EventPersonaJuridicaMensaje implements EventoMensaje{
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class EventPersonaJuridicaMensaje  implements EventoMensaje {
 	
-	private final Identificacion identificacion;
-	
-	private final String razonSocial;
-	
-	private final String objetoSocial;
-	
+	private String nit;
+	private String razonSocial;
+	private String objetoSocial;
 }

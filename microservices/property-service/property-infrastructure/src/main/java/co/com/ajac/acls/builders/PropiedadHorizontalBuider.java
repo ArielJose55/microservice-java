@@ -9,7 +9,7 @@ public class PropiedadHorizontalBuider {
 	
 	private PropiedadHorizontalBuider() {}
 	
-	public static PropiedadHorizontal convertHorizontalPropertyFromRecord(PropiedadHorizontalRecord propiedadHorizontalRecord) {
+	public static PropiedadHorizontal crearPropiedadHorizontalDesdeRecord(PropiedadHorizontalRecord propiedadHorizontalRecord) {
 		
 		Administrador administrador = new Administrador(
 				propiedadHorizontalRecord.getAdministrador().getTipoId(),

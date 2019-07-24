@@ -3,40 +3,91 @@ package co.com.ajac.queries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ajac.services.usuario.UsuarioService;
+import co.com.ajac.acl.builders.UsuarioBuilder;
+import co.com.ajac.acl.propiedadhorizontal.PropiedadHorizontalCommunicator;
+import co.com.ajac.acl.propiedadhorizontal.modelos.PropiedadHorizontalDTO;
+import co.com.ajac.domain.exceptions.BusinessException;
+import co.com.ajac.dtos.UsuarioDTO;
+import co.com.ajac.entities.personasjuridicas.PersonaJuridica;
+import co.com.ajac.entities.usuarios.Credencial;
+import co.com.ajac.services.PersonaJuridicaService;
+import co.com.ajac.services.UsuarioService;
+import coremodel.datosbasicos.Identificacion;
+import io.vavr.collection.List;
 
 @Component
 public class PersonQueryResource {
-
-	private static final String USER_NOT_FOUND = "El usuario con esta identificación no existe";
-	private static final String RESIDENT_NOT_FOUND = "El residente con esta identificación no existe";
 
 //	private final AdministradorService legalPersonService;
 //	private final ReservationService reservationService;
 //	private final ResidenteService residentService;
 	private final UsuarioService userService;
-//	private final NaturalPersonService naturalPersonService;
+	private final PersonaJuridicaService personaJuridicaService;
+	private final PropiedadHorizontalCommunicator propiedadHorizontalCommunicator;
 
 	@Autowired
-	public PersonQueryResource(UsuarioService userService) {
+	public PersonQueryResource(
+			UsuarioService userService,
+			PersonaJuridicaService personaJuridicaService,
+			PropiedadHorizontalCommunicator propiedadHorizontalCommunicator) {
 		this.userService = userService;
+		this.personaJuridicaService = personaJuridicaService;
+		this.propiedadHorizontalCommunicator = propiedadHorizontalCommunicator;
 	}
 
-//	public LegalPerson findOneLegalPerson(String identification) {
-//		Either<String, LegalPerson> findOne = legalPersonService.findOneLegalPerson(identification);
-//		return findOne.getOrElseThrow(() -> new ModelNotFoundException(findOne.getLeft()));
-//	}
-//
+	public UsuarioDTO obtenerUsuarioPorSuIdentificacion(Identificacion identification) {
+		return userService.obtenerUsuarioPorSusIdentificacion(identification)
+				.map(UsuarioBuilder::crearUsuarioDTODesdeEntidad)
+				.getOrElseThrow(() -> new BusinessException("No existe ningun usuario con esta identificacion"));
+	}
+	
+	public UsuarioDTO obtenerUsuarioPorSusCredenciales(Credencial credencial) {
+		return userService.obtenerUsuarioPorSusCredenciales(credencial)
+				.map(UsuarioBuilder::crearUsuarioDTODesdeEntidad)
+				.map(usuario -> {
+					if(usuario.getTipoUsuario().compareTo("ADM") == 0 || usuario.getTipoUsuario().compareTo("AUX") == 0) {
+						List<PropiedadHorizontalDTO> lista = obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
+								Identificacion.builder()
+								.tipoIdentificacion(usuario.getTipoIdentificacion())
+								.numeroIdentificacion(usuario.getNumeroIdentificacion())
+								.build());
+						
+						usuario.setPropiedades(lista.asJava());
+					}
+					return usuario;
+				})
+				.getOrElseThrow(() -> new BusinessException("No existe ningun usuario con este username y/o password"));
+		
+	}
+	
+	public PersonaJuridica obtenerPersonaJuridicaPorNit(String nit) {
+		return personaJuridicaService.obtenerPersonaJuridicaPorSuNit(nit);
+	}
+	
+	public List<PropiedadHorizontalDTO> obtenerTodasLasPropiedadesHorizontalesPorAdministrador(Identificacion identificacion){
+		
+		List<PropiedadHorizontalDTO> propiedades =  propiedadHorizontalCommunicator
+			.obtenerTodasLasPropiedadesHorizontalesDeUnAdministrador(identificacion);
+		
+		return propiedades.map(propiedad -> {
+			PersonaJuridica personaJuridica = personaJuridicaService.obtenerPersonaJuridicaPorSuNit(propiedad.getNit());
+			return PropiedadHorizontalDTO.builder()
+					.nit(propiedad.getNit())
+					.nombreDistintivo(propiedad.getNombreDistintivo())
+					.objetoSocial(personaJuridica.getObjetoSocial())
+					.razonSocial(personaJuridica.getRazonSocial())
+					.build();
+		});
+	}
+	
+
 //	public List<Reservation> findAllReservationByState(Tuple2<String, Integer> arg0) {
 //		Either<String, io.vavr.collection.List<Reservation>> eitherResult = reservationService
 //				.findAllReservationByState(arg0._1, arg0._2);
 //		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft())).toJavaList();
 //	}
 
-//	public Reservation findOneReservationActiveNowByResident(String arg0) {
-//		Either<String, Reservation> eitherResult = reservationService.findOneReservationActiveNowByResident(arg0);
-//		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));
-//	}
+
 //
 //	public Reservation findOneReservationActiveAtDate(LocalDateTime arg0) {
 //		Either<String, Reservation> eitherResult = reservationService.findOneReservationActiveAtDate(arg0);

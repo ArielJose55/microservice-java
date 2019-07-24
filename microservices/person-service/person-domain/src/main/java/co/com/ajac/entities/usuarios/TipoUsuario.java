@@ -1,34 +1,35 @@
 package co.com.ajac.entities.usuarios;
 
+import co.com.ajac.domain.exceptions.TechnicalException;
 import io.vavr.collection.List;
 
 public enum TipoUsuario {
 	
 	ADMINISTRADOR("Administrador", "ADM"),
 	RESIDENTE("Residente", "RDT"),
-	AUXILIAR("Auxiliar", "AUX");
+	AUXILIAR("Auxiliar", "AUX"),
+	PORTERO("Portero de seguridad", "AGD");
 	
-	private final String codigo;
 	private final String descripcion;
+	private final String codigo;
 
-
-	TipoUsuario(String codigo, String descripcion) {
-		this.codigo = codigo;
+	TipoUsuario(String descripcion, String codigo) {
 		this.descripcion = descripcion;
-	}
-
-	public String getCodigo() {
-		return codigo;
+		this.codigo = codigo;
 	}
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 	
+	public String getCodigo() {
+		return codigo;
+	}
+	
 	public static TipoUsuario obtenerTipoUsuarioDesdeCodigo(String codigo) {
 		return List.of(TipoUsuario.values())
 			.filter(tipoUsuario -> codigo != null && codigo.compareTo("") != 0 && tipoUsuario.getCodigo().equalsIgnoreCase(codigo))
-			.getOrElseThrow(() -> new EnumConstantNotPresentException(TipoUsuario.class,
+			.getOrElseThrow(() -> new TechnicalException(
 					"Este codigo: "+codigo+" no pertenece a nungin Tipo de usuario valido"));
 	}
 }

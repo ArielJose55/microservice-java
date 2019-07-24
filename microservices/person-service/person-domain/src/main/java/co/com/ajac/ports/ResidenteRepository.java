@@ -1,7 +1,7 @@
 package co.com.ajac.ports;
 
 import co.com.ajac.entities.residentes.Residente;
-import coremodel.persona.personanatural.Identificacion;
+import coremodel.datosbasicos.Identificacion;
 import io.vavr.control.Option;
 
 public interface ResidenteRepository {

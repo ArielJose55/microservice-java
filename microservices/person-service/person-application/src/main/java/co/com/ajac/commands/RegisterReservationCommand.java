@@ -1,11 +1,8 @@
 package co.com.ajac.commands;
 
-import org.springframework.stereotype.Component;
-
 import co.com.ajac.entities.residentes.Reservation;
-import commands.Command;
 
-@Component
+//@Component
 public class RegisterReservationCommand implements Command<Reservation>{
 	
 //	private final ReservationService service;

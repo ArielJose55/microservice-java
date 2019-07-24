@@ -1,12 +1,12 @@
 package co.com.ajac.entities.residentes;
 
 
-import coremodel.persona.datosbasicos.CorreoElectronico;
-import coremodel.persona.datosbasicos.Direccion;
-import coremodel.persona.datosbasicos.NombreCompleto;
-import coremodel.persona.datosbasicos.Telefono;
-import coremodel.persona.personanatural.DatoBiometrico;
-import coremodel.persona.personanatural.Identificacion;
+import coremodel.datosbasicos.CorreoElectronico;
+import coremodel.datosbasicos.DatoBiometrico;
+import coremodel.datosbasicos.Direccion;
+import coremodel.datosbasicos.Identificacion;
+import coremodel.datosbasicos.NombreCompleto;
+import coremodel.datosbasicos.Telefono;
 import io.vavr.collection.List;
 import lombok.Builder;
 import lombok.Getter;

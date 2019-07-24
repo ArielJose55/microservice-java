@@ -1,9 +1,9 @@
 package co.com.ajac.services.horizontal;
 
+import co.com.ajac.domain.exceptions.BusinessException;
 import co.com.ajac.domain.phs.Administrador;
 import co.com.ajac.domain.phs.PropiedadHorizontal;
 import co.com.ajac.repositories.PropiedadHorizontalRepository;
-import coremodel.excepciones.BusinessException;
 import io.vavr.collection.List;
 import lombok.extern.log4j.Log4j2;
 

@@ -2,7 +2,6 @@ package co.com.ajac.commands;
 
 import co.com.ajac.dtos.CommonPropertyDTO;
 import co.com.ajac.services.common.CommonService;
-import commands.Command;
 
 //@Component
 public class RegisterCommonProperty implements Command<CommonPropertyDTO>{

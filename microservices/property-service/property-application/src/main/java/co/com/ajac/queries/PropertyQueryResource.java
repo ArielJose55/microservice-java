@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.PersonCommunicator;
 import co.com.ajac.acl.builders.PropiedadHorizontalBuilder;
+import co.com.ajac.domain.exceptions.BusinessException;
 import co.com.ajac.domain.phs.Administrador;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
 import co.com.ajac.services.horizontal.PropiedadHorizontalService;
-import coremodel.excepciones.BusinessException;
 import io.vavr.collection.List;
 import lombok.extern.log4j.Log4j2;
 

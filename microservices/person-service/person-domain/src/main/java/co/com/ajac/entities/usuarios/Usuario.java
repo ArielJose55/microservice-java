@@ -2,8 +2,8 @@ package co.com.ajac.entities.usuarios;
 
 import java.time.LocalDateTime;
 
-import coremodel.persona.datosbasicos.NombreCompleto;
-import coremodel.persona.personanatural.Identificacion;
+import coremodel.datosbasicos.Identificacion;
+import coremodel.datosbasicos.NombreCompleto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

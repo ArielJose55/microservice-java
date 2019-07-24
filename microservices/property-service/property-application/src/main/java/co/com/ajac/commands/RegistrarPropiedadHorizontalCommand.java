@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.PersonCommunicator;
 import co.com.ajac.acl.builders.PropiedadHorizontalBuilder;
+import co.com.ajac.domain.exceptions.BusinessException;
+import co.com.ajac.domain.exceptions.TechnicalException;
 import co.com.ajac.domain.phs.PropiedadHorizontal;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
 import co.com.ajac.event.personas.builders.PersonaJuridicaBuilder;
+import co.com.ajac.events.Publish;
 import co.com.ajac.services.horizontal.PropiedadHorizontalService;
-import commands.Command;
-import coremodel.excepciones.BusinessException;
-import events.Publish;
 import io.vavr.concurrent.Future;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,7 +32,7 @@ public class RegistrarPropiedadHorizontalCommand implements Command<PropiedadHor
 	}
 
 	@Override
-	public void execute(PropiedadHorizontalDTO propiedadHorizontalDTO) {
+	public void execute(PropiedadHorizontalDTO propiedadHorizontalDTO){
 
 		final long startTime = System.currentTimeMillis();
 
