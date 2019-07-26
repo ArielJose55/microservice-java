@@ -104,3 +104,25 @@ Ejemplo:
 	"tipoUsuario": "RDT"
 }
 ```
+## Propiedades
+
+### Propiedad Comun
+### Registrar nueva propiedad comun
+* **POST** - **URL**<br>
+http://localhost:8000/property/api/v1/phs/pcs
+* **Body request**<br>
+```json
+{
+"nombre":<String>,
+"esencial": <Boolean>,
+"propiedadHorizontal": <String>
+}
+```
++ **Ejemplo**<br>
+```json
+{
+"nombre":"Parqueadero",
+"esencial": false,
+"propiedadHorizontal": "150"
+}
+```

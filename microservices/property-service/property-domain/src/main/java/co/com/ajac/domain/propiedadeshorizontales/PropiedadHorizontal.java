@@ -1,9 +1,7 @@
-package co.com.ajac.domain.phs;
+package co.com.ajac.domain.propiedadeshorizontales;
 
-
-
-import co.com.ajac.domain.cps.CommonProperty;
-import co.com.ajac.domain.pps.PrivateProperty;
+import co.com.ajac.domain.propiedadeshorizontales.propiedadescomunes.PropiedadComun;
+import co.com.ajac.domain.propiedadeshorizontales.propiedadesprivadas.PropiedadPrivada;
 import io.vavr.collection.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +20,8 @@ public class PropiedadHorizontal {
 	
 	private final Administrador administrador;
 	
-	private final List<CommonProperty> bienesCommunes;
+	private final List<PropiedadComun> bienesCommunes;
 	
-	private final List<PrivateProperty> bienesPrivados;
+	private final List<PropiedadPrivada> bienesPrivados;
 
 }

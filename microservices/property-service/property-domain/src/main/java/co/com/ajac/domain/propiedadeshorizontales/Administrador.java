@@ -1,4 +1,4 @@
-package co.com.ajac.domain.phs;
+package co.com.ajac.domain.propiedadeshorizontales;
 
 import lombok.Builder;
 import lombok.Getter;

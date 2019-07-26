@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.commands.RegistrarPropiedadHorizontalCommand;
-import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
 import co.com.ajac.queries.PropertyQueryResource;
 
@@ -41,4 +41,8 @@ public class PropiedadHorizontalEnpoint {
 				.asJava();
 	}
 	
+	@GetMapping("/phs/{nit}")
+	public PropiedadHorizontalDTO obtenerPropiedadHorizontalPorNit(@PathVariable("nit") String nit){
+		return propertyQueryResource.obtenerPropiedadHorizontalPorNit(nit);
+	}
 }

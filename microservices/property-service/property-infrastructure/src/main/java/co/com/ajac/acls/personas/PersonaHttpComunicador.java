@@ -3,7 +3,7 @@ package co.com.ajac.acls.personas;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.PersonCommunicator;
-import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
 import co.com.ajac.infrastructure.acl.communicator.Communicator;
 
 @Component

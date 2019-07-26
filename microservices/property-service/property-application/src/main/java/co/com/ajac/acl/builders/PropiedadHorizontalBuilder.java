@@ -1,6 +1,6 @@
 package co.com.ajac.acl.builders;
-import co.com.ajac.domain.phs.Administrador;
-import co.com.ajac.domain.phs.PropiedadHorizontal;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.PropiedadHorizontal;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
 import io.vavr.collection.List;
 

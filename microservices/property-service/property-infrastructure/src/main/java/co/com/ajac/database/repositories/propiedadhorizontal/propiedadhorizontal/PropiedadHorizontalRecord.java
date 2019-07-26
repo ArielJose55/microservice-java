@@ -1,8 +1,8 @@
 package co.com.ajac.database.repositories.propiedadhorizontal.propiedadhorizontal;
 
-import co.com.ajac.database.repositories.commonsproperty.CommonPropertyRecord;
-import co.com.ajac.database.repositories.privatesproperty.PrivatePropertyRecord;
+import co.com.ajac.database.repositories.propiedadcomun.PropiedadComunRecord;
 import co.com.ajac.database.repositories.propiedadhorizontal.administrador.AdministradorRecord;
+import co.com.ajac.database.repositories.propiedadprivada.PropiedadPrivadaRecord;
 import io.vavr.collection.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class PropiedadHorizontalRecord {
 	private final String nit;
 	private final String nombreDistintivo;
 	private final AdministradorRecord administrador;
-	private final List<CommonPropertyRecord> commonsProperties;
-	private final List<PrivatePropertyRecord> privatesProperties;
+	private final List<PropiedadComunRecord> commonsProperties;
+	private final List<PropiedadPrivadaRecord> privatesProperties;
 
 }

@@ -1,7 +1,7 @@
 package co.com.ajac.repositories;
 
-import co.com.ajac.domain.phs.Administrador;
-import co.com.ajac.domain.phs.PropiedadHorizontal;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.PropiedadHorizontal;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 

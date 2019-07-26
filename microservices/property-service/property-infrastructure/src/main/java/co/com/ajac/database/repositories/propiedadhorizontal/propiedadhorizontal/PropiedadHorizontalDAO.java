@@ -6,7 +6,7 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 

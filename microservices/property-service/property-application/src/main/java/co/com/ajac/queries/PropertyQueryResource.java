@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.PersonCommunicator;
+import co.com.ajac.acl.builders.PropiedadComunBuilder;
 import co.com.ajac.acl.builders.PropiedadHorizontalBuilder;
 import co.com.ajac.domain.exceptions.BusinessException;
-import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.PropiedadHorizontal;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
-import co.com.ajac.services.horizontal.PropiedadHorizontalService;
+import co.com.ajac.services.PropiedadHorizontalService;
 import io.vavr.collection.List;
 import lombok.extern.log4j.Log4j2;
 
@@ -41,11 +43,26 @@ public class PropertyQueryResource {
 				 .map(PropiedadHorizontalBuilder::crearPropiedadHorizontalDTODesdeEntidad);
 	}
 	
-	/*
-	public List<CommonProperty> listAllCommonByHorizontalProperty(String nit) {
-		return commonService.findAllCommonByHorizontalProperty(nit).toJavaList();
+	
+	public PropiedadHorizontalDTO obtenerPropiedadHorizontalPorNit(String nit) {
+		
+		log.info("Obteniendo datos de la propiedad horizontal de NIT: {}", nit);
+		PropiedadHorizontal propiedadHorizontal = horizontalService.obtenerPropiedadHorizontalCompletaPorNit(nit);
+		
+		
+		PropiedadHorizontalDTO propiedadHorizontalDTO = PropiedadHorizontalBuilder.crearPropiedadHorizontalDTODesdeEntidad(propiedadHorizontal);
+		
+		propiedadHorizontalDTO.setPropiedadesComunes(
+				propiedadHorizontal.getBienesCommunes()
+				.map(PropiedadComunBuilder::crearPropiedadComunDTODesdeEntidad)
+				.toJavaList());
+		
+		
+
+		return propiedadHorizontalDTO;
 	}
 	
+	/*
 	public CommonProperty getOneCommonProperty(Integer id) {
 		Either<String, CommonProperty> eitherResult = commonService.findOneCommonProperty(id);
 		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));

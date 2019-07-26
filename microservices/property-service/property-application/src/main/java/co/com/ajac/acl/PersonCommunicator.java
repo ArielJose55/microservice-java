@@ -1,6 +1,6 @@
 package co.com.ajac.acl;
 
-import co.com.ajac.domain.phs.Administrador;
+import co.com.ajac.domain.propiedadeshorizontales.Administrador;
 
 public interface PersonCommunicator {
 
