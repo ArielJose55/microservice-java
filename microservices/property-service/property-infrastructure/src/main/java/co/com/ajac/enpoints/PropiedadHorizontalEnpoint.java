@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.ajac.commands.RegistrarPropiedadHorizontalCommand;
 import co.com.ajac.domain.propiedadeshorizontales.Administrador;
 import co.com.ajac.dtos.PropiedadHorizontalDTO;
-import co.com.ajac.queries.PropertyQueryResource;
+import co.com.ajac.queries.PropiedadHorizontalQuery;
 
 @RestController
 @RequestMapping("/property/api/v1")
 public class PropiedadHorizontalEnpoint {
 
-	private final PropertyQueryResource propertyQueryResource;
+	private final PropiedadHorizontalQuery propiedadHorizontalQuery;
 	private final RegistrarPropiedadHorizontalCommand registerHorizontal;
 	
 	@Autowired
-	public PropiedadHorizontalEnpoint(PropertyQueryResource propertyQueryResource,
+	public PropiedadHorizontalEnpoint(PropiedadHorizontalQuery propiedadHorizontalQuery,
 			RegistrarPropiedadHorizontalCommand registerHorizontal) {
-		this.propertyQueryResource = propertyQueryResource;
+		this.propiedadHorizontalQuery = propiedadHorizontalQuery;
 		this.registerHorizontal = registerHorizontal;
 	}
 
@@ -37,12 +37,12 @@ public class PropiedadHorizontalEnpoint {
 	
 	@GetMapping("/phs/admin/{tipoId}/{numId}")
 	public List<PropiedadHorizontalDTO> findAllHorizontalPropertyByAdmin(@PathVariable("tipoId") String tipoId, @PathVariable("numId") String numId){
-		return propertyQueryResource.listAllPropetyByAdministrator(new Administrador(tipoId, numId))
+		return propiedadHorizontalQuery.listarPropiedadesHorizontalesDeUnAdministrador(new Administrador(tipoId, numId))
 				.asJava();
 	}
 	
 	@GetMapping("/phs/{nit}")
 	public PropiedadHorizontalDTO obtenerPropiedadHorizontalPorNit(@PathVariable("nit") String nit){
-		return propertyQueryResource.obtenerPropiedadHorizontalPorNit(nit);
+		return propiedadHorizontalQuery.obtenerPropiedadHorizontalPorNit(nit);
 	}
 }

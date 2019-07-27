@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.acl.propiedadhorizontal.modelos.PropiedadHorizontalDTO;
-import co.com.ajac.queries.PersonQueryResource;
+import co.com.ajac.queries.UsuarioQuery;
 import coremodel.datosbasicos.Identificacion;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/person/api/v1")
 public class AdministadorEndpoint {
 
-	private final PersonQueryResource personQueryResource;
+	private final UsuarioQuery usuarioQuery;
 
 	@Autowired
-	public AdministadorEndpoint(PersonQueryResource personQueryResource) {
-		this.personQueryResource = personQueryResource;
+	public AdministadorEndpoint(UsuarioQuery usuariiQuery) {
+		this.usuarioQuery = usuariiQuery;
 	}
 	
 	@GetMapping("/admin/{tipoId}/{numId}")
 	public List<PropiedadHorizontalDTO> obtenerPropiedadesHorizontalesPorAdministrador(@PathVariable("tipoId") String tipoId, @PathVariable("numId") String numId){
-		return personQueryResource.obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
+		return usuarioQuery.obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
 				Identificacion.builder()
 				.tipoIdentificacion(tipoId)
 				.numeroIdentificacion(numId)

@@ -16,31 +16,36 @@ import coremodel.datosbasicos.Identificacion;
 import io.vavr.collection.List;
 
 @Component
-public class PersonQueryResource {
+public class UsuarioQuery {
 
-//	private final AdministradorService legalPersonService;
-//	private final ReservationService reservationService;
-//	private final ResidenteService residentService;
 	private final UsuarioService userService;
 	private final PersonaJuridicaService personaJuridicaService;
 	private final PropiedadHorizontalCommunicator propiedadHorizontalCommunicator;
 
 	@Autowired
-	public PersonQueryResource(
-			UsuarioService userService,
-			PersonaJuridicaService personaJuridicaService,
+	public UsuarioQuery(UsuarioService userService, PersonaJuridicaService personaJuridicaService,
 			PropiedadHorizontalCommunicator propiedadHorizontalCommunicator) {
 		this.userService = userService;
 		this.personaJuridicaService = personaJuridicaService;
 		this.propiedadHorizontalCommunicator = propiedadHorizontalCommunicator;
 	}
-
+	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
 	public UsuarioDTO obtenerUsuarioPorSuIdentificacion(Identificacion identification) {
 		return userService.obtenerUsuarioPorSusIdentificacion(identification)
 				.map(UsuarioBuilder::crearUsuarioDTODesdeEntidad)
 				.getOrElseThrow(() -> new BusinessException("No existe ningun usuario con esta identificacion"));
 	}
 	
+	/**
+	 * 
+	 * @param credencial
+	 * @return
+	 */
 	public UsuarioDTO obtenerUsuarioPorSusCredenciales(Credencial credencial) {
 		return userService.obtenerUsuarioPorSusCredenciales(credencial)
 				.map(UsuarioBuilder::crearUsuarioDTODesdeEntidad)
@@ -60,10 +65,11 @@ public class PersonQueryResource {
 		
 	}
 	
-	public PersonaJuridica obtenerPersonaJuridicaPorNit(String nit) {
-		return personaJuridicaService.obtenerPersonaJuridicaPorSuNit(nit);
-	}
-	
+	/**
+	 * 
+	 * @param identificacion
+	 * @return
+	 */
 	public List<PropiedadHorizontalDTO> obtenerTodasLasPropiedadesHorizontalesPorAdministrador(Identificacion identificacion){
 		
 		List<PropiedadHorizontalDTO> propiedades =  propiedadHorizontalCommunicator
@@ -80,46 +86,4 @@ public class PersonQueryResource {
 		});
 	}
 	
-
-//	public List<Reservation> findAllReservationByState(Tuple2<String, Integer> arg0) {
-//		Either<String, io.vavr.collection.List<Reservation>> eitherResult = reservationService
-//				.findAllReservationByState(arg0._1, arg0._2);
-//		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft())).toJavaList();
-//	}
-
-
-//
-//	public Reservation findOneReservationActiveAtDate(LocalDateTime arg0) {
-//		Either<String, Reservation> eitherResult = reservationService.findOneReservationActiveAtDate(arg0);
-//		return eitherResult.getOrElseThrow(() -> new ModelNotFoundException(eitherResult.getLeft()));
-//	}
-//
-//	public List<Residente> findAllResidentByHorizontalProperty(Integer idHorizontalProperty) {
-//		return residentService.getAll().toJavaList(); //Falta Implementacion
-//	}
-//
-//	public Residente findOneResidentByIdentification(String identification) {
-//		return residentService.get(identification).getOrElseThrow(() -> new ModelNotFoundException(RESIDENT_NOT_FOUND));
-//	}
-//
-//	public Usuario findOneUserByIdentification(String identification) {
-//		return userService.findOneBy(identification).orElseThrow(() -> new ModelNotFoundException(USER_NOT_FOUND));
-//	}
-
-//	public UsuarioDTO login(Usuario userDTO) {
-//
-//		Usuario user = userService.login(userDTO.getUsername(), userDTO.getPassword());
-//
-//		NaturalPerson naturalPerson = naturalPersonService.findOneNaturalPerson(user.getIdentification());
-//
-//		return UsuarioDTO.builder()
-//				.username(user.getUsername())
-//				.identification(user.getIdentification())
-//				.token("dddd")
-//				.names(naturalPerson.getName()).lastName(naturalPerson.getLastName())
-//				.completeName(naturalPerson.getName().concat(" ").concat(naturalPerson.getLastName()))
-//				.role(user.getRole()).build();
-//
-//	}
-
 }

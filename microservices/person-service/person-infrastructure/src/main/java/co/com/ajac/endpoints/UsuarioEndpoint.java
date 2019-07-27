@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.ajac.commands.RegistrarUsuarioCommand;
 import co.com.ajac.dtos.UsuarioDTO;
 import co.com.ajac.entities.usuarios.Credencial;
-import co.com.ajac.queries.PersonQueryResource;
+import co.com.ajac.queries.UsuarioQuery;
 import coremodel.datosbasicos.Identificacion;
 
 @RestController
@@ -21,12 +21,12 @@ import coremodel.datosbasicos.Identificacion;
 public class UsuarioEndpoint {
 	
 	private final RegistrarUsuarioCommand registrarUsuarioCommand;
-	private final PersonQueryResource personQueryResource;
+	private final UsuarioQuery usuarioQuery;
 	
 	@Autowired
-	public UsuarioEndpoint(RegistrarUsuarioCommand registrarUsuarioCommand, PersonQueryResource personQueryResource) {
+	public UsuarioEndpoint(RegistrarUsuarioCommand registrarUsuarioCommand, UsuarioQuery usuarioQuey) {
 		this.registrarUsuarioCommand = registrarUsuarioCommand;
-		this.personQueryResource = personQueryResource;
+		this.usuarioQuery = usuarioQuey;
 	}
 
 	@PostMapping("/users")
@@ -37,7 +37,7 @@ public class UsuarioEndpoint {
 	@GetMapping("/users/{tipoId}/{numId}")
 	public UsuarioDTO get(@PathVariable("tipoId") String tipoId, @PathVariable("numId") String numId) {
 		
-		return personQueryResource.obtenerUsuarioPorSuIdentificacion(
+		return usuarioQuery.obtenerUsuarioPorSuIdentificacion(
 				Identificacion.builder()
 				.numeroIdentificacion(numId)
 				.tipoIdentificacion(tipoId)
@@ -46,7 +46,7 @@ public class UsuarioEndpoint {
 	
 	@PostMapping("/users/login")
 	public UsuarioDTO login(@RequestBody UsuarioDTO usuarioDTO) {
-		return personQueryResource.obtenerUsuarioPorSusCredenciales(
+		return usuarioQuery.obtenerUsuarioPorSusCredenciales(
 				Credencial.builder()
 				.username(usuarioDTO.getUsername())
 				.password(usuarioDTO.getPassword())
