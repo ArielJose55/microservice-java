@@ -22,22 +22,21 @@ public class PropiedadPrivadaJdbiRepository implements PropiedadPrivadaRepositor
 	}
 	
 	@Override
-	public PropiedadPrivada guardarPropiedadCommun(PropiedadPrivada propiedadPrivada) {
+	public PropiedadPrivada guardarPropiedadPrivada(PropiedadPrivada propiedadPrivada) {
 		propiedadPrivadaDAO.guardarPropiedadPrivada(
 				PropiedadPrivadaDatabaseBuilder.crearPropiedadPrivadaRecordDesdeEntidad(propiedadPrivada));
 		return propiedadPrivada;
 	}
 
 	@Override
-	public Option<PropiedadPrivada> obtenerPropiedadComun(Integer id) {
+	public Option<PropiedadPrivada> obtenerPropiedadPrivada(Integer id) {
 		return propiedadPrivadaDAO.obtenerPropiedadPrivadaPorSuId(id)
 				.map(PropiedadPrivadaDatabaseBuilder::crearPropiedadPrivadaDesdeRecord);
 	}
 
 	@Override
-	public List<PropiedadPrivada> obtenerPropiedadesComunesDeUnaPropiedadHorizontal(String nit) {
+	public List<PropiedadPrivada> obtenerPropiedadesPrivadasDeUnaPropiedadHorizontal(String nit) {
 		return propiedadPrivadaDAO.obtenerPropiedadesPrivadaPorSuPropiedadHorizontal(nit)
 				.map(PropiedadPrivadaDatabaseBuilder::crearPropiedadPrivadaDesdeRecord);
 	}
-
 }

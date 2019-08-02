@@ -76,7 +76,7 @@ public class PropiedadHorizontalService {
 		
 		log.debug("Obteniendo las propiedades comunes y privadas de este nit: {}", nit);
 		List<PropiedadComun> propiedadesComunes = propiedadComunRepository.obtenerPropiedadesComunesDeUnaPropiedadHorizontal(nit);
-		List<PropiedadPrivada> propiedadesPrivadas = propiedadPrivadaRepository.obtenerPropiedadesComunesDeUnaPropiedadHorizontal(nit);
+		List<PropiedadPrivada> propiedadesPrivadas = propiedadPrivadaRepository.obtenerPropiedadesPrivadasDeUnaPropiedadHorizontal(nit);
 		
 		return propiedadHorizontal.map(propiedad -> PropiedadHorizontal.builder()
 				.administrador(propiedad.getAdministrador())

@@ -1,9 +1,9 @@
 package co.com.ajac.commands;
 
-import co.com.ajac.entities.residentes.Reservation;
+import co.com.ajac.entities.residentes.reservas.Reserva;
 
 //@Component
-public class RegisterReservationCommand implements Command<Reservation>{
+public class RegisterReservationCommand implements Command<Reserva>{
 	
 //	private final ReservationService service;
 //
@@ -13,7 +13,7 @@ public class RegisterReservationCommand implements Command<Reservation>{
 //	}
 
 	@Override
-	public void execute(Reservation arg0) {
+	public void execute(Reserva arg0) {
 //		Either<String, Option<Integer>> eitherResult = service.registerReservation(arg0);
 //		
 //		eitherResult.getOrElseThrow(

@@ -17,4 +17,6 @@ public class Visitante {
 	private final Identificacion identificacion;
 	
 	private final NombreCompleto nombreCompleto;
+	
+	
 }

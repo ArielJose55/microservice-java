@@ -42,7 +42,7 @@ public class ServicePersonaHttpComunicador implements ServicePersonaCommunicator
 	@Override
 	public Option<AdministradorDTO> obtenerAdministradorDTODesdeService(Administrador administrador) {
 		
-		return null;
+		return Option.of(new AdministradorDTO());
 	}
 
 	

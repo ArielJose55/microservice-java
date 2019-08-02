@@ -15,6 +15,8 @@ dependencies {
 	implementation 'org.jdbi:jdbi3-sqlobject:' + jdbi3Version
 	implementation 'org.jdbi:jdbi3-vavr:' + jdbi3Version
 	implementation 'org.jdbi:jdbi3-jackson2:' + jdbi3Version
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp:2.1.6.RELEASE'
 }

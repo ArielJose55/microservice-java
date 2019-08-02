@@ -1,4 +1,4 @@
-package co.com.ajac.entities.residentes;
+package co.com.ajac.entities.residentes.habitantes;
 
 import coremodel.datosbasicos.CorreoElectronico;
 import coremodel.datosbasicos.DatoBiometrico;
@@ -28,8 +28,6 @@ public class Habitante{
 	private final Telefono telefono;
 
 	private final NombreCompleto nombreCompleto;
-	
-	private final String segundoApellido;
 	
 	private final DatoBiometrico datoBiometrico;
 }

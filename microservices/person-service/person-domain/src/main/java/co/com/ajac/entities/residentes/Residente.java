@@ -1,6 +1,7 @@
 package co.com.ajac.entities.residentes;
 
 
+import co.com.ajac.entities.residentes.habitantes.Habitante;
 import coremodel.datosbasicos.CorreoElectronico;
 import coremodel.datosbasicos.DatoBiometrico;
 import coremodel.datosbasicos.Direccion;

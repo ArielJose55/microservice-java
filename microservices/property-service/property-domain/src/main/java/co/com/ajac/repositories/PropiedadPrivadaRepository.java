@@ -6,9 +6,9 @@ import io.vavr.control.Option;
 
 public interface PropiedadPrivadaRepository {
 
-	PropiedadPrivada guardarPropiedadCommun(PropiedadPrivada propiedadPrivada);
+	PropiedadPrivada guardarPropiedadPrivada(PropiedadPrivada propiedadPrivada);
 	
-	Option<PropiedadPrivada> obtenerPropiedadComun(Integer id);
+	Option<PropiedadPrivada> obtenerPropiedadPrivada(Integer id);
 	
-	List<PropiedadPrivada> obtenerPropiedadesComunesDeUnaPropiedadHorizontal(String nit);
+	List<PropiedadPrivada> obtenerPropiedadesPrivadasDeUnaPropiedadHorizontal(String nit);
 }

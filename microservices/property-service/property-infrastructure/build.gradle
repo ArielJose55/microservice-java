@@ -30,6 +30,8 @@ dependencies {
     implementation 'co.com.ajac:common-infrastructure:2.2.0'
     implementation 'org.apache.httpcomponents:httpclient:4.5.9'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	configurations.all {

@@ -8,6 +8,7 @@ import co.com.ajac.repositories.PropiedadHorizontalRepository;
 import co.com.ajac.repositories.PropiedadPrivadaRepository;
 import co.com.ajac.services.PropiedadComunService;
 import co.com.ajac.services.PropiedadHorizontalService;
+import co.com.ajac.services.PropiedadPrivadaService;
 
 @Configuration
 public class BeansService {
@@ -23,5 +24,10 @@ public class BeansService {
 	@Bean
 	public PropiedadComunService beanPropiedadComunService(PropiedadComunRepository propiedadComunRepository) {
 		return new PropiedadComunService(propiedadComunRepository);
+	}
+	
+	@Bean
+	public PropiedadPrivadaService beanPropiedadPrivadaService(PropiedadPrivadaRepository propiedadPrivadaRepository) {
+		return new PropiedadPrivadaService(propiedadPrivadaRepository);
 	}
 }

@@ -1,5 +1,6 @@
 package co.com.ajac.domain.propiedadeshorizontales.propiedadesprivadas;
 
+import co.com.ajac.domain.propiedadeshorizontales.PropiedadHorizontal;
 import coremodel.datosbasicos.Identificacion;
 import io.vavr.collection.List;
 import lombok.Builder;
@@ -16,6 +17,8 @@ public class PropiedadPrivada {
 	private final Integer idPropiedadPrivada;
 	
 	private final String ubicacion;
+	
+	private final PropiedadHorizontal propiedadHorizontal;
 	
 	private final List<Identificacion> residentes;
 }

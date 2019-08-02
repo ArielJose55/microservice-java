@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import co.com.ajac.acl.builders.PropiedadComunBuilder;
 import co.com.ajac.acl.builders.PropiedadHorizontalBuilder;
+import co.com.ajac.acl.builders.PropiedadPrivadaBuilder;
 import co.com.ajac.acl.personaservice.ServicePersonaCommunicator;
 import co.com.ajac.acl.personaservice.modelos.PersonaJuridicaDTO;
 import co.com.ajac.domain.exceptions.BusinessException;
@@ -73,6 +74,9 @@ public class PropiedadHorizontalQuery {
 
 		propiedadHorizontalDTO.setPropiedadesComunes(propiedadHorizontal.getBienesCommunes()
 				.map(PropiedadComunBuilder::crearPropiedadComunDTODesdeEntidad).toJavaList());
+		
+		propiedadHorizontalDTO.setPropiedadesPrivadas(propiedadHorizontal.getBienesPrivados()
+				.map(PropiedadPrivadaBuilder::crearPropiedadPrivadaDTODesdeEntidad).toJavaList());
 		
 		propiedadHorizontalDTO.setObjetoSocial(personaJuridica.get().getObjetoSocial());
 		propiedadHorizontalDTO.setRazonSocial(personaJuridica.get().getRazonSocial());

@@ -13,11 +13,13 @@ import io.vavr.control.Option;
 public interface PropiedadPrivadaDAO {
 
 	@SqlUpdate("INSERT INTO \"PROPIEDAD_PRIVADA\"("
-			+ "	ubicacion"
+			+ "	ubicacion,"
+			+ "	nit_propiedad_horizontal"
 			+ ")"
 			+ "	VALUES"
 			+ "("
-			+ "	:pc.ubicacion"
+			+ "	:pc.ubicacion,"
+			+ "	:pc.propiedadHorizontalRecord.nit"
 			+ ")")
 	boolean guardarPropiedadPrivada(@BindBean("pc") PropiedadPrivadaRecord propiedadPrivadaRecord);
 	
@@ -28,8 +30,12 @@ public interface PropiedadPrivadaDAO {
 	Option<PropiedadPrivadaRecord> obtenerPropiedadPrivadaPorSuId(@Bind("id") Integer id);
 	
 	@SqlQuery("SELECT * FROM \"PROPIEDAD_PRIVADA\" pp"
+			+ "	JOIN \"PROPIEDAD_HORIZONTAL\" hor"
+			+ "	ON pp.nit_propiedad_horizontal = hor.nit"
+			+ "	JOIN \"GESTION_PROPIEDAD_HORIZONTAL\" gph"
+			+ "	ON hor.nit = gph.nit_propiedad_horizontal"
 			+ "	WHERE"
-			+ "	pp.nit_propiedad_horizontal = :nit"
+			+ "	pp.nit_propiedad_horizontal =:nit"
 			+ "")
 	List<PropiedadPrivadaRecord> obtenerPropiedadesPrivadaPorSuPropiedadHorizontal(@Bind("nit") String nit);
 	
