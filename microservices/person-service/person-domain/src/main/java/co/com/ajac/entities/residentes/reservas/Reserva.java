@@ -3,32 +3,30 @@ package co.com.ajac.entities.residentes.reservas;
 import java.time.LocalDateTime;
 
 import coremodel.datosbasicos.Identificacion;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 @ToString
+@RequiredArgsConstructor
 public class Reserva {
 
-	private String idReserva;
+	private final Integer idReserva;
 	
-	private String descripcion;
+	private final String descripcion;
 	
-	private String respuesta;
+	private final String respuesta;
 	
-	private EstadoReserva estadoReserva;
+	private final EstadoReserva estadoReserva;
 	
-	private LocalDateTime fechaInicio;
+	private final LocalDateTime fechaInicio;
 	
-	private LocalDateTime fechaFinalizacion;
+	private final LocalDateTime fechaFinalizacion;
 	
-	private Integer bienComun;
+	private final Integer bienComun;
 	
-	private Identificacion identificacion;
+	private final Identificacion identificacion;
 }

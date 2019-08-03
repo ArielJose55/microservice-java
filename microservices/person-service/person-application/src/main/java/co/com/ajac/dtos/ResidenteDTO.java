@@ -1,7 +1,6 @@
 package co.com.ajac.dtos;
 
 import coremodel.datosbasicos.CorreoElectronico;
-import coremodel.datosbasicos.DatoBiometrico;
 import coremodel.datosbasicos.Direccion;
 import coremodel.datosbasicos.Telefono;
 import lombok.AllArgsConstructor;
@@ -19,14 +18,14 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ResidenteDTO {
 
-	private String numeroIdentificacion;
-	private String tipoIdentificacion;
+	private String numIdResidente;
+	private String tipoIdResidente;
 	private String primerNombre;
 	private String segundoNombre;
 	private String primerApellido;
 	private String segundoApellido;
 	private String nombreCompleto;
-	private DatoBiometrico datoBiometrico;
+	private DatoBiometricoDTO datoBiometrico;
 	private Direccion direccion;
 	private CorreoElectronico correoElectronico;
 	private Telefono telefono;

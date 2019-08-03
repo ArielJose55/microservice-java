@@ -32,6 +32,10 @@ public class UsuarioService {
 		return usuarioRepository.registrarUsuario(usuario);
 	}
 	
+	public Option<Usuario> obtenerUsuarioPorSuUSername(String username) {
+		return usuarioRepository.obtenerUsuarioPorSuUsername(username);
+	}
+	
 	public Option<Usuario> obtenerUsuarioPorSusCredenciales(Credencial credencial){
 		
 		return usuarioRepository.obtenerUsuarioPorCredencial(credencial)

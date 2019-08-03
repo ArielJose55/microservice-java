@@ -17,8 +17,6 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class Habitante{
 
-	private final String relacion;
-
 	private final Identificacion identificacion;
 	
 	private final Direccion direccion;

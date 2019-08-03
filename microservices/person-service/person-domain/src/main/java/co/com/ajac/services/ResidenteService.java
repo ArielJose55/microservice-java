@@ -28,17 +28,17 @@ public class ResidenteService {
 		return residenteRepository.guardarResidenteCompleto(resident);
 	}
 	
-	public Habitante registrarHabitanteAUnResidente(Habitante habitante, Identificacion identificacionResidente) {
+	public Habitante registrarHabitanteAUnResidente(Habitante habitante) {
 		
-		if(residenteRepository.obtenerResidentePorSuIdentificacion(identificacionResidente).isDefined()) {
-			log.error("Ya existe un residente en base de datos con esta identificacion: {}", identificacionResidente);
-			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
-		}
-		
-		if(residenteRepository.obtenerHabitantePorSuIdentificacion(habitante.getIdentificacion()).isDefined()) {
-			log.error("Ya existe un residente en base de datos con esta identificacion: {}", habitante.getIdentificacion());
-			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
-		}
+//		if(residenteRepository.obtenerResidentePorSuIdentificacion(identificacionResidente).isDefined()) {
+//			log.error("Ya existe un residente en base de datos con esta identificacion: {}", identificacionResidente);
+//			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
+//		}
+//		
+//		if(residenteRepository.obtenerHabitantePorSuIdentificacion(habitante.getIdentificacion()).isDefined()) {
+//			log.error("Ya existe un residente en base de datos con esta identificacion: {}", habitante.getIdentificacion());
+//			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
+//		}
 		
 		//Demas reglas de negocio
 		

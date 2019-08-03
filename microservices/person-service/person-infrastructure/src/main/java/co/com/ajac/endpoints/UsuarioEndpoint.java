@@ -2,6 +2,7 @@ package co.com.ajac.endpoints;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.core.tools.picocli.CommandLine.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,12 @@ import co.com.ajac.dtos.UsuarioDTO;
 import co.com.ajac.entities.usuarios.Credencial;
 import co.com.ajac.queries.UsuarioQuery;
 import coremodel.datosbasicos.Identificacion;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/person/api/v1")
+@Api("Endpint para la gestion de propiedades usuarios")
 public class UsuarioEndpoint {
 	
 	private final RegistrarUsuarioCommand registrarUsuarioCommand;
@@ -29,7 +33,9 @@ public class UsuarioEndpoint {
 		this.usuarioQuery = usuarioQuey;
 	}
 
+	
 	@PostMapping("/users")
+	@ApiOperation(value = "registra un usuario del sistema", code = 200, httpMethod = "POST")
 	public void add(@Valid @RequestBody UsuarioDTO usuarioDTO) {
 		registrarUsuarioCommand.execute(usuarioDTO);
 	}

@@ -4,8 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import co.com.ajac.ports.PersonaJuridicaRepository;
+import co.com.ajac.ports.ResidenteRepository;
 import co.com.ajac.ports.UsuarioRepository;
 import co.com.ajac.services.PersonaJuridicaService;
+import co.com.ajac.services.ResidenteService;
 import co.com.ajac.services.UsuarioService;
 
 @Configuration
@@ -19,6 +21,11 @@ public class BeanService {
 	@Bean
 	public PersonaJuridicaService beanPersonaJuridicaService(PersonaJuridicaRepository personaJuridicaRepository) {
 		return new PersonaJuridicaService(personaJuridicaRepository);
+	}
+	
+	@Bean
+	public ResidenteService beanResidenteService(ResidenteRepository residenteRepository) {
+		return new ResidenteService(residenteRepository);
 	}
 //	
 //	@Bean
