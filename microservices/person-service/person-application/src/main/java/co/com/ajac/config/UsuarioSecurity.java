@@ -37,12 +37,10 @@ public class UsuarioSecurity implements UserDetailsService{
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority(usuario.getTipoUsuario().getCodigo()));
 		
-		UserDetails userDet = new User(
+		return new User(
 				usuario.getCredencial().getUsername(),
 				usuario.getCredencial().getPassword(),
 				roles);
-		
-		return userDet;
 	}
 
 }

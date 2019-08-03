@@ -5,10 +5,10 @@ import io.vavr.collection.List;
 
 public enum TipoUsuario {
 	
-	ADMINISTRADOR("Administrador", "ADM"),
-	RESIDENTE("Residente", "RDT"),
-	AUXILIAR("Auxiliar", "AUX"),
-	PORTERO("Portero de seguridad", "AGD");
+	ADMINISTRADOR("Administrador", "ADMIN"),
+	RESIDENTE("Residente", "RESIDENTE"),
+	AUXILIAR("Auxiliar", "AUXILIAR"),
+	PORTERO("Portero de seguridad", "SEGURIDAD");
 	
 	private final String descripcion;
 	private final String codigo;

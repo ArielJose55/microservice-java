@@ -24,6 +24,7 @@ public class RegistrarUsuarioCommand implements Command<UsuarioDTO>{
 
 	@Override
 	public void execute( UsuarioDTO usuarioDTO ) {
+		log.info("Ejecutando el comando: RegistrarUsuarioCommand");
 		log.debug("Recibiendo el usuario DTO para registrar {}", usuarioDTO);
 		
 		usuarioDTO.setPassword(bCryptPasswordEncoder.encode(usuarioDTO.getPassword()));
