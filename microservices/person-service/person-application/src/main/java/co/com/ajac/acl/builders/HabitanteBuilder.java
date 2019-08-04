@@ -14,8 +14,8 @@ private HabitanteBuilder() {}
 	public static Habitante crearHabitanteDesdeRequest(HabitanteDTO habitanteDTO) {
 		
 		Identificacion identificacion = Identificacion.builder()
-				.numeroIdentificacion(habitanteDTO.getTipoIdHabitante())
-				.tipoIdentificacion(habitanteDTO.getNumIdHabitante())
+				.numeroIdentificacion(habitanteDTO.getNumIdHabitante())
+				.tipoIdentificacion(habitanteDTO.getTipoIdHabitante())
 				.build();
 		
 		NombreCompleto nombreCompleto = NombreCompleto.builder()

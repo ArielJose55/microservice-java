@@ -23,7 +23,7 @@ private ResidenteDatabaseBuilder() {}
 				.build();
 		
 		NombreCompleto nombreCompleto = NombreCompleto.builder()
-				.primerApellido(residenteRecord.getPersonaNaturalRecord().getPrimerNombre())
+				.primerNombre(residenteRecord.getPersonaNaturalRecord().getPrimerNombre())
 				.segundoNombre(residenteRecord.getPersonaNaturalRecord().getSegundoNombre())
 				.primerApellido(residenteRecord.getPersonaNaturalRecord().getPrimerApellido())
 				.segundoApellido(residenteRecord.getPersonaNaturalRecord().getSegundoApellido())

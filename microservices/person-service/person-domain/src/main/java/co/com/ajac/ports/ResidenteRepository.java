@@ -11,6 +11,12 @@ public interface ResidenteRepository {
 	
 	Habitante guardarHabitanteCompleto(Habitante resident);
 	
+	boolean verificarExistenciaDeAlgunaPersonaPorSuIdentificacion(Identificacion identification);
+	
+	boolean verificarExistenciaDeAlgunaPersonaPorSuHuellaDigital(String huella);
+	
+	boolean verificarExistenciaDeAlgunaPersonaPorSuCodigoseguridad(String codigoSeguridad);
+	
 	Option<Residente> obtenerResidentePorSuIdentificacion(Identificacion identification);
 	
 	Option<Habitante> obtenerHabitantePorSuIdentificacion(Identificacion identification);

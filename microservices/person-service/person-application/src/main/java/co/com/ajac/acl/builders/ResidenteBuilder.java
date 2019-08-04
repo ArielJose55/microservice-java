@@ -1,7 +1,6 @@
 package co.com.ajac.acl.builders;
 
 import co.com.ajac.dtos.DatoBiometricoDTO;
-import co.com.ajac.dtos.HabitanteDTO;
 import co.com.ajac.dtos.ResidenteDTO;
 import co.com.ajac.entities.residentes.Residente;
 import coremodel.datosbasicos.DatoBiometrico;
@@ -15,12 +14,12 @@ public class ResidenteBuilder {
 	public static Residente crearResidenteDesdeRequest(ResidenteDTO residenteDTO) {
 		
 		Identificacion identificacion = Identificacion.builder()
-				.numeroIdentificacion(residenteDTO.getTipoIdResidente())
-				.tipoIdentificacion(residenteDTO.getNumIdResidente())
+				.numeroIdentificacion(residenteDTO.getNumIdResidente())
+				.tipoIdentificacion(residenteDTO.getTipoIdResidente())
 				.build();
 		
 		NombreCompleto nombreCompleto = NombreCompleto.builder()
-				.primerApellido(residenteDTO.getPrimerNombre())
+				.primerNombre(residenteDTO.getPrimerNombre())
 				.segundoNombre(residenteDTO.getSegundoNombre())
 				.primerApellido(residenteDTO.getPrimerApellido())
 				.segundoApellido(residenteDTO.getSegundoApellido())

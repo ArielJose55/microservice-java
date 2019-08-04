@@ -41,6 +41,33 @@ public interface ResidenteDAO {
 			@Bind("tipoId") String tipoId,
 			@Bind("numId") String numId);
 	
+	@SqlQuery("SELECT EXISTS("
+			+ "	SELECT * FROM \"PERSONA_NATURAL\" per"
+			+ "	WHERE"
+			+ "	per.numero_identificacion = :numId"
+			+ "	AND"
+			+ "	per.tipo_identificacion = :tipoId"
+			+ ")")
+	boolean verificarLaExistenciaDeAlgunaPersonaCon(
+			@Bind("tipoId") String tipoId,
+			@Bind("numId") String numId);
+	
+	@SqlQuery("SELECT EXISTS("
+			+ "	SELECT * FROM \"RESIDENTE\" res"
+			+ "	WHERE"
+			+ "	res.plantilla_huella = :huella"
+			+ ")")
+	boolean verificarLaExistenciaDeAlgunaPersonaConHuella(
+			@Bind("huella") String huella);
+	
+	@SqlQuery("SELECT EXISTS("
+			+ "	SELECT * FROM \"RESIDENTE\" res"
+			+ "	WHERE"
+			+ "	res.codigo_seguridad = :codigoSeguridad"
+			+ ")")
+	boolean verificarLaExistenciaDeAlgunaPersonaConCodigo(
+			@Bind("codigoSeguridad") String codigoSeguridad);
+	
 	
 	@SqlQuery("SELECT res.titular FROM \"RESIDENTE\" res"
 			+ "	WHERE"

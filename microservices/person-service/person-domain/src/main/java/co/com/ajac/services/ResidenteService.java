@@ -20,29 +20,48 @@ public class ResidenteService {
 
 	public Residente registrarResidente(Residente resident){
 		
-		if(residenteRepository.obtenerResidentePorSuIdentificacion(resident.getIdentificacion()).isDefined()) {
+		log.debug("Validando el registro de este nuevo residente: {}", resident);
+		
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuIdentificacion(resident.getIdentificacion())) {
 			log.error("Ya existe un residente en base de datos con esta identificacion: {}", resident.getIdentificacion());
 			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
 		}
+		
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuHuellaDigital(resident.getDatoBiometrico().getPlantilla())) {
+			log.error("Ya existe una persona con esta huella digital registrada en base de datos: {}", resident.getIdentificacion());
+			throw new BusinessException("Ya existe una persona con esta huella digital registrada en base de dato");
+		}
+		
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuCodigoseguridad(resident.getDatoBiometrico().getCodigoDeSeguridad())) {
+			log.error("Ya existe una persona con este codigo de seguridad registrada en base de datos: {}", resident.getIdentificacion());
+			throw new BusinessException("Ya existe una persona con este codigo de seguridad registrada en base de dato");
+		}
+		
+		log.debug("Validacion completa, se procede a guardar el residente en el base de datos");
 		
 		return residenteRepository.guardarResidenteCompleto(resident);
 	}
 	
 	public Habitante registrarHabitanteAUnResidente(Habitante habitante) {
-		
-//		if(residenteRepository.obtenerResidentePorSuIdentificacion(identificacionResidente).isDefined()) {
-//			log.error("Ya existe un residente en base de datos con esta identificacion: {}", identificacionResidente);
-//			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
-//		}
-//		
+	
 		log.debug("Validando el registro de este nuevo habitante: {}", habitante);
 		
-		if(residenteRepository.obtenerHabitantePorSuIdentificacion(habitante.getIdentificacion()).isDefined()) {
-			log.error("Ya existe un residente en base de datos con esta identificacion: {}", habitante.getIdentificacion());
-			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuIdentificacion(habitante.getIdentificacion())) {
+			log.error("Ya existe un habitante en base de datos con esta identificacion: {}", habitante.getIdentificacion());
+			throw new BusinessException("Ya existe un habitante en base de datos con esta identificacion");
 		}
 		
-		log.debug("Validacion completa, se procede a guardar el habitante en el base de datos", habitante);
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuHuellaDigital(habitante.getDatoBiometrico().getPlantilla())) {
+			log.error("Ya existe una persona con esta huella digital registrada en base de datos: {}", habitante.getIdentificacion());
+			throw new BusinessException("Ya existe una persona con esta huella digital registrada en base de dato");
+		}
+		
+		if(residenteRepository.verificarExistenciaDeAlgunaPersonaPorSuCodigoseguridad(habitante.getDatoBiometrico().getCodigoDeSeguridad())) {
+			log.error("Ya existe una persona con este codigo de seguridad registrada en base de datos: {}", habitante.getIdentificacion());
+			throw new BusinessException("Ya existe una persona con este codigo de seguridad registrada en base de dato");
+		}
+		
+		log.debug("Validacion completa, se procede a guardar el habitante en el base de datos");
 		
 		//Demas reglas de negocio
 		
