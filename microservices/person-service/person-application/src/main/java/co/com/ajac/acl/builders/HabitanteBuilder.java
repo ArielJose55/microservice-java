@@ -19,7 +19,7 @@ private HabitanteBuilder() {}
 				.build();
 		
 		NombreCompleto nombreCompleto = NombreCompleto.builder()
-				.primerApellido(habitanteDTO.getPrimerNombre())
+				.primerNombre(habitanteDTO.getPrimerNombre())
 				.segundoNombre(habitanteDTO.getSegundoNombre())
 				.primerApellido(habitanteDTO.getPrimerApellido())
 				.segundoApellido(habitanteDTO.getSegundoApellido())

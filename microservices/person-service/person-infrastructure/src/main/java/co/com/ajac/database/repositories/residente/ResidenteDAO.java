@@ -1,5 +1,6 @@
 package co.com.ajac.database.repositories.residente;
 
+import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -7,6 +8,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import io.vavr.control.Option;
 
+@RegisterRowMapper(ResidenteMapper.class)
 public interface ResidenteDAO {
 	
 	@SqlUpdate("INSERT INTO \"RESIDENTE\" ("
@@ -16,8 +18,8 @@ public interface ResidenteDAO {
 			+ "	codigo_seguridad,"
 			+ "	titular)"
 			+ "	VALUES("
-			+ "	:usuario.personaNaturalRecord.numeroIdentificacion,"
-			+ "	:usuario.personaNaturalRecord.tipoIdentificacion,"
+			+ "	:res.personaNaturalRecord.numeroIdentificacion,"
+			+ "	:res.personaNaturalRecord.tipoIdentificacion,"
 			+ "	:res.huellaPlantilla,"
 			+ "	:res.codigoDeSeguridad,"
 			+ "	:res.esTitular"
@@ -31,7 +33,7 @@ public interface ResidenteDAO {
 			+ "	ON res.numero_identificacion = per.numero_identificacion"
 			+ "	AND res.tipo_identificacion = per.tipo_identificacion"
 			+ "	WHERE"
-			+ "	res.numero_identificacion = :numId,"
+			+ "	res.numero_identificacion = :numId"
 			+ "	AND"
 			+ "	res.tipo_identificacion = :tipoId"
 			+ "")
@@ -42,7 +44,7 @@ public interface ResidenteDAO {
 	
 	@SqlQuery("SELECT res.titular FROM \"RESIDENTE\" res"
 			+ "	WHERE"
-			+ "	res.numero_identificacion = :numId,"
+			+ "	res.numero_identificacion = :numId"
 			+ "	AND"
 			+ "	res.tipo_identificacion = :tipoId"
 			+ "")

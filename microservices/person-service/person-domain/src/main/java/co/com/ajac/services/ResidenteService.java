@@ -35,10 +35,14 @@ public class ResidenteService {
 //			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
 //		}
 //		
-//		if(residenteRepository.obtenerHabitantePorSuIdentificacion(habitante.getIdentificacion()).isDefined()) {
-//			log.error("Ya existe un residente en base de datos con esta identificacion: {}", habitante.getIdentificacion());
-//			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
-//		}
+		log.debug("Validando el registro de este nuevo habitante: {}", habitante);
+		
+		if(residenteRepository.obtenerHabitantePorSuIdentificacion(habitante.getIdentificacion()).isDefined()) {
+			log.error("Ya existe un residente en base de datos con esta identificacion: {}", habitante.getIdentificacion());
+			throw new BusinessException("Ya existe un residente en base de datos con esta identificacion");
+		}
+		
+		log.debug("Validacion completa, se procede a guardar el habitante en el base de datos", habitante);
 		
 		//Demas reglas de negocio
 		

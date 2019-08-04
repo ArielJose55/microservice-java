@@ -7,7 +7,9 @@ import co.com.ajac.acl.builders.HabitanteBuilder;
 import co.com.ajac.dtos.HabitanteDTO;
 import co.com.ajac.entities.residentes.habitantes.Habitante;
 import co.com.ajac.services.ResidenteService;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Component
 public class RegistrarHabitanteCommand implements Command<HabitanteDTO>{
 
@@ -20,9 +22,9 @@ public class RegistrarHabitanteCommand implements Command<HabitanteDTO>{
 
 	@Override
 	public void execute(HabitanteDTO habitanteDTO) {
+		log.info("Ejecutando el comando: RegistrarHabitanteCommand con los datos: {}", habitanteDTO);
 		Habitante habitante = HabitanteBuilder.crearHabitanteDesdeRequest(habitanteDTO);
 
-		
 		residenteService.registrarHabitanteAUnResidente(habitante);		
 	}
 	
