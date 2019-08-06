@@ -23,7 +23,7 @@ public class AdministadorEndpoint {
 		this.usuarioQuery = usuariiQuery;
 	}
 	
-	@GetMapping("/admin/{tipoId}/{numId}")
+	@GetMapping("/admin/phs/{tipoId}/{numId}")
 	public List<PropiedadHorizontalDTO> obtenerPropiedadesHorizontalesPorAdministrador(@PathVariable("tipoId") String tipoId, @PathVariable("numId") String numId){
 		return usuarioQuery.obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
 				Identificacion.builder()
@@ -32,4 +32,6 @@ public class AdministadorEndpoint {
 				.build())
 			.toJavaList();
 	}
+	
+
 }

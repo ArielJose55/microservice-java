@@ -69,12 +69,15 @@ public class ResidenteService {
 		
 	}
 	
+	/**
+	 * 
+	 * @param identification
+	 * @return
+	 */
 	public Option<Residente> obtenerResidente(Identificacion identification){
 		
 		return residenteRepository.obtenerResidentePorSuIdentificacion(identification);
 	}
 	
-//	public List<Residente> getAll(){
-//		return repository.listAllResident(1);
-//	}
+	
 }

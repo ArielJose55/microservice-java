@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ajac.acl.builders.PersonaJuridicaBuilder;
 import co.com.ajac.dtos.PersonaJuridicaDTO;
-import co.com.ajac.queries.PersonaJuridicaQuery;
+import co.com.ajac.queries.PersonaQuery;
 
 @RestController
 @RequestMapping("/person/api/v1")
 public class PersonaJuridicaEndpoint {
 	
-	private final PersonaJuridicaQuery personaJuridicaQuery;
+	private final PersonaQuery personaJuridicaQuery;
 
 	@Autowired
-	public PersonaJuridicaEndpoint(PersonaJuridicaQuery personaJuridicaQuery) {
+	public PersonaJuridicaEndpoint(PersonaQuery personaJuridicaQuery) {
 		this.personaJuridicaQuery = personaJuridicaQuery;
 	}
 	

@@ -20,7 +20,7 @@ public class ResidenteJdbiRepository implements ResidenteRepository{
 
 	private final PersonaRepositoryTransaction personaRepositoryTransaction;
 	private final ResidenteDAO residenteDAO;
-	
+
 	@Autowired
 	public ResidenteJdbiRepository(Jdbi jdbi) {
 		this.personaRepositoryTransaction = jdbi.onDemand(PersonaRepositoryTransaction.class);
@@ -50,14 +50,6 @@ public class ResidenteJdbiRepository implements ResidenteRepository{
 	}
 
 	@Override
-	public Option<Habitante> obtenerHabitantePorSuIdentificacion(Identificacion identification) {
-		return residenteDAO.obtenerResidentePorSuIdentificacion(
-				identification.getTipoIdentificacion(), 
-				identification.getNumeroIdentificacion())
-				.map(HabitanteDatabaseBuilder::crearHabitanteDesdeRecord);
-	}
-
-	@Override
 	public boolean verificarExistenciaDeAlgunaPersonaPorSuIdentificacion(Identificacion identification) {
 		return residenteDAO.verificarLaExistenciaDeAlgunaPersonaCon(
 				identification.getTipoIdentificacion(),
@@ -73,6 +65,5 @@ public class ResidenteJdbiRepository implements ResidenteRepository{
 	public boolean verificarExistenciaDeAlgunaPersonaPorSuCodigoseguridad(String codigoSeguridad) {
 		return residenteDAO.verificarLaExistenciaDeAlgunaPersonaConCodigo(codigoSeguridad);
 	}
-	
 	
 }

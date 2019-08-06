@@ -9,17 +9,17 @@ public interface PersonaNaturalDAO {
 
 	@SqlUpdate("INSERT INTO \"PERSONA_NATURAL\"("
 			+ "	numero_identificacion,"
-			+ "	primer_apellido,"
+			+ "	tipo_identificacion,"
 			+ "	primer_nombre,"
 			+ "	segundo_nombre,"
-			+ "	tipo_identificacion,"
+			+ "	primer_apellido,"
 			+ "	segundo_apellido)"
 			+ "	VALUES ("
 			+ "	:persona.numeroIdentificacion,"
+			+ "	:persona.tipoIdentificacion,"
 			+ "	:persona.primerNombre,"
 			+ "	:persona.segundoNombre,"
 			+ "	:persona.primerApellido,"
-			+ "	:persona.tipoIdentificacion,"
 			+ "	:persona.segundoApellido"
 			+ ")")
 	boolean registrarPersonaNatural(@BindBean("persona") PersonaNaturalRecord personaNaturalRecord);

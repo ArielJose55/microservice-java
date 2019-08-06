@@ -17,8 +17,8 @@ public class NombreCompleto {
 	
 	public String nombreCompleto() {
 		return new StringBuilder()
-				.append(primerApellido).append(" ")
-				.append(segundoApellido).append(" ")
+				.append(primerNombre).append(" ")
+				.append(segundoNombre).append(" ")
 				.append(primerApellido).append(" ")
 				.append(segundoApellido).toString();
 	}

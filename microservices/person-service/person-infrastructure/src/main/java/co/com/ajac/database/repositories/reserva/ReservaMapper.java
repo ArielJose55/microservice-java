@@ -13,7 +13,7 @@ public class ReservaMapper implements RowMapper<ReservaRecord>{
 		return new ReservaRecord(
 				rs.getInt("id_reserva"),
 				rs.getString("descripcion"),
-				rs.getString("descripcion"),
+				rs.getString("estado_reserva"),
 				rs.getTimestamp("fecha_inicio"),
 				rs.getTimestamp("fecha_finalizacion"),
 				rs.getInt("bien_comun"),

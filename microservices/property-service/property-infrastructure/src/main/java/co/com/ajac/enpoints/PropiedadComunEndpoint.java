@@ -1,6 +1,8 @@
 package co.com.ajac.enpoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,11 @@ public class PropiedadComunEndpoint {
 		registrarPropiedadComunCommand.execute(propiedadComunDTO);
 	}
 
+	@GetMapping("/phs/pcs/{id}")
+	public PropiedadComunDTO getPropiedadComun(@PathVariable("id") Integer idPropiedadComun) {
+		return propiedadComunQuery.obtenerPropiedadComunPorSuId(idPropiedadComun);
+	}
+	
 	public void obtenerDispositivosDeUnaPropiedadComun(Integer idPropiedadComun) {
 		
 	}

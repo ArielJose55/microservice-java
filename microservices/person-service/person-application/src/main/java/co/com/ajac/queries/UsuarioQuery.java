@@ -14,7 +14,10 @@ import co.com.ajac.services.PersonaJuridicaService;
 import co.com.ajac.services.UsuarioService;
 import coremodel.datosbasicos.Identificacion;
 import io.vavr.collection.List;
+import io.vavr.control.Try;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Component
 public class UsuarioQuery {
 
@@ -47,22 +50,23 @@ public class UsuarioQuery {
 	 * @return
 	 */
 	public UsuarioDTO obtenerUsuarioPorSusCredenciales(Credencial credencial) {
-		return userService.obtenerUsuarioPorSusCredenciales(credencial)
+		return userService.obtenerUsuarioPorSuUSername(credencial.getUsername())
+				//.filter(user -> use)
 				.map(UsuarioBuilder::crearUsuarioDTODesdeEntidad)
 				.map(usuario -> {
-					if(usuario.getTipoUsuario().compareTo("ADM") == 0 || usuario.getTipoUsuario().compareTo("AUX") == 0) {
-						List<PropiedadHorizontalDTO> lista = obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
+					if(usuario.getTipoUsuario().compareTo("ADMIN") == 0 || usuario.getTipoUsuario().compareTo("AUXILIAR") == 0) {
+						List<PropiedadHorizontalDTO> lista = Try.of(() -> obtenerTodasLasPropiedadesHorizontalesPorAdministrador(
 								Identificacion.builder()
 								.tipoIdentificacion(usuario.getTipoIdentificacion())
 								.numeroIdentificacion(usuario.getNumeroIdentificacion())
-								.build());
+								.build())).getOrElse(List.empty());
 						
 						usuario.setPropiedades(lista.asJava());
 					}
 					return usuario;
 				})
 				.getOrElseThrow(() -> new BusinessException("No existe ningun usuario con este username y/o password"));
-		
+
 	}
 	
 	/**
@@ -74,6 +78,11 @@ public class UsuarioQuery {
 		
 		List<PropiedadHorizontalDTO> propiedades =  propiedadHorizontalCommunicator
 			.obtenerTodasLasPropiedadesHorizontalesDeUnAdministrador(identificacion);
+		
+		if(propiedades.isEmpty()) {
+			log.error("Este administrador {} no tiene propiedades horizontales asignadas", identificacion);
+			throw new BusinessException("Este administrador no tiene propiedades horizontales asignadas");
+		}
 		
 		return propiedades.map(propiedad -> {
 			PersonaJuridica personaJuridica = personaJuridicaService.obtenerPersonaJuridicaPorSuNit(propiedad.getNit());

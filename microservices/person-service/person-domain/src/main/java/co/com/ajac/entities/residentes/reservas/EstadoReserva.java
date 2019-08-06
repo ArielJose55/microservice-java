@@ -21,7 +21,7 @@ public enum EstadoReserva {
 		return List.of(EstadoReserva.values())
 			.filter(estado -> codigo != null && codigo.compareTo("") != 0 && estado.getCodigo().equalsIgnoreCase(codigo))
 			.getOrElseThrow(() -> new EnumConstantNotPresentException(EstadoReserva.class,
-					"El codigo proporcionado no corresponde a ningun estado de reserva"));
+					"Este codigo " + codigo + " no corresponde a ningun estado de reserva"));
 	}
 	
 }

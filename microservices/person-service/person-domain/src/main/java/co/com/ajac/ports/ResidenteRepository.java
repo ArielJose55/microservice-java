@@ -1,5 +1,6 @@
 package co.com.ajac.ports;
 
+
 import co.com.ajac.entities.residentes.Residente;
 import co.com.ajac.entities.residentes.habitantes.Habitante;
 import coremodel.datosbasicos.Identificacion;
@@ -18,8 +19,5 @@ public interface ResidenteRepository {
 	boolean verificarExistenciaDeAlgunaPersonaPorSuCodigoseguridad(String codigoSeguridad);
 	
 	Option<Residente> obtenerResidentePorSuIdentificacion(Identificacion identification);
-	
-	Option<Habitante> obtenerHabitantePorSuIdentificacion(Identificacion identification);
-		
-	//public List<Residente> listAllResident(Integer idPh);
+
 }

@@ -41,7 +41,7 @@ public class UsuarioDatabaseBuilder {
 				.build();
 		
 		NombreCompleto nombreCompleto = NombreCompleto.builder()
-				.primerApellido(usuarioRecord.getPersonaNaturalRecord().getPrimerNombre())
+				.primerNombre(usuarioRecord.getPersonaNaturalRecord().getPrimerNombre())
 				.segundoNombre(usuarioRecord.getPersonaNaturalRecord().getSegundoNombre())
 				.primerApellido(usuarioRecord.getPersonaNaturalRecord().getPrimerApellido())
 				.segundoApellido(usuarioRecord.getPersonaNaturalRecord().getSegundoApellido())

@@ -33,4 +33,6 @@ public class Residente  {
 	private final DatoBiometrico datoBiometrico;
 	
 	private final List<Habitante> habitantes;
+	
+	
 }

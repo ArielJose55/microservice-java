@@ -1,8 +1,11 @@
 package co.com.ajac.database.repositories.reserva;
 
+import java.sql.Timestamp;
+
 import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import io.vavr.collection.List;
@@ -31,7 +34,9 @@ public interface ReservaDAO {
 			"")
 	boolean registrarReserva(@BindBean("reserva") ReservaRecord reservaRecord);
 	
-	@SqlUpdate("SELECT * FROM \"RESERVA\" re"
+	
+	
+	@SqlQuery("SELECT * FROM \"RESERVA\" re"
 			+ "	WHERE"
 			+ "	re.estado_reserva = :estadoReserva"
 			+ "	AND"
@@ -40,7 +45,8 @@ public interface ReservaDAO {
 			@Bind("estadoReserva") String estadoReserva,
 			@Bind("bienComun") Integer bienComun);
 	
-	@SqlUpdate("SELECT * FROM \"RESERVA\" re"
+	
+	@SqlQuery("SELECT * FROM \"RESERVA\" re"
 			+ "	WHERE"
 			+ "	re.tipoIdentificacion = :tipoIdentificacion"
 			+ "	AND"
@@ -48,4 +54,24 @@ public interface ReservaDAO {
 	List<ReservaRecord> listarTodasLasReservaDeUnResidente(
 			@Bind("tipoIdentificacion") String tipoIdentificacion,
 			@Bind("numeroIdentificacion") String numeroIdentificacion);
+	
+	
+	@SqlQuery("SELECT * FROM \"RESERVA\" re"
+			+ "	WHERE re.bien_comun = :IdPripiedadComun"
+			+ "	AND"
+			+ "	re.estado_reserva = :estadoReserva"
+			+ "	EXCEPT"
+			+ "		SELECT * FROM person.\"RESERVA\" re " + 
+			"				WHERE"
+			+ "				(re.fecha_finalizacion < :fechaInicio OR re.fecha_inicio > :fechaFinal)"
+			+ "				AND"
+			+ "				re.bien_comun = :IdPripiedadComun" + 
+			"				AND\n" + 
+			"				re.estado_reserva = :estadoReserva")
+	List<ReservaRecord> listarReservasChuzadasConEstas(
+			@Bind("estadoReserva") String estadoReserva,
+			@Bind("fechaInicio") Timestamp fechaInicio,
+			@Bind("fechaFinal") Timestamp fechaFinal,
+			@Bind("IdPripiedadComun") Integer IdPripiedadComun);
+	
 }
